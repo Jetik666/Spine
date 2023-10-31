@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectX12", "DirectX12\DirectX12.vcxproj", "{E7EE7936-5A5D-4C2B-8683-FD283DFDE920}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{457384C6-2CA0-4DB8-B51F-4BEC83993E0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -15,6 +17,10 @@ Global
 		{E7EE7936-5A5D-4C2B-8683-FD283DFDE920}.Debug|x64.Build.0 = Debug|x64
 		{E7EE7936-5A5D-4C2B-8683-FD283DFDE920}.Release|x64.ActiveCfg = Release|x64
 		{E7EE7936-5A5D-4C2B-8683-FD283DFDE920}.Release|x64.Build.0 = Release|x64
+		{457384C6-2CA0-4DB8-B51F-4BEC83993E0B}.Debug|x64.ActiveCfg = Debug|x64
+		{457384C6-2CA0-4DB8-B51F-4BEC83993E0B}.Debug|x64.Build.0 = Debug|x64
+		{457384C6-2CA0-4DB8-B51F-4BEC83993E0B}.Release|x64.ActiveCfg = Release|x64
+		{457384C6-2CA0-4DB8-B51F-4BEC83993E0B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

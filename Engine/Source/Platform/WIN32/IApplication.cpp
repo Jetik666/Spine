@@ -1,2 +1,6 @@
-#include "../../Engine.h"
+#include "Engine.h"
 #include "IApplication.h"
+
+IApplication::IApplication()
+{
+}
