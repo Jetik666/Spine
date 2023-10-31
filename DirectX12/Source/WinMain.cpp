@@ -1,14 +1,24 @@
-#include <Windows.h>
-
-constexpr int MAX_NAME_STRING = 128;
-
-#define HInstance() GetModuleHandle(NULL)
+#include "pch.h"
 
 WCHAR WindowClass[MAX_NAME_STRING];
 WCHAR WindowTitle[MAX_NAME_STRING];
 
 INT WindowWidth;
 INT WindowHeight;
+
+HICON hIcon;
+
+LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam)
+{
+	switch (message)
+	{
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		break;
+	}
+
+	return DefWindowProc(hWnd, message, wparam, lparam);
+}
 
 int CALLBACK WinMain(
 	_In_ HINSTANCE,
@@ -20,6 +30,7 @@ int CALLBACK WinMain(
 	wcscpy_s<MAX_NAME_STRING>(WindowTitle, TEXT("First Window"));
 	WindowWidth = 1366;
 	WindowHeight = 768;
+	hIcon = LoadIcon(HInstance(), MAKEINTRESOURCE(IDI_MAINICON));
 
 	WNDCLASSEX wcex{};
 
@@ -29,12 +40,12 @@ int CALLBACK WinMain(
 	wcex.cbWndExtra = 0;
 	wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)GetStockObject(NULL_BRUSH);
-	wcex.hIcon = LoadIcon(0, IDI_APPLICATION);
-	wcex.hIconSm = LoadIcon(0, IDI_APPLICATION);
+	wcex.hIcon = hIcon;
+	wcex.hIconSm = hIcon;
 	wcex.lpszClassName = WindowClass;
 	wcex.lpszMenuName = nullptr;
 	wcex.hInstance = HInstance();
-	wcex.lpfnWndProc = DefWindowProc;
+	wcex.lpfnWndProc = WindowProcess;
 
 	RegisterClassEx(&wcex);
 
