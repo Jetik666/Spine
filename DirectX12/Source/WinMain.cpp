@@ -8,17 +8,12 @@ INT WindowHeight;
 
 HICON hIcon;
 
-LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam)
-{
-	switch (message)
-	{
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		break;
-	}
+void InitializeVariables();
+void CreateWindowClass();
+void InitializeWindow();
+void MessageLoop();
+LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam);
 
-	return DefWindowProc(hWnd, message, wparam, lparam);
-}
 
 int CALLBACK WinMain(
 	_In_ HINSTANCE,
@@ -26,12 +21,25 @@ int CALLBACK WinMain(
 	_In_ LPSTR,
 	_In_ int)
 {
-	wcscpy_s<MAX_NAME_STRING>(WindowClass, TEXT("Test"));
-	wcscpy_s<MAX_NAME_STRING>(WindowTitle, TEXT("First Window"));
+	InitializeVariables();
+	CreateWindowClass();
+	InitializeWindow();
+	MessageLoop();
+
+	return 0;
+}
+
+void InitializeVariables()
+{
+	LoadString(HInstance(), IDS_PERGAMENAME, WindowTitle, MAX_NAME_STRING);
+	LoadString(HInstance(), IDS_WINDOWCLASS, WindowClass, MAX_NAME_STRING);
 	WindowWidth = 1366;
 	WindowHeight = 768;
 	hIcon = LoadIcon(HInstance(), MAKEINTRESOURCE(IDI_MAINICON));
+}
 
+void CreateWindowClass()
+{
 	WNDCLASSEX wcex{};
 
 	wcex.cbSize = sizeof(WNDCLASSEX);
@@ -48,17 +56,24 @@ int CALLBACK WinMain(
 	wcex.lpfnWndProc = WindowProcess;
 
 	RegisterClassEx(&wcex);
+}
 
+void InitializeWindow()
+{
 	HWND hWnd = CreateWindow(WindowClass, WindowTitle, WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, 0, WindowWidth, WindowHeight, nullptr, nullptr, HInstance(), nullptr);
 	if (!hWnd)
 	{
 		MessageBox(0, L"Failed to create Window.", 0, 0);
-		return 0;
+		PostQuitMessage(0);
+		return;
 	}
 
 	ShowWindow(hWnd, SW_SHOW);
+}
 
+void MessageLoop()
+{
 	MSG msg = { 0 };
 	while (msg.message != WM_QUIT)
 	{
@@ -68,6 +83,16 @@ int CALLBACK WinMain(
 			DispatchMessage(&msg);
 		}
 	}
+}
 
-	return 0;
+LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam)
+{
+	switch (message)
+	{
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		break;
+	}
+
+	return DefWindowProc(hWnd, message, wparam, lparam);
 }
