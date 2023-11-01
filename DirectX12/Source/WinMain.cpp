@@ -15,19 +15,19 @@ void MessageLoop();
 LRESULT CALLBACK WindowProcess(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam);
 
 
-int CALLBACK WinMain(
-	_In_ HINSTANCE,
-	_In_opt_ HINSTANCE,
-	_In_ LPSTR,
-	_In_ int)
-{
-	InitializeVariables();
-	CreateWindowClass();
-	InitializeWindow();
-	MessageLoop();
-
-	return 0;
-}
+//int CALLBACK WinMain(
+//	_In_ HINSTANCE,
+//	_In_opt_ HINSTANCE,
+//	_In_ LPSTR,
+//	_In_ int)
+//{
+//	InitializeVariables();
+//	CreateWindowClass();
+//	InitializeWindow();
+//	MessageLoop();
+//
+//	return 0;
+//}
 
 void InitializeVariables()
 {

@@ -1,11 +1,15 @@
 #pragma once
 
-class IApplication
+#define ENTRYAPP(x) IApplication* EntryApplication() { return new x; }
+
+class ENGINE_API IApplication
 {
 public:
 	IApplication();
-	virtual ~IApplication() = 0;
+	virtual ~IApplication() {};
 public:
 	virtual void Initialize() = 0;
 	virtual void Update() = 0;
 };
+
+IApplication* EntryApplication();
