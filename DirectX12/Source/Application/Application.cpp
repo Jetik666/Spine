@@ -2,8 +2,6 @@
 #include "Application.h"
 #include "Platform/WIN32/WinEntry.h"
 
-ENTRYAPP(Application)
-
 Application::Application()
 {
 }

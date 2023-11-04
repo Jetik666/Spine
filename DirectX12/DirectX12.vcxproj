@@ -90,14 +90,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Application.cpp" />
+    <ClCompile Include="Source\Exception\Exception.cpp" />
+    <ClCompile Include="Source\Application\Application.cpp" />
     <ClCompile Include="Source\pch.cpp" />
     <ClCompile Include="Source\WinMain.cpp" />
+    <ClCompile Include="Source\Application\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Application.h" />
+    <ClInclude Include="Source\Exception\Exception.h" />
+    <ClInclude Include="Source\Application\Application.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Source\pch.h" />
+    <ClInclude Include="Source\Application\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX12.rc" />

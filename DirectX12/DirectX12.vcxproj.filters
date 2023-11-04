@@ -8,30 +8,34 @@
     <Filter Include="Source">
       <UniqueIdentifier>{84cde0b9-e3a6-4754-9af4-56240bb91bb1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Private">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Source\Public">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Source\pch">
       <UniqueIdentifier>{d07f9e6e-dfee-4494-940a-cc0b9dd51976}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resources\Icons">
       <UniqueIdentifier>{6e6f69d1-5f15-481a-b3a3-c5dd4cac627d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Application">
+      <UniqueIdentifier>{166f6fbf-c8a3-4404-8545-af0feb12bc05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Exception">
+      <UniqueIdentifier>{9fe302ce-26c2-449e-9a1b-596cb86a3611}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\WinMain.cpp">
-      <Filter>Source\Private</Filter>
-    </ClCompile>
     <ClCompile Include="Source\pch.cpp">
       <Filter>Source\pch</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Application.cpp">
-      <Filter>Source\Private</Filter>
+    <ClCompile Include="Source\Application\Application.cpp">
+      <Filter>Source\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WinMain.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Application\Window.cpp">
+      <Filter>Source\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Exception\Exception.cpp">
+      <Filter>Source\Exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -41,8 +45,14 @@
     <ClInclude Include="resource.h">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Application.h">
-      <Filter>Source\Public</Filter>
+    <ClInclude Include="Source\Application\Application.h">
+      <Filter>Source\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Application\Window.h">
+      <Filter>Source\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Exception\Exception.h">
+      <Filter>Source\Exception</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
