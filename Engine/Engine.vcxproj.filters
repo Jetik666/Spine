@@ -39,9 +39,6 @@
     <ClCompile Include="Source\Platform\WIN32\IApplication.cpp">
       <Filter>Source\Private\Platform\WIN32</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Platform\WIN32\WinEntry.h">
-      <Filter>Source\Public\Platform\WIN32</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine.h">

@@ -1,31 +1,50 @@
 #pragma once
 
+#include <string>
+
 class Window
 {
+private:
+	class Configuration
+	{
+	public:
+		Configuration() noexcept;
+		~Configuration() noexcept;
+		
+	public:
+		const char* GetName() noexcept;
+		const char* GetClass() noexcept;
+		HINSTANCE GetInstance() noexcept;
+
+	private:
+		char pClass[MAX_NAME_STRING];
+		char pName[MAX_NAME_STRING];
+
+		WNDCLASSEX pWcex{};
+
+		HINSTANCE pHINST;
+	};
+
 public:
 	Window(int width, int height);
 	~Window();
 
 public:
-	static LRESULT CALLBACK HandleMessage(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam);
-	WNDCLASSEX GetWindowClass();
-	HWND GetHWND();
+	void ChangeName(std::string name) noexcept;
+	void Resize(int width, int height) noexcept;
+
+	HWND GetHWND() noexcept;
 
 private:
-	void Create();
+	void SetPosition(RECT* wr);
 	void Initialize();
 
+	static LRESULT CALLBACK HandleMessage(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam);
+
 private:
-	WCHAR pClass[MAX_NAME_STRING];
-	WCHAR pTitle[MAX_NAME_STRING];
-
-	HICON pIcon;
-
+	Configuration pConfiguration;
 	int pWidth;
 	int pHeight;
-
-	WNDCLASSEX pWcex{};
 	HWND pHWND;
-	HINSTANCE pInstance;
 };
 

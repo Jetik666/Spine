@@ -92,7 +92,6 @@
   <ItemGroup>
     <ClCompile Include="Source\Platform\WIN32\IApplication.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
-    <ClCompile Include="Source\Platform\WIN32\WinEntry.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Platform\WIN32\IApplication.h" />

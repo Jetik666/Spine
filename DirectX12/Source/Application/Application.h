@@ -1,13 +1,19 @@
 #pragma once
 
-#include "Platform/WIN32/IApplication.h"
+#include "Window.h"
 
-class Application : public IApplication
+class Application
 {
 public:
 	Application();
 	~Application();
+
 public:
-	void Initialize();
+	int Initialize();
 	void Update();
+
+private:
+	Window pWindow;
+
+	bool isRunning;
 };
