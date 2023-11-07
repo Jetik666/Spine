@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <optional>
 
 class Window
 {
@@ -30,16 +31,19 @@ public:
 	~Window();
 
 public:
-	void ChangeName(std::string name) noexcept;
+	void ChangeName(const std::string& name) noexcept;
 	void Resize(int width, int height) noexcept;
+	std::optional<int> ProcessMessage();
 
 	HWND GetHWND() noexcept;
 
 private:
 	void SetPosition(RECT* wr);
-	void Initialize();
+	void Initialize(RECT wr);
 
-	static LRESULT CALLBACK HandleMessage(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam);
+	static LRESULT CALLBACK Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
+	static LRESULT HandleMessageThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
+	LRESULT HandleMessage(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
 
 private:
 	Configuration pConfiguration;
