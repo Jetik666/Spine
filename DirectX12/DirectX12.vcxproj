@@ -61,7 +61,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>D:\Coding\C++\DirectX12\DirectX12\Source;D:\Coding\C++\DirectX12\Engine\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\DirectX12\Source;D:\Coding\C++\DirectX12\Engine\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>D:\Coding\C++\DirectX12\DirectX12\Source;D:\Coding\C++\DirectX12\Engine\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\DirectX12\Source;D:\Coding\C++\DirectX12\Engine\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -93,15 +93,15 @@
     <ClCompile Include="Source\Exception\Exception.cpp" />
     <ClCompile Include="Source\Application\Application.cpp" />
     <ClCompile Include="Source\pch.cpp" />
+    <ClCompile Include="Source\Platform\Windows\Windows.cpp" />
     <ClCompile Include="Source\WinMain.cpp" />
-    <ClCompile Include="Source\Application\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Exception\Exception.h" />
     <ClInclude Include="Source\Application\Application.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Source\pch.h" />
-    <ClInclude Include="Source\Application\Window.h" />
+    <ClInclude Include="Source\Platform\Windows\Windows.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX12.rc" />

@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Window.h"
+#include "Windows.h"
 
 #include <comdef.h>
 
@@ -19,7 +19,7 @@ Window::Configuration::Configuration() noexcept : pHINST(GetModuleHandle(nullptr
 	pWcex.hIconSm = static_cast<HICON>(LoadIcon(pHINST, MAKEINTRESOURCE(IDI_MAINICON)));
 	pWcex.lpszClassName = GetClass();
 	pWcex.lpszMenuName = nullptr;
-	pWcex.lpfnWndProc = Handle;
+	pWcex.lpfnWndProc = HandleProcess;
 
 	RegisterClassEx(&pWcex);
 }
@@ -141,7 +141,7 @@ std::optional<int> Window::ProcessMessage()
 	return {};
 }
 
-LRESULT CALLBACK Window::Handle(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
+LRESULT CALLBACK Window::HandleProcess(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
 {
 	if (msg == WM_NCCREATE)
 	{

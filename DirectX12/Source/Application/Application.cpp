@@ -10,6 +10,8 @@ Application::~Application() {}
 
 int Application::Initialize()
 {
+	Logger logger;
+
 	while (isRunning)
 	{
 		if (const std::optional<int> code = pWindow.ProcessMessage())

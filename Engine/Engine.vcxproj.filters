@@ -8,44 +8,30 @@
     <Filter Include="Source">
       <UniqueIdentifier>{b4911902-6d67-40b3-839a-c08e5d5848e1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Public">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Source\Private">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Source\pch">
       <UniqueIdentifier>{8fbb1fab-c3a0-4d0d-9a47-6c1ffe08b6b6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Public\Platform">
-      <UniqueIdentifier>{03b5a23d-0a1b-45a2-b27f-5c86727e7fcb}</UniqueIdentifier>
+    <Filter Include="Source\Common">
+      <UniqueIdentifier>{27f2c2e5-2a7a-41da-aeb6-790c574e9f0d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Private\Platform">
-      <UniqueIdentifier>{9df8012c-f349-4058-a86b-e9f66e793c5d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Public\Platform\WIN32">
-      <UniqueIdentifier>{cf279e96-2d26-449e-bc71-6795e56291f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Private\Platform\WIN32">
-      <UniqueIdentifier>{a397d444-83f9-4766-8522-ad7565dd8beb}</UniqueIdentifier>
+    <Filter Include="Source\Common\Logger">
+      <UniqueIdentifier>{d4a143e1-9700-4cfb-8eba-467e2f0f4539}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine.cpp">
       <Filter>Source\pch</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Platform\WIN32\IApplication.cpp">
-      <Filter>Source\Private\Platform\WIN32</Filter>
+    <ClCompile Include="Source\Common\Logger\Logger.cpp">
+      <Filter>Source\Common\Logger</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine.h">
       <Filter>Source\pch</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Platform\WIN32\IApplication.h">
-      <Filter>Source\Public\Platform\WIN32</Filter>
+    <ClInclude Include="Source\Common\Logger\Logger.h">
+      <Filter>Source\Common\Logger</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
