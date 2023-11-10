@@ -1,22 +1,25 @@
 #include "pch.h"
 #include "Application.h"
 
-Application::Application() : pWindow(800, 600), isRunning(true)
+Application::Application() : m_Window(800, 600), m_IsRunning(true)
 {
-	pWindow.ChangeName("Test");
+	m_Window.SetTitle(L"Test");
+	PerGameSettings gameSettings;
+	SetupPerGameSettings();
+	Logger logger;
 }
 
 Application::~Application() {}
 
 int Application::Initialize()
 {
-	Logger logger;
+	Logger::PrintLog(L"I have loaded up.\n%s", L"Blank Project");
 
-	while (isRunning)
+	while (m_IsRunning)
 	{
-		if (const std::optional<int> code = pWindow.ProcessMessage())
+		if (const std::optional<int> code = m_Window.ProcessMessage())
 		{
-			isRunning = false;
+			m_IsRunning = false;
 			return *code;
 		}
 		Update();
@@ -28,4 +31,11 @@ int Application::Initialize()
 void Application::Update()
 {
 
+}
+
+void Application::SetupPerGameSettings()
+{
+	PerGameSettings::SetGameName(IDS_PERGAMENAME);
+	PerGameSettings::SetShortName(IDS_SHORTNAME);
+	PerGameSettings::SetMainIcon(IDI_MAINICON);
 }

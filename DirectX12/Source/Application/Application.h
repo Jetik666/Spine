@@ -1,8 +1,9 @@
 #pragma once
 
 #include "../Platform/Windows/Windows.h"
+#include "Platform/IApplication.h"
 
-class Application
+class Application : public IApplication
 {
 public:
 	Application();
@@ -11,9 +12,11 @@ public:
 public:
 	int Initialize();
 	void Update();
+private:
+	void SetupPerGameSettings();
 
 private:
-	Window pWindow;
+	Window m_Window;
 
-	bool isRunning;
+	bool m_IsRunning;
 };

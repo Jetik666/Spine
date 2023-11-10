@@ -7,8 +7,6 @@ int CALLBACK WinMain(
 	_In_ LPSTR,
 	_In_ int)
 {
-	
-
 	return Application{}.Initialize();
 }
 

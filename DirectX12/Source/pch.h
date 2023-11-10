@@ -5,6 +5,7 @@
 #include "../resource.h"
 
 constexpr int MAX_NAME_STRING = 128;
-#define HInstance() GetModuleHandle(NULL)
 
 #include "Engine.h"
+
+#include "Common/Logger/Logger.h"

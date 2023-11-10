@@ -4,48 +4,48 @@
 #include <comdef.h>
 
 #pragma region Window configuration
-Window::Configuration::Configuration() noexcept : pHINST(GetModuleHandle(nullptr))
+Window::Configuration::Configuration() noexcept : m_hInst(GetModuleHandle(nullptr))
 {
-	LoadString(pHINST, IDS_PERGAMENAME, pName, MAX_NAME_STRING);
-	LoadString(pHINST, IDS_WINDOWCLASS, pClass, MAX_NAME_STRING);
+	LoadString(m_hInst, IDS_PERGAMENAME, m_Name, MAX_NAME_STRING);
+	LoadString(m_hInst, IDS_WINDOWCLASS, m_Class, MAX_NAME_STRING);
 
-	pWcex.cbSize = sizeof(WNDCLASSEX);
-	pWcex.style = CS_HREDRAW | CS_VREDRAW;
-	pWcex.cbClsExtra = 0;
-	pWcex.cbWndExtra = 0;
-	pWcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
-	pWcex.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-	pWcex.hIcon = static_cast<HICON>(LoadIcon(pHINST, MAKEINTRESOURCE(IDI_MAINICON)));
-	pWcex.hIconSm = static_cast<HICON>(LoadIcon(pHINST, MAKEINTRESOURCE(IDI_MAINICON)));
-	pWcex.lpszClassName = GetClass();
-	pWcex.lpszMenuName = nullptr;
-	pWcex.lpfnWndProc = HandleProcess;
+	m_Wcex.cbSize = sizeof(WNDCLASSEX);
+	m_Wcex.style = CS_HREDRAW | CS_VREDRAW;
+	m_Wcex.cbClsExtra = 0;
+	m_Wcex.cbWndExtra = 0;
+	m_Wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
+	m_Wcex.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	m_Wcex.hIcon = static_cast<HICON>(LoadIcon(m_hInst, MAKEINTRESOURCE(IDI_MAINICON)));
+	m_Wcex.hIconSm = static_cast<HICON>(LoadIcon(m_hInst, MAKEINTRESOURCE(IDI_MAINICON)));
+	m_Wcex.lpszClassName = Class();
+	m_Wcex.lpszMenuName = nullptr;
+	m_Wcex.lpfnWndProc = HandleProcess;
 
-	RegisterClassEx(&pWcex);
+	RegisterClassEx(&m_Wcex);
 }
 
 Window::Configuration::~Configuration() noexcept 
 {
-	UnregisterClass(pClass, GetInstance());
+	UnregisterClass(m_Class, Instance());
 }
 
-const char* Window::Configuration::GetName() noexcept
+const wchar_t* Window::Configuration::Name() noexcept
 {	
-	return pName;
+	return m_Name;
 }
 
-const char* Window::Configuration::GetClass() noexcept
+const wchar_t* Window::Configuration::Class() noexcept
 {
-	return pClass;
+	return m_Class;
 }
 
-HINSTANCE Window::Configuration::GetInstance() noexcept
+HINSTANCE Window::Configuration::Instance() noexcept
 {
-	return pHINST;
+	return m_hInst;
 }
 #pragma endregion
 
-Window::Window(int width, int height) : pWidth(width), pHeight(height)
+Window::Window(int width, int height) : m_Width(width), m_Height(height)
 {
 	RECT wr{};
 	SetPosition(&wr);
@@ -54,15 +54,15 @@ Window::Window(int width, int height) : pWidth(width), pHeight(height)
 
 Window::~Window()
 {
-	DestroyWindow(pHWND);
+	DestroyWindow(m_HWND);
 }
 
 void Window::SetPosition(RECT* wr)
 {
 	wr->left = 100;
-	wr->right = pWidth + wr->left;
+	wr->right = m_Width + wr->left;
 	wr->top = 100;
-	wr->bottom = pHeight + wr->top;
+	wr->bottom = m_Height + wr->top;
 	if (AdjustWindowRect(wr, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, FALSE) == 0)
 	{
 		//TODO: Throw exception
@@ -80,42 +80,29 @@ void Window::Initialize(RECT wr)
 	int x = (screenWidth - windowWidth) / 2;
 	int y = (screenHeight - windowHeight) / 2;
 
-	pHWND = CreateWindow(pConfiguration.GetClass(), pConfiguration.GetName(),
+	m_HWND = CreateWindow(m_Configuration.Class(), m_Configuration.Name(),
 		WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, x, y,
-		pWidth, pHeight, nullptr, nullptr, pConfiguration.GetInstance(), this);
-	if (!pHWND)
+		m_Width, m_Height, nullptr, nullptr, m_Configuration.Instance(), this);
+	if (!m_HWND)
 	{
 		//TODO: Throw exception
-		MessageBox(0, "Error.", 0, 0);
+		MessageBox(0, L"Error.", 0, 0);
 		PostQuitMessage(0);
 		return;
 	}
 
-	ShowWindow(pHWND, SW_SHOW);
-}
-
-HWND Window::GetHWND() noexcept
-{
-	return pHWND;
-}
-
-void Window::ChangeName(const std::string& name) noexcept
-{
-	if (SetWindowText(pHWND, name.c_str()) == 0)
-	{
-		//TODO: Throw exception
-	}
+	ShowWindow(m_HWND, SW_SHOW);
 }
 
 void Window::Resize(int width, int height) noexcept
 {
-	pWidth = width;
-	pHeight = height;
+	m_Width = width;
+	m_Height = height;
 
 	RECT wr{};
 	SetPosition(&wr);
 
-	MoveWindow(pHWND, wr.left, wr.top, pWidth, pHeight, TRUE);
+	MoveWindow(m_HWND, wr.left, wr.top, m_Width, m_Height, TRUE);
 }
 
 std::optional<int> Window::ProcessMessage()
@@ -172,10 +159,23 @@ LRESULT Window::HandleMessage(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 		case WM_SIZE:
 		{
-			RedrawWindow(pHWND, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
+			RedrawWindow(m_HWND, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
 			return 0;
 		}
 	}
 
 	return DefWindowProc(hWnd, msg, wParam, lParam);
+}
+
+HWND Window::GetHWND() noexcept
+{
+	return m_HWND;
+}
+
+void Window::SetTitle(const wchar_t* name) noexcept
+{
+	if (SetWindowText(m_HWND, name) == 0)
+	{
+		//TODO: Throw exception
+	}
 }

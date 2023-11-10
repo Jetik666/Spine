@@ -9,21 +9,24 @@ private:
 	class Configuration
 	{
 	public:
+		/* Constructor */
 		Configuration() noexcept;
 		~Configuration() noexcept;
-		
-	public:
-		const char* GetName() noexcept;
-		const char* GetClass() noexcept;
-		HINSTANCE GetInstance() noexcept;
 
 	private:
-		char pClass[MAX_NAME_STRING];
-		char pName[MAX_NAME_STRING];
+		/* Private variables */
+		wchar_t m_Class[MAX_NAME_STRING];
+		wchar_t m_Name[MAX_NAME_STRING];
 
-		WNDCLASSEX pWcex{};
+		WNDCLASSEX m_Wcex{};
 
-		HINSTANCE pHINST;
+		HINSTANCE m_hInst;
+
+	public:
+		/* Getters */
+		const wchar_t* Name() noexcept;
+		const wchar_t* Class() noexcept;
+		HINSTANCE Instance() noexcept;
 	};
 
 public:
@@ -31,11 +34,8 @@ public:
 	~Window();
 
 public:
-	void ChangeName(const std::string& name) noexcept;
 	void Resize(int width, int height) noexcept;
 	std::optional<int> ProcessMessage();
-
-	HWND GetHWND() noexcept;
 
 private:
 	void SetPosition(RECT* wr);
@@ -46,9 +46,15 @@ private:
 	LRESULT HandleMessage(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
 
 private:
-	Configuration pConfiguration;
-	int pWidth;
-	int pHeight;
-	HWND pHWND;
+	/* Private variables */
+	Configuration m_Configuration;
+	int m_Width;
+	int m_Height;
+	HWND m_HWND;
+
+public:
+	/* Getters and Setters */
+	HWND GetHWND() noexcept;
+	void SetTitle(const wchar_t* title) noexcept;
 };
 

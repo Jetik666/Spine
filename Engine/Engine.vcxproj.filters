@@ -17,6 +17,12 @@
     <Filter Include="Source\Common\Logger">
       <UniqueIdentifier>{d4a143e1-9700-4cfb-8eba-467e2f0f4539}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Core">
+      <UniqueIdentifier>{6f82cb53-7055-4efa-a4e4-37d6dc6a8f0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Platform">
+      <UniqueIdentifier>{0757269f-dfac-42ec-b4a8-72a1354f9d40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine.cpp">
@@ -25,6 +31,12 @@
     <ClCompile Include="Source\Common\Logger\Logger.cpp">
       <Filter>Source\Common\Logger</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Core\PerGameSettings.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\IApplication.cpp">
+      <Filter>Source\Platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine.h">
@@ -32,6 +44,12 @@
     </ClInclude>
     <ClInclude Include="Source\Common\Logger\Logger.h">
       <Filter>Source\Common\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\PerGameSettings.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Platform\IApplication.h">
+      <Filter>Source\Platform</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

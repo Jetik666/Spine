@@ -46,10 +46,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)\Build\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\$(ProjectName)\Intermediate\$(Configuration)\</IntDir>
+    <TargetName>Engine</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)\Build\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\$(ProjectName)\Intermediate\$(Configuration)\</IntDir>
+    <TargetName>Engine</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -90,10 +92,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Platform\IApplication.cpp" />
+    <ClCompile Include="Source\Core\PerGameSettings.cpp" />
     <ClCompile Include="Source\Common\Logger\Logger.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Platform\IApplication.h" />
+    <ClInclude Include="Source\Core\PerGameSettings.h" />
     <ClInclude Include="Source\Common\Logger\Logger.h" />
     <ClInclude Include="Source\Engine.h" />
   </ItemGroup>
