@@ -3,7 +3,7 @@
 
 Application::Application() : m_Window(800, 600), m_IsRunning(true)
 {
-	m_Window.SetTitle(L"Test");
+	//m_Window.SetTitle(L"Test");
 	PerGameSettings gameSettings;
 	SetupPerGameSettings();
 	Logger logger;
@@ -13,7 +13,8 @@ Application::~Application() {}
 
 int Application::Initialize()
 {
-	Logger::PrintLog(L"I have loaded up.\n%s", L"Blank Project");
+	Logger::StartMtail();
+	Logger::PrintLog(L"I have loaded up.%s", L"Game Project");
 
 	while (m_IsRunning)
 	{

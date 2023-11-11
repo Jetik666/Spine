@@ -23,6 +23,9 @@
     <Filter Include="Source\Platform">
       <UniqueIdentifier>{0757269f-dfac-42ec-b4a8-72a1354f9d40}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Common\Time">
+      <UniqueIdentifier>{42a7777c-4e35-4b07-a31b-800bdf6c038d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine.cpp">
@@ -37,6 +40,9 @@
     <ClCompile Include="Source\Platform\IApplication.cpp">
       <Filter>Source\Platform</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Common\Time\Time.cpp">
+      <Filter>Source\Common\Time</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine.h">
@@ -50,6 +56,9 @@
     </ClInclude>
     <ClInclude Include="Source\Platform\IApplication.h">
       <Filter>Source\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\Time\Time.h">
+      <Filter>Source\Common\Time</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

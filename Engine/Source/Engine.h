@@ -16,4 +16,5 @@
 #define HInstance() GetModuleHandle(NULL)
 
 #include "Common/Logger/Logger.h"
+#include "Common/Time/Time.h"
 #include "Core/PerGameSettings.h"

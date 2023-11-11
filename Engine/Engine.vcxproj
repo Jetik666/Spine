@@ -96,12 +96,14 @@
     <ClCompile Include="Source\Core\PerGameSettings.cpp" />
     <ClCompile Include="Source\Common\Logger\Logger.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
+    <ClCompile Include="Source\Common\Time\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Platform\IApplication.h" />
     <ClInclude Include="Source\Core\PerGameSettings.h" />
     <ClInclude Include="Source\Common\Logger\Logger.h" />
     <ClInclude Include="Source\Engine.h" />
+    <ClInclude Include="Source\Common\Time\Time.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

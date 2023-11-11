@@ -32,5 +32,7 @@ public:
 
 	static HICON MainIcon() { return inst->m_MainIcon; }
 	static void SetMainIcon(UINT id) { LoadIcon(HInstance(), MAKEINTRESOURCE(id)); }
+
+	static wchar_t* BootTime() { return inst->m_BootTime; }
 };
 
