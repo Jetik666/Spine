@@ -7,7 +7,7 @@ int CALLBACK WinMain(
 	_In_ LPSTR,
 	_In_ int)
 {
-	PerGameSettings gameSettings;
+	ApplicationSettings gameSettings;
 	Logger logger;
 
 	Application newApplication;

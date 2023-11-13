@@ -111,6 +111,7 @@ std::optional<int> Window::ProcessMessage()
 
 	while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
 	{
+
 		if (msg.message == WM_QUIT)
 		{
 			return (int)msg.wParam;
@@ -138,6 +139,7 @@ LRESULT CALLBACK Window::HandleProcess(HWND hWnd, UINT msg, WPARAM wParam, LPARA
 		SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&Window::HandleMessageThunk));
 		return pWnd->HandleMessage(hWnd, msg, wParam, lParam);
 	}
+
 	return DefWindowProc(hWnd, msg, wParam, lParam);
 }
 

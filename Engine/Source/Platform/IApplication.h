@@ -10,6 +10,6 @@ public:
 	virtual int Initialize() = 0;
 	virtual void Update() = 0;
 private:
-	virtual void SetupGameSettings() = 0;
+	virtual void SetupSettings() = 0;
 };
 

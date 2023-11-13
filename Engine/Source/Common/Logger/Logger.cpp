@@ -52,7 +52,7 @@ std::wstring Logger::LogDirectory()
 	wcscat_s(path, L"\\Jetik");
 	CreateDirectory(path, NULL);
 	wcscat_s(path, L"\\");
-	wcscat_s(path, PerGameSettings::GameName());
+	wcscat_s(path, ApplicationSettings::GameName());
 	CreateDirectory(path, NULL);
 	wcscat_s(path, L"\\Log");
 	CreateDirectory(path, NULL);
@@ -62,8 +62,8 @@ std::wstring Logger::LogDirectory()
 std::wstring Logger::LogFile()
 {
 	wchar_t file[1024];
-	wcscpy_s(file, PerGameSettings::GameName());
-	wcscat_s(file, PerGameSettings::BootTime());
+	wcscpy_s(file, ApplicationSettings::GameName());
+	wcscat_s(file, ApplicationSettings::BootTime());
 	wcscat_s(file, L".log");
 	file[1023] = '\0';
 	return std::wstring(file);
@@ -73,7 +73,6 @@ void Logger::PrintDebugSeparator()
 {
 	std::wstring s = L"\n------------------------------------------------------------------------------------\n\n";
 
-#ifdef _DEBUG
 	std::wfstream outfile;
 	outfile.open(std::wstring(LogDirectory() + L"/" + LogFile()), std::ios_base::app);
 
@@ -86,7 +85,6 @@ void Logger::PrintDebugSeparator()
 	{
 		MessageBox(NULL, L"Unable to open log file...", L"Log Error", MB_OK);
 	}
-#endif
 }
 
 bool Logger::IsMTailRunning()

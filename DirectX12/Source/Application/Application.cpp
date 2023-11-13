@@ -3,14 +3,17 @@
 
 Application::Application() : m_Window(800, 600), m_IsRunning(true)
 {
-	SetupGameSettings();
+	SetupSettings();
 }
 
 Application::~Application() {}
 
 int Application::Initialize()
 {
+#ifdef _DEBUG
 	Logger::StartMtail();
+#endif
+
 	Logger::PrintLog(L"I have loaded up.%s", L"Game Project");
 
 	while (m_IsRunning)
@@ -31,9 +34,9 @@ void Application::Update()
 	
 }
 
-void Application::SetupGameSettings()
+void Application::SetupSettings()
 {
-	PerGameSettings::SetGameName(IDS_PERGAMENAME);
-	PerGameSettings::SetShortName(IDS_SHORTNAME);
-	PerGameSettings::SetMainIcon(IDI_MAINICON);
+	ApplicationSettings::SetGameName(IDS_PERGAMENAME);
+	ApplicationSettings::SetShortName(IDS_SHORTNAME);
+	ApplicationSettings::SetMainIcon(IDI_MAINICON);
 }

@@ -1,18 +1,18 @@
 #pragma once
 
 // Singleton game settings
-class ENGINE_API PerGameSettings
+class ENGINE_API ApplicationSettings
 {
 	/* Constructor */
 public:
-	PerGameSettings();
-	~PerGameSettings();
+	ApplicationSettings();
+	~ApplicationSettings();
 
 	/* Singleton */
 public:
-	static PerGameSettings* Instance() { return inst; }
+	static ApplicationSettings* Instance() { return inst; }
 private:
-	static PerGameSettings* inst;
+	static ApplicationSettings* inst;
 
 private:
 	/* Private variables */

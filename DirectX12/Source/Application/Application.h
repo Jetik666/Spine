@@ -13,7 +13,7 @@ public:
 	int Initialize();
 	void Update();
 private:
-	void SetupGameSettings();
+	void SetupSettings();
 
 private:
 	Window m_Window;

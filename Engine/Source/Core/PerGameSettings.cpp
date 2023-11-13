@@ -1,8 +1,8 @@
 #include "Engine.h"
 
-PerGameSettings* PerGameSettings::inst;
+ApplicationSettings* ApplicationSettings::inst;
 
-PerGameSettings::PerGameSettings()
+ApplicationSettings::ApplicationSettings()
 	: m_GameName(L"undefined"), m_ShortName(L"undefined"), m_BootTime(L"undefined"), m_MainIcon(NULL)
 {
 	inst = this;
@@ -12,4 +12,4 @@ PerGameSettings::PerGameSettings()
 	wcscpy_s(inst->m_BootTime, Time::GetDateTime(true).c_str());
 }
 
-PerGameSettings::~PerGameSettings() {}
+ApplicationSettings::~ApplicationSettings() {}
