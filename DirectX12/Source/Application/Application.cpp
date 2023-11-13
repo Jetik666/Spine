@@ -3,10 +3,7 @@
 
 Application::Application() : m_Window(800, 600), m_IsRunning(true)
 {
-	//m_Window.SetTitle(L"Test");
-	PerGameSettings gameSettings;
-	SetupPerGameSettings();
-	Logger logger;
+	SetupGameSettings();
 }
 
 Application::~Application() {}
@@ -31,10 +28,10 @@ int Application::Initialize()
 
 void Application::Update()
 {
-
+	
 }
 
-void Application::SetupPerGameSettings()
+void Application::SetupGameSettings()
 {
 	PerGameSettings::SetGameName(IDS_PERGAMENAME);
 	PerGameSettings::SetShortName(IDS_SHORTNAME);

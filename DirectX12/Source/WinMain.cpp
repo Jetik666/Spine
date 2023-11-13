@@ -7,6 +7,10 @@ int CALLBACK WinMain(
 	_In_ LPSTR,
 	_In_ int)
 {
-	return Application{}.Initialize();
-}
+	PerGameSettings gameSettings;
+	Logger logger;
 
+	Application newApplication;
+
+	return newApplication.Initialize();
+}

@@ -62,7 +62,6 @@ std::wstring Logger::LogDirectory()
 std::wstring Logger::LogFile()
 {
 	wchar_t file[1024];
-	MessageBox(0, PerGameSettings::GameName(), 0, 0);
 	wcscpy_s(file, PerGameSettings::GameName());
 	wcscat_s(file, PerGameSettings::BootTime());
 	wcscat_s(file, L".log");
