@@ -116,6 +116,11 @@ std::optional<int> Window::ProcessMessage()
 			return (int)msg.wParam;
 		}
 
+		if (msg.message == WM_MOVE || msg.message == WM_SIZE)
+		{
+			return {};
+		}
+
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}

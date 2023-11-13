@@ -11,12 +11,12 @@ public:
 
 	/* Public methods */
 public:
-	void Mark() noexcept;
 	bool ShowFrame() noexcept;
 
 	/* Private variables */
 private:
-	unsigned short m_FramesLimit = 300;
+	unsigned short m_FramesLimit;
+	float m_FrameLimitTime;
 	std::chrono::duration<float> m_FrameTime;
 	unsigned short m_FramesAmount;
 
@@ -24,9 +24,11 @@ private:
 
 	/* Getters and Setters */
 public:
-	unsigned short GetFramesLimit() noexcept;
+	unsigned short GetFramesLimit() const noexcept;
 	void SetFramesLimit(unsigned short value) noexcept;
-	unsigned short GetFramesAmount() noexcept;
-	float GetFrameTime() noexcept;
+
+	unsigned short GetFramesAmount() const noexcept;
+
+	float GetFrameTime() const noexcept;
 };
 

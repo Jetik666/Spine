@@ -8,7 +8,7 @@ Application::Application()
 {
 	SetupSettings();
 	m_IsRunning = true;
-	m_FrameCounter.SetFramesLimit(60);
+	m_FrameCounter.SetFramesLimit(300);
 }
 
 Application::~Application() {}
@@ -43,8 +43,6 @@ void Application::Update()
 	{ 
 		if (m_FrameCounter.ShowFrame())
 		{
-			m_FrameCounter.Mark();
-
 			#ifdef _DEBUG
 			wchar_t title[1024];
 
@@ -56,7 +54,7 @@ void Application::Update()
 			ws = std::to_wstring(m_FrameCounter.GetFrameTime());
 			wcscat_s(title, ws.c_str());
 
-			m_Window.SetTitle(title);
+			/*m_Window.SetTitle(title);*/
 			#endif // _DEBUG
 		}
 	}
