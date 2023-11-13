@@ -2,6 +2,7 @@
 
 #include "../Platform/Windows/Windows.h"
 #include "Platform/IApplication.h"
+#include "Common/Time/FrameCounter.h"
 
 class Application : public IApplication
 {
@@ -17,6 +18,7 @@ private:
 
 private:
 	Window m_Window;
+	FrameCounter m_FrameCounter;
 
 	bool m_IsRunning;
 };

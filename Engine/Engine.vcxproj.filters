@@ -34,13 +34,16 @@
     <ClCompile Include="Source\Common\Logger\Logger.cpp">
       <Filter>Source\Common\Logger</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Core\PerGameSettings.cpp">
+    <ClCompile Include="Source\Core\ApplicationSettings.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\Platform\IApplication.cpp">
       <Filter>Source\Platform</Filter>
     </ClCompile>
     <ClCompile Include="Source\Common\Time\Time.cpp">
+      <Filter>Source\Common\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Common\Time\FrameCounter.cpp">
       <Filter>Source\Common\Time</Filter>
     </ClCompile>
   </ItemGroup>
@@ -51,13 +54,16 @@
     <ClInclude Include="Source\Common\Logger\Logger.h">
       <Filter>Source\Common\Logger</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Core\PerGameSettings.h">
+    <ClInclude Include="Source\Core\ApplicationSettings.h">
       <Filter>Source\Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\Platform\IApplication.h">
       <Filter>Source\Platform</Filter>
     </ClInclude>
     <ClInclude Include="Source\Common\Time\Time.h">
+      <Filter>Source\Common\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\Time\FrameCounter.h">
       <Filter>Source\Common\Time</Filter>
     </ClInclude>
   </ItemGroup>

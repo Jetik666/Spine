@@ -92,15 +92,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Common\Time\FrameCounter.cpp" />
     <ClCompile Include="Source\Platform\IApplication.cpp" />
-    <ClCompile Include="Source\Core\PerGameSettings.cpp" />
+    <ClCompile Include="Source\Core\ApplicationSettings.cpp" />
     <ClCompile Include="Source\Common\Logger\Logger.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\Common\Time\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Common\Time\FrameCounter.h" />
     <ClInclude Include="Source\Platform\IApplication.h" />
-    <ClInclude Include="Source\Core\PerGameSettings.h" />
+    <ClInclude Include="Source\Core\ApplicationSettings.h" />
     <ClInclude Include="Source\Common\Logger\Logger.h" />
     <ClInclude Include="Source\Engine.h" />
     <ClInclude Include="Source\Common\Time\Time.h" />
