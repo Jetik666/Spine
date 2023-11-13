@@ -19,7 +19,7 @@ Window::Configuration::Configuration() noexcept : m_hInst(GetModuleHandle(nullpt
 	m_Wcex.hIconSm = static_cast<HICON>(LoadIcon(m_hInst, MAKEINTRESOURCE(IDI_MAINICON)));
 	m_Wcex.lpszClassName = Class();
 	m_Wcex.lpszMenuName = nullptr;
-	m_Wcex.lpfnWndProc = HandleProcess;
+	m_Wcex.lpfnWndProc = HandleMessage;
 
 	RegisterClassEx(&m_Wcex);
 }
@@ -109,17 +109,11 @@ std::optional<int> Window::ProcessMessage()
 {
 	MSG msg;
 
-	while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+	while (GetMessageW(&msg, GetHWND(), 0, 0))
 	{
-
-		if (msg.message == WM_QUIT)
+		if (msg.message == 0)
 		{
 			return (int)msg.wParam;
-		}
-
-		if (msg.message == WM_MOVE || msg.message == WM_SIZE)
-		{
-			return {};
 		}
 
 		TranslateMessage(&msg);
@@ -129,27 +123,7 @@ std::optional<int> Window::ProcessMessage()
 	return {};
 }
 
-LRESULT CALLBACK Window::HandleProcess(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
-{
-	if (msg == WM_NCCREATE)
-	{
-		const CREATESTRUCTW* const pCreate = reinterpret_cast<CREATESTRUCTW*>(lParam);
-		Window* const pWnd = static_cast<Window*>(pCreate->lpCreateParams);
-		SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(pWnd));
-		SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&Window::HandleMessageThunk));
-		return pWnd->HandleMessage(hWnd, msg, wParam, lParam);
-	}
-
-	return DefWindowProc(hWnd, msg, wParam, lParam);
-}
-
-LRESULT CALLBACK Window::HandleMessageThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
-{
-	Window* const pWnd = reinterpret_cast<Window*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
-	return pWnd->HandleMessage(hWnd, msg, wParam, lParam);
-}
-
-LRESULT Window::HandleMessage(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
+LRESULT CALLBACK Window::HandleMessage(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
 {
 	switch (msg)
 	{
@@ -157,12 +131,6 @@ LRESULT Window::HandleMessage(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		{
 			PostQuitMessage(0);
 			break;
-		}
-
-		case WM_SIZE:
-		{
-			RedrawWindow(m_HWND, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
-			return 0;
 		}
 	}
 
