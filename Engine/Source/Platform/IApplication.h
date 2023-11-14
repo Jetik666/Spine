@@ -1,8 +1,8 @@
 #pragma once
 
-namespace Win32
+namespace Win32 
 {
-	class ENGINE_API IApplication
+	class ENGINE_API IApplication 
 	{
 	public:
 		IApplication();

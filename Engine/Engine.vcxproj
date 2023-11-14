@@ -92,6 +92,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Common\CmdLineArgs.cpp" />
     <ClCompile Include="Source\Engine\Simulation.cpp" />
     <ClCompile Include="Source\Engine\OEngine.cpp" />
     <ClCompile Include="Source\Core\Definitions.cpp" />
@@ -105,6 +106,7 @@
     <ClCompile Include="Source\Common\Time\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Common\CmdLineArgs.h" />
     <ClInclude Include="Source\Engine\Simulation.h" />
     <ClInclude Include="Source\Engine\OEngine.h" />
     <ClInclude Include="Source\Core\Definitions.h" />

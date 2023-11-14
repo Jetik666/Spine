@@ -1,7 +1,7 @@
 #include "Engine.h"
 #include "IApplication.h"
 
-namespace Win32
+namespace Win32 
 {
 	IApplication::IApplication() {}
 }

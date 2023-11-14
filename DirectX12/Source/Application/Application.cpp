@@ -13,19 +13,15 @@ Application::Application()
 
 Application::~Application() {}
 
-int Application::Initialize()
+int Application::Initialize() 
 {
-#ifdef _DEBUG
-	Logger::StartMtail();
-#endif
-
 	Logger::PrintLog(L"I have loaded up.%s", L"Game Project");
 
 	std::thread renderThread(&Application::Update, this);
 
-	while (m_IsRunning)
+	while (m_IsRunning) 
 	{
-		if (const std::optional<int> code = m_Window.ProcessMessage())
+		if (const std::optional<int> code = m_Window.ProcessMessage()) 
 		{
 			m_IsRunning = false;
 			renderThread.join();
@@ -37,11 +33,11 @@ int Application::Initialize()
 	return 0;
 }
 
-void Application::Update()
+void Application::Update() 
 {
-	while (m_IsRunning)
+	while (m_IsRunning) 
 	{ 
-		if (m_FrameCounter.ShowFrame())
+		if (m_FrameCounter.ShowFrame()) 
 		{
 			#ifdef _DEBUG
 			wchar_t title[1024];
@@ -60,7 +56,7 @@ void Application::Update()
 	}
 }
 
-void Application::SetupSettings()
+void Application::SetupSettings() 
 {
 	ApplicationSettings::SetGameName(IDS_PERGAMENAME);
 	ApplicationSettings::SetShortName(IDS_SHORTNAME);

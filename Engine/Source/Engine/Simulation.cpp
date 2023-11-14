@@ -1,8 +1,6 @@
 #include "Engine.h"
 #include "Simulation.h"
 
-OEngine::Simulation::Simulation()
-{
-}
+TestEngine::Simulation::Simulation() {}
 
-OEngine::Simulation::~Simulation() {}
+TestEngine::Simulation::~Simulation() {}

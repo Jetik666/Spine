@@ -4,7 +4,7 @@
 #include "Engine/Simulation.h"
 #include "Common/Time/FrameCounter.h"
 
-class Application : public OEngine::Simulation
+class Application : public TestEngine::Simulation
 {
 public:
 	Application();
