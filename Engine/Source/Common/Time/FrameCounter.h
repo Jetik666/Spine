@@ -17,8 +17,8 @@ public:
 private:
 	unsigned short m_FramesLimit;
 	float m_FrameLimitTime;
-	std::chrono::duration<float> m_FrameTime;
 	unsigned short m_FramesAmount;
+	float m_FrameTime;
 
 	std::chrono::steady_clock::time_point m_Peek;
 

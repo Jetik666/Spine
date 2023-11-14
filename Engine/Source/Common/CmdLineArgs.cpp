@@ -28,17 +28,17 @@ void CmdLineArgs::ReadArgument(const wchar_t* argument)
 	}
 	if (wcscmp(argument, L"debug") == 0)
 	{
-		Engine::SetMode(Engine::EngineMode::DEBUG);
+		EngineMode::SetMode(EngineMode::EngineModes::DEBUG);
 		return;
 	}
 	if (wcscmp(argument, L"editor") == 0)
 	{
-		Engine::SetMode(Engine::EngineMode::EDITOR);
+		EngineMode::SetMode(EngineMode::EngineModes::EDITOR);
 		return;
 	}
 	if (wcscmp(argument, L"server") == 0)
 	{
-		Engine::SetMode(Engine::EngineMode::SERVER);
+		EngineMode::SetMode(EngineMode::EngineModes::SERVER);
 		return;
 	}
 }

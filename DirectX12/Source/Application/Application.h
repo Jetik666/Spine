@@ -13,7 +13,6 @@ public:
 public:
 	int Initialize();
 	void Update();
-private:
 	void SetupSettings();
 
 private:

@@ -6,8 +6,6 @@
 Application::Application() 
 	: m_Window(800, 600), m_IsRunning(true)
 {
-	SetupSettings();
-	m_IsRunning = true;
 	m_FrameCounter.SetFramesLimit(300);
 }
 
@@ -15,7 +13,11 @@ Application::~Application() {}
 
 int Application::Initialize() 
 {
-	Logger::PrintLog(L"I have loaded up.%s", L"Game Project");
+	Logger::PrintDebugSeparator();
+	Logger::PrintLog(L"Application has loaded up: %s\n", ApplicationSettings::GameName());
+	Logger::PrintLog(L"Boot time: %s\n", ApplicationSettings::BootTime());
+	Logger::PrintLog(L"Engine Mode: %s\n", EngineMode::EngineModeToString().c_str());
+	Logger::PrintDebugSeparator();
 
 	std::thread renderThread(&Application::Update, this);
 

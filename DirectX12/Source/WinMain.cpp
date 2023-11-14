@@ -8,13 +8,15 @@ int CALLBACK WinMain(
 	_In_ LPSTR,
 	_In_ int) 
 {
-
+	Application newApplication;
 	ApplicationSettings gameSettings;
+
+	newApplication.SetupSettings();
+
 	Logger logger;
 
 	CmdLineArgs::ReadArguments();
 
-	Application newApplication;
 
 	return newApplication.Initialize();
 }
