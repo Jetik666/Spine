@@ -1,15 +1,18 @@
 #pragma once
 
-class ENGINE_API IApplication
+namespace Win32
 {
-public:
-	IApplication();
-	virtual ~IApplication() {};
+	class ENGINE_API IApplication
+	{
+	public:
+		IApplication();
+		virtual ~IApplication() {};
 
-public:
-	virtual int Initialize() = 0;
-	virtual void Update() = 0;
-private:
-	virtual void SetupSettings() = 0;
-};
+	public:
+		virtual int Initialize() = 0;
+		virtual void Update() = 0;
+	private:
+		virtual void SetupSettings() = 0;
+	};
+}
 

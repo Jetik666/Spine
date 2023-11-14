@@ -1,10 +1,10 @@
 #pragma once
 
 #include "../Platform/Windows/Windows.h"
-#include "Platform/IApplication.h"
+#include "Engine/Simulation.h"
 #include "Common/Time/FrameCounter.h"
 
-class Application : public IApplication
+class Application : public OEngine::Simulation
 {
 public:
 	Application();

@@ -24,9 +24,9 @@ private:
 
 		/* Getters */
 	public:
-		const wchar_t* Name() noexcept;
-		const wchar_t* Class() noexcept;
-		HINSTANCE Instance() noexcept;
+		const wchar_t* GetName() noexcept;
+		const wchar_t* GetClass() noexcept;
+		HINSTANCE GetInstance() noexcept;
 	};
 
 public:

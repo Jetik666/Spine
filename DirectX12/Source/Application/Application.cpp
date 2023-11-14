@@ -54,7 +54,7 @@ void Application::Update()
 			ws = std::to_wstring(m_FrameCounter.GetFrameTime());
 			wcscat_s(title, ws.c_str());
 
-			/*m_Window.SetTitle(title);*/
+			m_Window.SetTitle(title);
 			#endif // _DEBUG
 		}
 	}

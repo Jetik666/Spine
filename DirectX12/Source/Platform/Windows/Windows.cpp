@@ -13,11 +13,12 @@ Window::Configuration::Configuration() noexcept : m_hInst(GetModuleHandle(nullpt
 	m_Wcex.style = CS_HREDRAW | CS_VREDRAW;
 	m_Wcex.cbClsExtra = 0;
 	m_Wcex.cbWndExtra = 0;
+	m_Wcex.hInstance = GetInstance();
 	m_Wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	m_Wcex.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 	m_Wcex.hIcon = static_cast<HICON>(LoadIcon(m_hInst, MAKEINTRESOURCE(IDI_MAINICON)));
 	m_Wcex.hIconSm = static_cast<HICON>(LoadIcon(m_hInst, MAKEINTRESOURCE(IDI_MAINICON)));
-	m_Wcex.lpszClassName = Class();
+	m_Wcex.lpszClassName = GetClass();
 	m_Wcex.lpszMenuName = nullptr;
 	m_Wcex.lpfnWndProc = HandleMessage;
 
@@ -26,20 +27,20 @@ Window::Configuration::Configuration() noexcept : m_hInst(GetModuleHandle(nullpt
 
 Window::Configuration::~Configuration() noexcept 
 {
-	UnregisterClass(m_Class, Instance());
+	UnregisterClass(m_Class, GetInstance());
 }
 
-const wchar_t* Window::Configuration::Name() noexcept
+const wchar_t* Window::Configuration::GetName() noexcept
 {	
 	return m_Name;
 }
 
-const wchar_t* Window::Configuration::Class() noexcept
+const wchar_t* Window::Configuration::GetClass() noexcept
 {
 	return m_Class;
 }
 
-HINSTANCE Window::Configuration::Instance() noexcept
+HINSTANCE Window::Configuration::GetInstance() noexcept
 {
 	return m_hInst;
 }
@@ -80,9 +81,9 @@ void Window::Initialize(RECT wr)
 	int x = (screenWidth - windowWidth) / 2;
 	int y = (screenHeight - windowHeight) / 2;
 
-	m_HWND = CreateWindow(m_Configuration.Class(), m_Configuration.Name(),
+	m_HWND = CreateWindow(m_Configuration.GetClass(), m_Configuration.GetName(),
 		WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, x, y,
-		m_Width, m_Height, nullptr, nullptr, m_Configuration.Instance(), this);
+		m_Width, m_Height, nullptr, nullptr, m_Configuration.GetInstance(), this);
 	if (!m_HWND)
 	{
 		//TODO: Throw exception
@@ -109,9 +110,9 @@ std::optional<int> Window::ProcessMessage()
 {
 	MSG msg;
 
-	while (GetMessageW(&msg, GetHWND(), 0, 0))
+	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 	{
-		if (msg.message == 0)
+		if (msg.message == WM_QUIT)
 		{
 			return (int)msg.wParam;
 		}

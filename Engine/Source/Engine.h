@@ -1,20 +1,5 @@
-#pragma once
-
 #ifdef WIN32
-
-#include <Windows.h>
-
+	#include <Windows.h>
 #endif
 
-#ifdef BUILD_DLL
-	#define ENGINE_API __declspec(dllexport)
-#else
-	#define ENGINE_API __declspec(dllimport)
-#endif
-
-#define MAX_NAME_STRING 128
-#define HInstance() GetModuleHandle(NULL)
-
-#include "Common/Logger/Logger.h"
-#include "Common/Time/Time.h"
-#include "Core/ApplicationSettings.h"
+#include "Core/Core.h"
