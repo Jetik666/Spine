@@ -10,6 +10,10 @@ namespace TestEngine
 	public:
 		Simulation();
 		~Simulation();
+
+		/* Public functions */
+	public:
+		virtual void PreInitialize() override;
 	};
 }
 

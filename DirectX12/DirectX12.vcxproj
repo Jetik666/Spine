@@ -53,6 +53,7 @@
     <OutDir>$(SolutionDir)\Build\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\$(ProjectName)\Intermediate\$(Configuration)\</IntDir>
     <TargetName>Game</TargetName>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -63,7 +64,7 @@
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>Create</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>BlankProject.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)\DirectX12\Source;$(SolutionDir)\Engine\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
     </ClCompile>
@@ -88,7 +89,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Create</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>BlankProject.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalIncludeDirectories>$(SolutionDir)\DirectX12\Source;$(SolutionDir)\Engine\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -109,16 +110,11 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Exception\Exception.cpp" />
-    <ClCompile Include="Source\Application\Application.cpp" />
-    <ClCompile Include="Source\pch.cpp" />
-    <ClCompile Include="Source\WinMain.cpp" />
+    <ClCompile Include="Source\BlankProject.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Exception\Exception.h" />
-    <ClInclude Include="Source\Application\Application.h" />
+    <ClInclude Include="Source\BlankProject.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Source\pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX12.rc" />

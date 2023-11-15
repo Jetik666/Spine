@@ -1,6 +1,8 @@
 #include "Engine.h"
 #include "SplashScreen.h"
 
+#include "Platform/Win32/Win32Utils.h"
+
 namespace SplashScreen
 {
 	#define WM_OUTPUTMESSAGE (WM_USER + 0x0001)
@@ -50,6 +52,8 @@ LRESULT SplashWindow::MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LPA
 		PAINTSTRUCT ps;
 
 		hdc = BeginPaint(hwnd, &ps);
+
+		Win32::Utils::AddBitmap(L"D:\\Coding\\C++\\DirectX12\\DirectX12\\Content\\Images\\Splash.bmp", hdc);
 
 		SetBkMode(hdc, TRANSPARENT);
 		SetTextColor(hdc, RGB(255, 255, 255));

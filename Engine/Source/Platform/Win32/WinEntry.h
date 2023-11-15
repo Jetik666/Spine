@@ -3,7 +3,7 @@
 #include "../IApplication.h"
 #include "Common/CmdLineArgs.h"
 
-extern Win32::IApplication* EntryApplication();
+extern Win32::IApplication * EntryApplication();
 
 int CALLBACK WinMain(
 	_In_ HINSTANCE,
