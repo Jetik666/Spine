@@ -23,9 +23,6 @@
     <Filter Include="Source\Platform">
       <UniqueIdentifier>{f86d598e-4950-40c4-b1b6-d2e5007d26bc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Platform\Windows">
-      <UniqueIdentifier>{7b14b7ae-ec88-4c70-8a3f-848f40432a11}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">
@@ -40,9 +37,6 @@
     <ClCompile Include="Source\Exception\Exception.cpp">
       <Filter>Source\Exception</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Platform\Windows\Windows.cpp">
-      <Filter>Source\Platform\Windows</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -56,9 +50,6 @@
     </ClInclude>
     <ClInclude Include="Source\Exception\Exception.h">
       <Filter>Source\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Platform\Windows\Windows.h">
-      <Filter>Source\Platform\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

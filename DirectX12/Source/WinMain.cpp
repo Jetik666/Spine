@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Application/Application.h"
 #include "Common/CmdLineArgs.h"
+#include "Engine/SplashScreen.h"
 
 int CALLBACK WinMain(
 	_In_ HINSTANCE,
@@ -17,6 +18,7 @@ int CALLBACK WinMain(
 
 	CmdLineArgs::ReadArguments();
 
+	SplashScreen::Open();
 
 	return newApplication.Initialize();
 }

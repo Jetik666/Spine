@@ -104,6 +104,10 @@
     <ClCompile Include="Source\Common\Logger\Logger.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\Common\Time\Time.cpp" />
+    <ClCompile Include="Source\Engine\SplashScreen.cpp" />
+    <ClCompile Include="Source\Platform\Win32\Window.cpp" />
+    <ClCompile Include="Source\Platform\Win32\SubObject.cpp" />
+    <ClCompile Include="Source\Platform\Win32\Win32Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Common\CmdLineArgs.h" />
@@ -118,6 +122,10 @@
     <ClInclude Include="Source\Common\Logger\Logger.h" />
     <ClInclude Include="Source\Engine.h" />
     <ClInclude Include="Source\Common\Time\Time.h" />
+    <ClInclude Include="Source\Engine\SplashScreen.h" />
+    <ClInclude Include="Source\Platform\Win32\Window.h" />
+    <ClInclude Include="Source\Platform\Win32\SubObject.h" />
+    <ClInclude Include="Source\Platform\Win32\Win32Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

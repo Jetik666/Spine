@@ -72,8 +72,12 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)\Build\Engine\$(Configuration)\Engine.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)\Build\Engine\$(Configuration)\Engine.dll" "$(OutDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -97,14 +101,17 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)\Build\Engine\$(Configuration)\Engine.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)\Build\Engine\$(Configuration)\Engine.dll" "$(OutDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Exception\Exception.cpp" />
     <ClCompile Include="Source\Application\Application.cpp" />
     <ClCompile Include="Source\pch.cpp" />
-    <ClCompile Include="Source\Platform\Windows\Windows.cpp" />
     <ClCompile Include="Source\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -112,7 +119,6 @@
     <ClInclude Include="Source\Application\Application.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Source\pch.h" />
-    <ClInclude Include="Source\Platform\Windows\Windows.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX12.rc" />

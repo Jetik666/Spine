@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../Platform/Windows/Windows.h"
 #include "Engine/Simulation.h"
 #include "Common/Time/FrameCounter.h"
 
@@ -16,7 +15,6 @@ public:
 	void SetupSettings();
 
 private:
-	Window m_Window;
 	FrameCounter m_FrameCounter;
 
 	bool m_IsRunning;

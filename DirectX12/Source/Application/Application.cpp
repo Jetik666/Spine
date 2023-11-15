@@ -1,10 +1,13 @@
 #include "pch.h"
 #include "Application.h"
 
+#include "Engine/SplashScreen.h"
+
 #include <string>
+#include <thread>
 
 Application::Application() 
-	: m_Window(800, 600), m_IsRunning(true)
+	: m_IsRunning(true)
 {
 	m_FrameCounter.SetFramesLimit(300);
 }
@@ -19,42 +22,27 @@ int Application::Initialize()
 	Logger::PrintLog(L"Engine Mode: %s\n", EngineMode::EngineModeToString().c_str());
 	Logger::PrintDebugSeparator();
 
-	std::thread renderThread(&Application::Update, this);
-
-	while (m_IsRunning) 
+	MSG msg = { 0 };
+	while (msg.message != WM_QUIT) 
 	{
-		if (const std::optional<int> code = m_Window.ProcessMessage()) 
+		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
 		{
-			m_IsRunning = false;
-			renderThread.join();
-			return *code;
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+		else
+		{
+			Update();
 		}
 	}
-
-	renderThread.join();
 	return 0;
 }
 
 void Application::Update() 
 {
-	while (m_IsRunning) 
-	{ 
-		if (m_FrameCounter.ShowFrame()) 
-		{
-			#ifdef _DEBUG
-			wchar_t title[1024];
+	if (m_FrameCounter.ShowFrame())
+	{
 
-			wcscpy_s(title, ApplicationSettings::GameName());
-			wcscat_s(title, L" FPS: ");
-			std::wstring ws = std::to_wstring(m_FrameCounter.GetFramesAmount());
-			wcscat_s(title, ws.c_str());
-			wcscat_s(title, L" Frame Time: ");
-			ws = std::to_wstring(m_FrameCounter.GetFrameTime());
-			wcscat_s(title, ws.c_str());
-
-			m_Window.SetTitle(title);
-			#endif // _DEBUG
-		}
 	}
 }
 
