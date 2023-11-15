@@ -1,9 +1,9 @@
 #include "Engine.h"
 
-#include "../IApplication.h"
+#include "IApplication.h"
 #include "Common/CmdLineArgs.h"
 
-extern Win32::IApplication * EntryApplication();
+extern IApplication* EntryApplication();
 
 int CALLBACK WinMain(
 	_In_ HINSTANCE,

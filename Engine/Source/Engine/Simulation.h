@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Platform/IApplication.h"
+#include "Platform/Win32/IApplication.h"
 
 namespace TestEngine 
 {
-	class ENGINE_API Simulation : public Win32::IApplication 
+	class ENGINE_API Simulation : public IApplication 
 	{
 		/* Constructor */
 	public:

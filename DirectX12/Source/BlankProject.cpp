@@ -16,7 +16,7 @@ public:
 private:
 };
 
-ENTRYAPP(BlankProject);
+EntryApp(BlankProject);
 
 void BlankProject::SetupSettings()
 {
