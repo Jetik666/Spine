@@ -3,52 +3,64 @@
 #include <sstream>
 #include <iomanip>
 
-std::wstring ENGINE_API Time::GetTime(bool stripped) noexcept {
-	time_t now = time(0);
-	tm ltm;
-	localtime_s(&ltm, &now);
-	std::wstringstream wss;
-	wss << std::put_time(&ltm, L"%T");
+namespace Time
+{
+	std::wstring ENGINE_API GetTime(bool stripped) noexcept
+	{
+		time_t now = time(0);
+		tm ltm;
+		localtime_s(&ltm, &now);
+		std::wstringstream wss;
+		wss << std::put_time(&ltm, L"%T");
 
-	std::wstring timeString = wss.str();
+		std::wstring timeString = wss.str();
 
-	if (stripped) {
-		std::wstring chars = L":";
-		for (wchar_t c : chars) {
-			timeString.erase(std::remove(timeString.begin(), timeString.end(), c), timeString.end());
+		if (stripped)
+		{
+			std::wstring chars = L":";
+			for (wchar_t c : chars)
+			{
+				timeString.erase(std::remove(timeString.begin(), timeString.end(), c), timeString.end());
+			}
 		}
+
+		return timeString;
 	}
 
-	return timeString;
-}
+	std::wstring ENGINE_API GetDate(bool stripped) noexcept
+	{
+		time_t now = time(0);
+		tm ltm;
+		localtime_s(&ltm, &now);
+		std::wstringstream wss;
+		wss << std::put_time(&ltm, L"%d/%m/%y");
+		std::wstring timeString = wss.str();
 
-std::wstring ENGINE_API Time::GetDate(bool stripped) noexcept {
-	time_t now = time(0);
-	tm ltm;
-	localtime_s(&ltm, &now);
-	std::wstringstream wss;
-	wss << std::put_time(&ltm, L"%d/%m/%y");
-	std::wstring timeString = wss.str();
-
-	if (stripped) {
-		std::wstring chars = L"/";
-		for (wchar_t c : chars) {
-			timeString.erase(std::remove(timeString.begin(), timeString.end(), c), timeString.end());
+		if (stripped) 
+		{
+			std::wstring chars = L"/";
+			for (wchar_t c : chars)
+			{
+				timeString.erase(std::remove(timeString.begin(), timeString.end(), c), timeString.end());
+			}
 		}
+
+		return timeString;
 	}
 
-	return timeString;
-}
+	std::wstring ENGINE_API GetDateTime(bool stripped) noexcept
+	{
+		std::wstring timeString = GetDate(stripped) + L" " + GetTime(stripped);
 
-std::wstring ENGINE_API Time::GetDateTime(bool stripped) noexcept {
-	std::wstring timeString = GetDate(stripped) + L" " + GetTime(stripped);
-
-	if (stripped) {
-		std::wstring chars = L" ";
-		for (wchar_t c : chars) {
-			timeString.erase(std::remove(timeString.begin(), timeString.end(), c), timeString.end());
+		if (stripped) 
+		{
+			std::wstring chars = L" ";
+			for (wchar_t c : chars) 
+			{
+				timeString.erase(std::remove(timeString.begin(), timeString.end(), c), timeString.end());
+			}
 		}
-	}
 
-	return timeString;
-}
+		return timeString;
+	}
+};

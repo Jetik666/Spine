@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
 
-namespace Time {
+namespace Time 
+{
 	/* Get current time in string format */
 	std::wstring ENGINE_API GetTime(bool stripped = false) noexcept;
 	/* Get current date in string format */

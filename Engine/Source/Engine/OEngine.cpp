@@ -16,12 +16,13 @@ namespace EngineMode
 
 	std::wstring ENGINE_API EngineModeToString() noexcept 
 	{
-		switch (EngineMode::GetMode()) {
+		switch (EngineMode::GetMode()) 
+		{
 		case EngineModes::DEBUG:		return L"Debug";
-		case EngineModes::RELEASE:	return L"Release";
-		case EngineModes::EDITOR:	return L"Editor";
-		case EngineModes::SERVER:	return L"Server";
-		default:					return L"None";
+		case EngineModes::RELEASE:		return L"Release";
+		case EngineModes::EDITOR:		return L"Editor";
+		case EngineModes::SERVER:		return L"Server";
+		default:						return L"None";
 		}
 	}
 }
@@ -36,7 +37,7 @@ OEngine::OEngine() noexcept
 
 }
 
-OEngine::~OEngine() {}
+OEngine::~OEngine() noexcept  {}
 
 EngineModes OEngine::GetEngineMode() const noexcept 
 {
