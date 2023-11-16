@@ -1,16 +1,16 @@
 #pragma once
 
 // Singleton game settings
-class ENGINE_API ApplicationSettings
+class ENGINE_API ApplicationSettings 
 {
 	/* Constructor */
 public:
-	ApplicationSettings();
-	~ApplicationSettings();
+	ApplicationSettings() noexcept;
+	~ApplicationSettings() noexcept;
 
 	/* Singleton */
 public:
-	static ApplicationSettings* Instance() { return inst; }
+	static ApplicationSettings* Instance() noexcept { return inst; }
 private:
 	static ApplicationSettings* inst;
 
@@ -23,15 +23,15 @@ private:
 
 	/* Getters and Setters */
 public:
-	static wchar_t* GameName() { return inst->m_GameName; }
-	static void SetGameName(UINT id) { LoadString(HInstance(), id, inst->m_GameName, MAX_NAME_STRING); }
+	static wchar_t* GameName() noexcept { return inst->m_GameName; }
+	static void SetGameName(UINT id) noexcept { LoadString(HInstance(), id, inst->m_GameName, MAX_NAME_STRING); }
 
-	static wchar_t* ShortName() { return inst->m_ShortName; }
-	static void SetShortName(UINT id) { LoadString(HInstance(), id, inst->m_ShortName, MAX_NAME_STRING); }
+	static wchar_t* ShortName() noexcept { return inst->m_ShortName; }
+	static void SetShortName(UINT id) noexcept { LoadString(HInstance(), id, inst->m_ShortName, MAX_NAME_STRING); }
 
-	static HICON MainIcon() { return inst->m_MainIcon; }
-	static void SetMainIcon(UINT id) { LoadIcon(HInstance(), MAKEINTRESOURCE(id)); }
+	static HICON MainIcon() noexcept { return inst->m_MainIcon; }
+	static void SetMainIcon(UINT id) noexcept { LoadIcon(HInstance(), MAKEINTRESOURCE(id)); }
 
-	static wchar_t* BootTime() { return inst->m_BootTime; }
+	static wchar_t* BootTime() noexcept { return inst->m_BootTime; }
 };
 

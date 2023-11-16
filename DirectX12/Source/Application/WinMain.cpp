@@ -1,6 +1,8 @@
 #include "BlankProject.h"
 #include "Application.h"
 
+#include "Common/CmdLineArgs.h"
+
 int CALLBACK WinMain(
 	_In_ HINSTANCE,
 	_In_opt_ HINSTANCE,
@@ -9,7 +11,7 @@ int CALLBACK WinMain(
 {
 	ApplicationSettings GameSettings;
 	Windows::Application Game;
-
+	CmdLineArgs::ReadArguments();
 	Logger logger;
 	Game.PreInitialize();
 	Game.Initialize();

@@ -2,22 +2,18 @@
 
 #include "SubObject.h"
 
-namespace Win32
+namespace Win32 
 {
-	class ENGINE_API Window : public Win32::SubObject
+	class ENGINE_API Window : public Win32::SubObject 
 	{
 		/* Constructor */
 	public:
-		Window(std::wstring className, std::wstring classTitle, HICON hIcon, int width, int height);
-		~Window();
-
-		/* Public functions */
-	public:
-		void SetTitle();
+		Window(std::wstring className, std::wstring classTitle, HICON hIcon, int width, int height) noexcept;
+		~Window() noexcept;
 
 		/* Private functions */
 	private:
-		virtual void Initialize() override;
+		virtual void Initialize() noexcept override;
 
 		/* Protected variables */
 	protected:
@@ -28,7 +24,7 @@ namespace Win32
 
 		/* Getters and Setters */
 	public:
-		HWND GetHandle() const { return m_Handle; };
+		HWND GetHandle() const noexcept { return m_Handle; };
 	};
 }
 

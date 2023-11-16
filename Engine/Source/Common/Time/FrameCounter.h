@@ -2,7 +2,7 @@
 #include <chrono>
 
 /* Frames Counter */
-class ENGINE_API FrameCounter
+class ENGINE_API FrameCounter 
 {
 	/* Constructor */
 public:
@@ -20,7 +20,7 @@ private:
 	unsigned short m_FramesAmount;
 	float m_FrameTime;
 
-	std::chrono::steady_clock::time_point m_Peek;
+	int64_t m_Peek;
 
 	/* Getters and Setters */
 public:

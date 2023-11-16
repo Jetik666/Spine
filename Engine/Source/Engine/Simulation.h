@@ -8,12 +8,13 @@ namespace TestEngine
 	{
 		/* Constructor */
 	public:
-		Simulation();
-		~Simulation();
+		Simulation() noexcept;
+		~Simulation() noexcept;
 
 		/* Public functions */
 	public:
-		virtual void PreInitialize() override;
+		virtual void PreInitialize() noexcept override;
+		void SetTitle(const wchar_t* title) const noexcept;
 	};
 }
 

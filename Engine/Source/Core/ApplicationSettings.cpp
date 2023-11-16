@@ -2,7 +2,7 @@
 
 ApplicationSettings* ApplicationSettings::inst;
 
-ApplicationSettings::ApplicationSettings()
+ApplicationSettings::ApplicationSettings() noexcept
 	: m_GameName(L"undefined"), m_ShortName(L"undefined"), m_BootTime(L"undefined"), m_MainIcon(NULL)
 {
 	inst = this;
@@ -12,4 +12,4 @@ ApplicationSettings::ApplicationSettings()
 	wcscpy_s(inst->m_BootTime, Time::GetDateTime(true).c_str());
 }
 
-ApplicationSettings::~ApplicationSettings() {}
+ApplicationSettings::~ApplicationSettings() noexcept {}

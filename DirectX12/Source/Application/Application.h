@@ -4,21 +4,21 @@
 
 namespace Windows 
 {
-	class Application : public TestEngine::Simulation
+	class Application : public TestEngine::Simulation 
 	{
 		/* Constructor */
 	public:
-		Application();
-		~Application();
+		Application() noexcept;
+		~Application() noexcept;
 
 		/* Public functions */
 	public:
-		void Initialize();
+		void Initialize() noexcept;
 		
 		/* Private functions */
 	private:
-		void SetupSettings();
-		void Update();
+		void Update() noexcept;
+		void SetupSettings() noexcept;
 
 		/* Private variables */
 	private:

@@ -5,7 +5,7 @@ namespace Win32
 {
 	namespace Utils 
 	{
-		bool AddBitmap(const wchar_t* szFileName, HDC hWinDC, int x, int y) 
+		bool AddBitmap(const wchar_t* szFileName, HDC hWinDC, int x, int y) noexcept 
 		{
 			BITMAP qBitmap{};
 			HDC hLocalDC = CreateCompatibleDC(hWinDC);

@@ -3,8 +3,7 @@
 #include <sstream>
 #include <iomanip>
 
-std::wstring ENGINE_API Time::GetTime(bool stripped)
-{
+std::wstring ENGINE_API Time::GetTime(bool stripped) noexcept {
 	time_t now = time(0);
 	tm ltm;
 	localtime_s(&ltm, &now);
@@ -13,11 +12,9 @@ std::wstring ENGINE_API Time::GetTime(bool stripped)
 
 	std::wstring timeString = wss.str();
 
-	if (stripped)
-	{
+	if (stripped) {
 		std::wstring chars = L":";
-		for (wchar_t c : chars)
-		{
+		for (wchar_t c : chars) {
 			timeString.erase(std::remove(timeString.begin(), timeString.end(), c), timeString.end());
 		}
 	}
@@ -25,8 +22,7 @@ std::wstring ENGINE_API Time::GetTime(bool stripped)
 	return timeString;
 }
 
-std::wstring ENGINE_API Time::GetDate(bool stripped)
-{
+std::wstring ENGINE_API Time::GetDate(bool stripped) noexcept {
 	time_t now = time(0);
 	tm ltm;
 	localtime_s(&ltm, &now);
@@ -34,11 +30,9 @@ std::wstring ENGINE_API Time::GetDate(bool stripped)
 	wss << std::put_time(&ltm, L"%d/%m/%y");
 	std::wstring timeString = wss.str();
 
-	if (stripped)
-	{
+	if (stripped) {
 		std::wstring chars = L"/";
-		for (wchar_t c : chars)
-		{
+		for (wchar_t c : chars) {
 			timeString.erase(std::remove(timeString.begin(), timeString.end(), c), timeString.end());
 		}
 	}
@@ -46,15 +40,12 @@ std::wstring ENGINE_API Time::GetDate(bool stripped)
 	return timeString;
 }
 
-std::wstring ENGINE_API Time::GetDateTime(bool stripped)
-{
+std::wstring ENGINE_API Time::GetDateTime(bool stripped) noexcept {
 	std::wstring timeString = GetDate(stripped) + L" " + GetTime(stripped);
 
-	if (stripped)
-	{
+	if (stripped) {
 		std::wstring chars = L" ";
-		for (wchar_t c : chars)
-		{
+		for (wchar_t c : chars) {
 			timeString.erase(std::remove(timeString.begin(), timeString.end(), c), timeString.end());
 		}
 	}

@@ -2,7 +2,7 @@
 
 class ENGINE_API OEngine;
 
-namespace EngineMode 
+namespace EngineMode  
 {
 	enum EngineModes : INT 
 	{
@@ -15,9 +15,9 @@ namespace EngineMode
 
 	extern OEngine g_Engine;
 
-	void ENGINE_API SetMode(EngineModes mode);
-	EngineModes ENGINE_API GetMode();
-	std::wstring ENGINE_API EngineModeToString();
+	void ENGINE_API SetMode(EngineModes mode) noexcept;
+	EngineModes ENGINE_API GetMode() noexcept;
+	std::wstring ENGINE_API EngineModeToString() noexcept;
 }
 
 using namespace EngineMode;
@@ -25,8 +25,8 @@ class ENGINE_API OEngine
 {
 	/* Constructor */
 public:
-	OEngine();
-	~OEngine();
+	OEngine() noexcept;
+	~OEngine() noexcept;
 	
 	/* Private Variables */
 private:

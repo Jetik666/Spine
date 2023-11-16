@@ -7,16 +7,14 @@
 
 Logger* Logger::inst;
 
-Logger::Logger()
+Logger::Logger() noexcept 
 {
 	inst = this;
 }
 
-Logger::~Logger()
-{
-}
+Logger::~Logger() noexcept {}
 
-void Logger::PrintLog(const wchar_t* fmt, ...)
+void Logger::PrintLog(const wchar_t* fmt, ...) noexcept 
 {
 	wchar_t buffer[4096];
 	va_list args;
@@ -30,20 +28,20 @@ void Logger::PrintLog(const wchar_t* fmt, ...)
 	std::wfstream outfile;
 	outfile.open(std::wstring(LogDirectory() + L"/" + LogFile()), std::ios_base::app);
 
-	if (outfile.is_open())
+	if (outfile.is_open()) 
 	{
 		std::wstring s = buffer;
 		outfile << L"[" << Time::GetDateTime() << L"] " << s;
 		outfile.close();
 		OutputDebugString(s.c_str());
 	}
-	else
+	else 
 	{
 		MessageBox(NULL, L"Unable to open log file...", L"Log Error", MB_OK);
 	}
 }
 
-std::wstring Logger::LogDirectory()
+std::wstring Logger::LogDirectory() noexcept 
 {
 	wchar_t path[1024];
 	wchar_t* appDataLocal;
@@ -59,7 +57,7 @@ std::wstring Logger::LogDirectory()
 	return path;
 }
 
-std::wstring Logger::LogFile()
+std::wstring Logger::LogFile() noexcept 
 {
 	wchar_t file[1024];
 	wcscpy_s(file, ApplicationSettings::GameName());
@@ -69,7 +67,7 @@ std::wstring Logger::LogFile()
 	return std::wstring(file);
 }
 
-void Logger::PrintDebugSeparator()
+void Logger::PrintDebugSeparator() noexcept 
 {
 	std::wstring s = L"\n------------------------------------------------------------------------------------\n\n";
 
@@ -81,13 +79,13 @@ void Logger::PrintDebugSeparator()
 		outfile << s;
 		outfile.close();
 	}
-	else
+	else 
 	{
 		MessageBox(NULL, L"Unable to open log file...", L"Log Error", MB_OK);
 	}
 }
 
-bool Logger::IsMTailRunning()
+bool Logger::IsMTailRunning() noexcept 
 {
 	bool exists = false;
 	PROCESSENTRY32 entry {};
@@ -103,9 +101,9 @@ bool Logger::IsMTailRunning()
 	return exists;
 }
 
-void Logger::StartMtail()
+void Logger::StartMtail() noexcept 
 {
-	if (IsMTailRunning())
+	if (IsMTailRunning()) 
 	{
 		Logger::PrintLog(L"--MTail failed to start - Already running\n");
 		return;

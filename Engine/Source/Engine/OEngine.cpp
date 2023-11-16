@@ -3,18 +3,20 @@
 namespace EngineMode
 {
 	OEngine g_Engine;
-	void ENGINE_API SetMode(EngineModes mode)
+
+	void ENGINE_API SetMode(EngineModes mode) noexcept 
 	{
 		g_Engine.SetEngineMode(mode);
 	}
-	EngineModes ENGINE_API GetMode()
+
+	EngineModes ENGINE_API GetMode() noexcept 
 	{
 		return g_Engine.GetEngineMode();
 	}
-	std::wstring ENGINE_API EngineModeToString()
+
+	std::wstring ENGINE_API EngineModeToString() noexcept 
 	{
-		switch (EngineMode::GetMode())
-		{
+		switch (EngineMode::GetMode()) {
 		case EngineModes::DEBUG:		return L"Debug";
 		case EngineModes::RELEASE:	return L"Release";
 		case EngineModes::EDITOR:	return L"Editor";
@@ -24,7 +26,7 @@ namespace EngineMode
 	}
 }
 
-OEngine::OEngine()
+OEngine::OEngine() noexcept 
 {
 #ifdef _DEBUG
 	m_EngineMode = EngineModes::DEBUG;
@@ -36,12 +38,12 @@ OEngine::OEngine()
 
 OEngine::~OEngine() {}
 
-EngineModes OEngine::GetEngineMode() const noexcept
+EngineModes OEngine::GetEngineMode() const noexcept 
 {
 	return m_EngineMode;
 }
 
-void OEngine::SetEngineMode(EngineModes mode) noexcept
+void OEngine::SetEngineMode(EngineModes mode) noexcept 
 {
 	m_EngineMode = mode;
 }

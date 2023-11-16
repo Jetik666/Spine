@@ -3,21 +3,20 @@
 
 namespace Win32 
 {
-
-	SubObject::SubObject(std::wstring className, std::wstring classTitle, HICON hIcon)
+	SubObject::SubObject(std::wstring className, std::wstring classTitle, HICON hIcon) noexcept
 		: m_hIcon(hIcon)
 	{
 		std::copy(classTitle.begin(), classTitle.end(), m_Class);
 		std::copy(classTitle.begin(), classTitle.end(), m_Title);
 	}
 
-	SubObject::~SubObject() 
+	SubObject::~SubObject() noexcept 
 	{
 		free(m_Class);
 		free(m_Title);
 	}
 
-	void SubObject::RegisterNewClass() const 
+	void SubObject::RegisterNewClass() const noexcept 
 	{
 		WNDCLASSEX wcex{};
 		wcex.cbSize = sizeof(WNDCLASSEX);
@@ -35,7 +34,7 @@ namespace Win32
 		RegisterClassEx(&wcex);
 	}
 
-	LRESULT SubObject::SetupMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) 
+	LRESULT SubObject::SetupMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept 
 	{
 		if (message == WM_NCCREATE) 
 		{
@@ -48,15 +47,14 @@ namespace Win32
 		return DefWindowProc(hWnd, message, wparam, lparam);
 	}
 
-	LRESULT SubObject::AssignMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) 
+	LRESULT SubObject::AssignMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept 
 	{
 		SubObject* const pWnd = reinterpret_cast<SubObject*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
 		return pWnd->MessageHandler(hWnd, message, wparam, lparam);
 	}
 
-	LRESULT SubObject::CommonMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) 
+	LRESULT SubObject::CommonMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept 
 	{
 		return DefWindowProc(hWnd, message, wparam, lparam);
 	}
-
 }

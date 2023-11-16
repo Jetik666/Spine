@@ -1,40 +1,57 @@
 #include "BlankProject.h"
 #include "Application.h"
 
+#include "Platform/Win32/Window.h"
+
 namespace Windows 
 {
-	Application::Application() 
+	Application::Application() noexcept 
 	{
 		SetupSettings();
 	}
 
-	Application::~Application() {}
+	Application::~Application() noexcept {}
 
-	void Application::Initialize() 
+	void Application::Initialize() noexcept 
 	{
 		MSG msg = { 0 };
 		while (msg.message != WM_QUIT) 
 		{
 			// If there are Window messages then process them.
-			if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE)) {
+			if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE)) 
+			{
 				TranslateMessage(&msg);
 				DispatchMessage(&msg);
 			}
-			else {
+			else 
+			{
 				Update();
 			}
 		}
 	}
 
-	void Application::Update() 
+	void Application::Update() noexcept 
 	{
 		if (m_FrameCounter.ShowFrame()) 
 		{
+			#ifdef _DEBUG
+			wchar_t title[1024];
 
+			wcscpy_s(title, ApplicationSettings::GameName());
+			wcscat_s(title, L" FPS: ");
+			std::wstring ws = std::to_wstring(m_FrameCounter.GetFramesAmount());
+			wcscat_s(title, ws.c_str());
+			wcscat_s(title, L" Frame Time: ");
+			ws = std::to_wstring(m_FrameCounter.GetFrameTime());
+			wcscat_s(title, ws.c_str());
+
+			SetTitle(title);
+			#endif
 		}
 	}
 
-	void Application::SetupSettings() {
+	void Application::SetupSettings() noexcept
+	{
 		ApplicationSettings::SetGameName(IDS_PERGAMENAME);
 		ApplicationSettings::SetShortName(IDS_SHORTNAME);
 		ApplicationSettings::SetMainIcon(IDI_MAINICON);

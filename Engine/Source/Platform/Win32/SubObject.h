@@ -6,21 +6,21 @@ namespace Win32
 	{
 		/* Constructor */
 	public:
-		SubObject(std::wstring className, std::wstring classTitle, HICON hIcon);
-		~SubObject();
+		SubObject(std::wstring className, std::wstring classTitle, HICON hIcon) noexcept;
+		~SubObject() noexcept;
 
 		/* Public functions */
 	public:
-		virtual void RegisterNewClass() const;
+		virtual void RegisterNewClass() const noexcept;
 		virtual void Initialize() = 0;
 
 		/* Protected functions */
 	protected:
-		static	LRESULT CALLBACK	SetupMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam);
-		static	LRESULT				AssignMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam);
-		virtual LRESULT				CommonMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam);
+		static	LRESULT CALLBACK SetupMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept;
+		static	LRESULT	AssignMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept;
+		virtual LRESULT	CommonMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept;
 
-		virtual LRESULT				MessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) = 0;
+		virtual LRESULT	MessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) = 0;
 
 		/* Protected variables */
 	protected:

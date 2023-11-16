@@ -2,43 +2,46 @@
 #include "CmdLineArgs.h"
 #include <algorithm>
 
-void CmdLineArgs::ReadArguments() 
+namespace CmdLineArgs
 {
-	int argc = 0;
-	LPWSTR* argv = CommandLineToArgvW(GetCommandLineW(), &argc);
-
-	for (int i = 1; i < argc; ++i) 
+	void ReadArguments() noexcept
 	{
-		std::wstring key = argv[i];
-		if (key[0] == '-') 
+		int argc = 0;
+		LPWSTR* argv = CommandLineToArgvW(GetCommandLineW(), &argc);
+
+		for (int i = 1; i < argc; ++i)
 		{
-			key.erase(0, 1);
-			std::transform(key.begin(), key.end(), key.begin(), ::tolower);
-			ReadArgument(key.c_str());
+			std::wstring key = argv[i];
+			if (key[0] == '-')
+			{
+				key.erase(0, 1);
+				std::transform(key.begin(), key.end(), key.begin(), ::tolower);
+				ReadArgument(key.c_str());
+			}
 		}
 	}
-}
 
-void CmdLineArgs::ReadArgument(const wchar_t* argument)
-{
-	if (wcscmp(argument, L"mtail") == 0)
+	void ReadArgument(const wchar_t* argument) noexcept
 	{
-		Logger::StartMtail();
-		return;
-	}
-	if (wcscmp(argument, L"debug") == 0)
-	{
-		EngineMode::SetMode(EngineMode::EngineModes::DEBUG);
-		return;
-	}
-	if (wcscmp(argument, L"editor") == 0)
-	{
-		EngineMode::SetMode(EngineMode::EngineModes::EDITOR);
-		return;
-	}
-	if (wcscmp(argument, L"server") == 0)
-	{
-		EngineMode::SetMode(EngineMode::EngineModes::SERVER);
-		return;
+		if (wcscmp(argument, L"mtail") == 0)
+		{
+			Logger::StartMtail();
+			return;
+		}
+		if (wcscmp(argument, L"debug") == 0)
+		{
+			EngineMode::SetMode(EngineMode::EngineModes::DEBUG);
+			return;
+		}
+		if (wcscmp(argument, L"editor") == 0)
+		{
+			EngineMode::SetMode(EngineMode::EngineModes::EDITOR);
+			return;
+		}
+		if (wcscmp(argument, L"server") == 0)
+		{
+			EngineMode::SetMode(EngineMode::EngineModes::SERVER);
+			return;
+		}
 	}
 }

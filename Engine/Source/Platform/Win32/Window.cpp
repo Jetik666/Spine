@@ -3,8 +3,7 @@
 
 namespace Win32 
 {
-
-	Window::Window(std::wstring className, std::wstring classTitle, HICON hIcon, int width, int height)
+	Window::Window(std::wstring className, std::wstring classTitle, HICON hIcon, int width, int height) noexcept
 		: Win32::SubObject(className, classTitle, hIcon)
 		, m_Width(width)
 		, m_Height(height) 
@@ -13,12 +12,12 @@ namespace Win32
 		Initialize();
 	}
 
-	Window::~Window() 
+	Window::~Window() noexcept 
 	{
 		UnregisterClass(m_Class, HInstance());
 	}
 
-	void Window::Initialize() 
+	void Window::Initialize() noexcept 
 	{
 		RECT desktop;
 		const HWND hDesktop = GetDesktopWindow();
@@ -29,10 +28,15 @@ namespace Win32
 		int width = R.right - R.left;
 		int height = R.bottom - R.top;
 
+		/*
+		WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU - Task bar is on
+		WS_POPUPWINDOW - Task bar is off
+		*/
 		m_Handle = CreateWindow(m_Class, m_Title, 
-			WS_POPUPWINDOW, ((desktop.right / 2) - (m_Width / 2)), ((desktop.bottom / 2) - (m_Height / 2)),
+			WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, 
+			((desktop.right / 2) - (m_Width / 2)), ((desktop.bottom / 2) - (m_Height / 2)),
 			m_Width, m_Height, 0, 0, HInstance(), (void*)this);
-		if (!m_Handle)
+		if (!m_Handle) 
 		{
 			MessageBox(0, L"Failed to create window!", 0, 0);
 			PostQuitMessage(0);
@@ -41,9 +45,5 @@ namespace Win32
 
 		ShowWindow(m_Handle, SW_SHOW);
 		UpdateWindow(m_Handle);
-	}
-
-	void Window::SetTitle() 
-	{
 	}
 }

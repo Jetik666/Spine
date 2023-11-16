@@ -3,43 +3,46 @@
 
 #include "Platform/Win32/Win32Utils.h"
 
-namespace SplashScreen
+namespace SplashScreen 
 {
 	#define WM_OUTPUTMESSAGE (WM_USER + 0x0001)
 
 	SplashWindow* m_SplashWindow;
 
-	void Open()
+	void Open() noexcept 
 	{
-		if (m_SplashWindow != nullptr)
+		if (m_SplashWindow != nullptr) 
 		{
 			return;
 		}
 		m_SplashWindow = new SplashWindow();
 	}
 
-	void Close()
+	void Close() noexcept 
 	{
 		return void ENGINE_API();
 	}
 
-	void AddMessage(const wchar_t* message)
+	void AddMessage(const wchar_t* message) noexcept 
 	{
 		PostMessage(m_SplashWindow->GetHandle(), WM_OUTPUTMESSAGE, (WPARAM)message, 0);
 	}
+
+	void SetTitle(const wchar_t* title) noexcept
+	{
+		m_SplashWindow->SetTitle(title);
+	}
 }
 
-SplashWindow::SplashWindow()
+SplashWindow::SplashWindow() noexcept
 	: Win32::Window(ApplicationSettings::GameName(), ApplicationSettings::GameName(), ApplicationSettings::MainIcon(), 800, 500)
 {
 	wcscpy_s(m_OutputMessage, L"SplashScreen Starting...");
 }
 
-SplashWindow::~SplashWindow()
-{
-}
+SplashWindow::~SplashWindow() noexcept {}
 
-LRESULT SplashWindow::MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam) 
+LRESULT SplashWindow::MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept 
 {
 	switch (message) 
 	{
@@ -80,4 +83,12 @@ LRESULT SplashWindow::MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LPA
 	}
 
 	return CommonMessageHandler(hwnd, message, wparam, lparam);
+}
+
+void SplashWindow::SetTitle(const wchar_t* title) noexcept
+{
+	if (SetWindowText(m_Handle, title) == 0)
+	{
+		//TODO: Throw exception
+	}
 }
