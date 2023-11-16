@@ -20,7 +20,7 @@ private:
 	unsigned short m_FramesAmount;
 	float m_FrameTime;
 
-	int64_t m_Peek;
+	std::chrono::steady_clock::time_point m_Peek;
 
 	/* Getters and Setters */
 public:

@@ -10,11 +10,7 @@ namespace Win32
 		std::copy(classTitle.begin(), classTitle.end(), m_Title);
 	}
 
-	SubObject::~SubObject() noexcept 
-	{
-		free(m_Class);
-		free(m_Title);
-	}
+	SubObject::~SubObject() noexcept {}
 
 	void SubObject::RegisterNewClass() const noexcept 
 	{

@@ -6,11 +6,8 @@ namespace Win32
 	Window::Window(std::wstring className, std::wstring classTitle, HICON hIcon, int width, int height) noexcept
 		: Win32::SubObject(className, classTitle, hIcon)
 		, m_Width(width)
-		, m_Height(height) 
-	{
-		SubObject::RegisterNewClass();
-		Initialize();
-	}
+		, m_Height(height)
+	{}
 
 	Window::~Window() noexcept 
 	{
@@ -33,12 +30,14 @@ namespace Win32
 		WS_POPUPWINDOW - Task bar is off
 		*/
 		m_Handle = CreateWindow(m_Class, m_Title, 
-			WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, 
+			WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
 			((desktop.right / 2) - (m_Width / 2)), ((desktop.bottom / 2) - (m_Height / 2)),
 			m_Width, m_Height, 0, 0, HInstance(), (void*)this);
 		if (!m_Handle) 
 		{
-			MessageBox(0, L"Failed to create window!", 0, 0);
+			DWORD error = GetLastError();
+			std::wstring errorMessage = L"Failed to create window! Error code: " + std::to_wstring(error);
+			MessageBox(0, errorMessage.c_str(), 0, 0);
 			PostQuitMessage(0);
 			return;
 		}

@@ -6,14 +6,14 @@ FrameCounter::FrameCounter() noexcept
 	, m_FrameLimitTime(static_cast<float>(1.0f / (float)m_FramesLimit))
 	, m_FramesAmount(0)
 	, m_FrameTime(0)
-	, m_Peek(0)
+	, m_Peek(std::chrono::steady_clock::now())
 {}
 
 FrameCounter::~FrameCounter() noexcept {}
 
 bool FrameCounter::ShowFrame() noexcept 
 {
-	int64_t currentTime = std::chrono::steady_clock::now().time_since_epoch().count();
+	std::chrono::steady_clock::time_point currentTime = std::chrono::steady_clock::now();
 	float time = std::chrono::duration<float>(currentTime - m_Peek).count();
 
 	if (m_FrameLimitTime <= time) 

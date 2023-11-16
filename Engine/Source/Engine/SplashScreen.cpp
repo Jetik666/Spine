@@ -38,6 +38,8 @@ SplashWindow::SplashWindow() noexcept
 	: Win32::Window(ApplicationSettings::GameName(), ApplicationSettings::GameName(), ApplicationSettings::MainIcon(), 800, 500)
 {
 	wcscpy_s(m_OutputMessage, L"SplashScreen Starting...");
+	Win32::Window::RegisterNewClass();
+	Win32::Window::Initialize();
 }
 
 SplashWindow::~SplashWindow() noexcept {}

@@ -11,8 +11,8 @@ namespace Win32
 		Window(std::wstring className, std::wstring classTitle, HICON hIcon, int width, int height) noexcept;
 		~Window() noexcept;
 
-		/* Private functions */
-	private:
+		/* Public functions */
+	public:
 		virtual void Initialize() noexcept override;
 
 		/* Protected variables */
