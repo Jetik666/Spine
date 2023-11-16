@@ -13,12 +13,22 @@ namespace Win32
 
 		/* Public functions */
 	public:
+		void SetTitle();
+
+		/* Private functions */
+	private:
 		virtual void Initialize() override;
 
 		/* Protected variables */
 	protected:
 		int m_Width;
 		int m_Height;
+
+		HWND m_Handle;
+
+		/* Getters and Setters */
+	public:
+		HWND GetHandle() const { return m_Handle; };
 	};
 }
 

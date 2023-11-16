@@ -1,30 +1,28 @@
 #pragma once
 
-#define EntryApp(x) IApplication* EntryApplication() { return new x; }
-
-class ENGINE_API IApplication
+namespace Win32 
 {
-public:
-	/* Application Constuctor */
-	IApplication();
+	class ENGINE_API IApplication
+	{
+	public:
+		/* Application Constuctor */
+		IApplication();
 
-	/* Application Deconstructor */
-	virtual ~IApplication() {};
+		/* Application Deconstructor */
+		virtual ~IApplication() {};
 
 
-public:
-	/* Called to setup our pergame settings  */
-	virtual void SetupSettings() = 0;
+	public:
+		/* Called to setup our pergame settings  */
+		virtual void SetupSettings() = 0;
 
-	/* Called to Initialize the Application  */
-	virtual void PreInitialize() = 0;
+		/* Called to Initialize the Application  */
+		virtual void PreInitialize() = 0;
 
-	/* Called to Initialize the Application  */
-	virtual void Initialize() = 0;
+		/* Called to Initialize the Application  */
+		virtual void Initialize() = 0;
 
-	/* Game Loop - Called on a loop while the Application is running */
-	virtual void Update() = 0;
-};
-
-	IApplication* EntryApplication();
-
+		/* Game Loop - Called on a loop while the Application is running */
+		virtual void Update() = 0;
+	};
+}

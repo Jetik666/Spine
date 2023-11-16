@@ -2,14 +2,14 @@
 
 #include "Platform/Win32/Window.h"
 
-namespace SplashScreen
+namespace SplashScreen 
 {
 	void ENGINE_API Open();
 	void ENGINE_API Close();
 	void ENGINE_API AddMessage(const wchar_t* message);
 };
 
-class ENGINE_API SplashWindow : public Win32::Window
+class ENGINE_API SplashWindow : public Win32::Window 
 {
 	/* Constructor */
 public:

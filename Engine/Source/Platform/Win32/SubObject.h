@@ -1,7 +1,8 @@
 #pragma once
-namespace Win32
+
+namespace Win32 
 { 
-	class ENGINE_API SubObject
+	class ENGINE_API SubObject 
 	{
 		/* Constructor */
 	public:
@@ -23,16 +24,8 @@ namespace Win32
 
 		/* Protected variables */
 	protected:
-		std::wstring m_Class;
-		std::wstring m_Title;
+		wchar_t m_Class[MAX_NAME_STRING];
+		wchar_t m_Title[MAX_NAME_STRING];
 		HICON m_hIcon;
-
-		HWND m_Handle;
-
-		/* Getters and Setters */
-	public:
-		HWND GetHandle() const { return m_Handle; };
 	};
 }
-
-

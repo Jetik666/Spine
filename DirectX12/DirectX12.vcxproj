@@ -110,9 +110,12 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Application\Application.cpp" />
     <ClCompile Include="Source\BlankProject.cpp" />
+    <ClCompile Include="Source\Application\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Application\Application.h" />
     <ClInclude Include="Source\BlankProject.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>

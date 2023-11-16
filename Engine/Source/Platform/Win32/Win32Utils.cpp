@@ -1,17 +1,17 @@
 #include "Engine.h"
 #include "Win32Utils.h"
 
-namespace Win32
+namespace Win32 
 {
-	namespace Utils
+	namespace Utils 
 	{
-		bool AddBitmap(const wchar_t* szFileName, HDC hWinDC, int x, int y)
+		bool AddBitmap(const wchar_t* szFileName, HDC hWinDC, int x, int y) 
 		{
-			BITMAP qBitmap;
+			BITMAP qBitmap{};
 			HDC hLocalDC = CreateCompatibleDC(hWinDC);
 
 			HBITMAP hBitmap = (HBITMAP)LoadImage(NULL, szFileName, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-			if (hBitmap == NULL)
+			if (hBitmap == NULL) 
 			{
 				MessageBox(NULL, L"LoadImage Failed.", L"Error", MB_OK);
 				return false;
@@ -20,7 +20,7 @@ namespace Win32
 
 			SelectObject(hLocalDC, hBitmap);
 
-			if (!BitBlt(hWinDC, x, y, qBitmap.bmWidth, qBitmap.bmHeight, hLocalDC, 0, 0, SRCCOPY))
+			if (!BitBlt(hWinDC, x, y, qBitmap.bmWidth, qBitmap.bmHeight, hLocalDC, 0, 0, SRCCOPY)) 
 			{
 				MessageBox(NULL, L"Blit Failed.", L"Error", MB_OK);
 				return false;

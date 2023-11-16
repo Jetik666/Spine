@@ -16,12 +16,21 @@
     <ClCompile Include="Source\BlankProject.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Application\WinMain.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Application\Application.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
       <Filter>Resources</Filter>
     </ClInclude>
     <ClInclude Include="Source\BlankProject.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Application\Application.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

@@ -4,7 +4,7 @@
 
 namespace TestEngine 
 {
-	class ENGINE_API Simulation : public IApplication 
+	class ENGINE_API Simulation : public Win32::IApplication 
 	{
 		/* Constructor */
 	public:
