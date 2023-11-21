@@ -3,8 +3,8 @@
 
 namespace Win32 
 {
-	SubObject::SubObject(const wchar_t* className, const wchar_t* classTitle, HICON hIcon) noexcept
-		: m_Class(className), m_Title(classTitle), m_hIcon(hIcon), m_Handle(nullptr) {}
+	SubObject::SubObject(const wchar_t* name, const wchar_t* title, HICON hIcon) noexcept
+		: m_Class(name), m_Title(title), m_hIcon(hIcon), m_Handle(nullptr) {}
 
 	SubObject::~SubObject() noexcept {}
 
@@ -16,7 +16,7 @@ namespace Win32
 		wcex.cbClsExtra = 0;
 		wcex.cbWndExtra = 0;
 		wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
-		wcex.hbrBackground = (HBRUSH)(CreateSolidBrush(RGB(46, 46, 46)));
+		wcex.hbrBackground = (HBRUSH)(CreateSolidBrush(RGB(36, 36, 36)));
 		wcex.hIcon = m_hIcon;
 		wcex.hIconSm = m_hIcon;
 		wcex.lpszClassName = m_Class;
@@ -34,6 +34,7 @@ namespace Win32
 			SubObject* const pWnd = static_cast<SubObject*>(pCreate->lpCreateParams);
 			SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(pWnd));
 			SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&SubObject::AssignMessageHandler));
+			pWnd->Handle(hWnd);
 			return pWnd->MessageHandler(hWnd, message, wparam, lparam);
 		}
 		return DefWindowProc(hWnd, message, wparam, lparam);
@@ -45,7 +46,7 @@ namespace Win32
 		return pWnd->MessageHandler(hWnd, message, wparam, lparam);
 	}
 
-	LRESULT SubObject::CommonMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept 
+	LRESULT SubObject::MessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept
 	{
 		return DefWindowProc(hWnd, message, wparam, lparam);
 	}

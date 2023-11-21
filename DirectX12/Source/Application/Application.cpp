@@ -34,7 +34,7 @@ namespace Windows
 	{
 		if (m_FrameCounter.ShowFrame()) 
 		{
-			#ifdef _DEBUG
+			/*#ifdef _DEBUG
 			wchar_t title[1024];
 
 			wcscpy_s(title, ApplicationSettings::GameName());
@@ -46,7 +46,7 @@ namespace Windows
 			wcscat_s(title, ws.c_str());
 
 			SetTitle(title);
-			#endif
+			#endif*/
 		}
 	}
 

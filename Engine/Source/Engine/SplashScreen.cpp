@@ -25,7 +25,7 @@ namespace SplashScreen
 
 	void AddMessage(const wchar_t* message) noexcept 
 	{
-		PostMessage(m_SplashWindow->GetHandle(), WM_OUTPUTMESSAGE, (WPARAM)message, 0);
+		PostMessage(m_SplashWindow->Handle(), WM_OUTPUTMESSAGE, (WPARAM)message, 0);
 	}
 
 	void SetTitle(const wchar_t* title) noexcept
@@ -35,7 +35,7 @@ namespace SplashScreen
 }
 
 SplashWindow::SplashWindow() noexcept
-	: Win32::Window(L"SplashScreen", L"SplashScreen", ApplicationSettings::MainIcon(), 800, 500)
+	: Win32::Window(L"SplashScreen", ApplicationSettings::MainIcon(), Win32::WindowType::POPUP)
 {
 	wcscpy_s(m_OutputMessage, L"SplashScreen Starting...");
 	Win32::Window::RegisterNewClass();
@@ -65,12 +65,12 @@ LRESULT SplashWindow::MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LPA
 			{ 
 				std::wstring engineModeText = EngineMode::EngineModeToString() + L" Mode";
 				SetTextAlign(hdc, TA_RIGHT);
-				TextOut(hdc, m_Width - 15, 15, engineModeText.c_str(), static_cast<int>(wcslen(engineModeText.c_str())));
+				TextOut(hdc, Size().cx - 15, 15, engineModeText.c_str(), static_cast<int>(wcslen(engineModeText.c_str())));
 			}
 
 			SetTextAlign(hdc, TA_CENTER);
 
-			TextOut(hdc, m_Width / 2, m_Height - 30, m_OutputMessage, static_cast<int>(wcslen(m_OutputMessage)));
+			TextOut(hdc, Size().cx / 2, Size().cy - 30, m_OutputMessage, static_cast<int>(wcslen(m_OutputMessage)));
 			EndPaint(hwnd, &ps);
 		
 			break;
@@ -79,12 +79,12 @@ LRESULT SplashWindow::MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LPA
 		{
 			wchar_t* msg = (wchar_t*)wparam;
 			wcscpy_s(m_OutputMessage, msg);
-			RedrawWindow(GetHandle(), NULL, NULL, RDW_INVALIDATE);
+			RedrawWindow();
 			return 0;
 		}
 	}
 
-	return CommonMessageHandler(hwnd, message, wparam, lparam);
+	return Window::MessageHandler(hwnd, message, wparam, lparam);
 }
 
 void SplashWindow::SetTitle(const wchar_t* title) noexcept

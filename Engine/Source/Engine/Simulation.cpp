@@ -5,7 +5,7 @@
 namespace TestEngine
 {
 	Simulation::Simulation() noexcept
-		: Win32::Window(L"Test", L"Test", ApplicationSettings::MainIcon(), 800, 600)
+		: Win32::Window(L"Test", ApplicationSettings::MainIcon())
 	{}
 
 	Simulation::~Simulation() noexcept {}
@@ -31,7 +31,7 @@ namespace TestEngine
 			
 		}
 
-		return CommonMessageHandler(hwnd, message, wparam, lparam);
+		return Window::MessageHandler(hwnd, message, wparam, lparam);
 	}
 
 	void Simulation::SetTitle(const wchar_t* title) noexcept

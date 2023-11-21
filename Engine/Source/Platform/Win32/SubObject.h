@@ -18,9 +18,7 @@ namespace Win32
 	protected:
 		static	LRESULT CALLBACK SetupMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept;
 		static	LRESULT	AssignMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept;
-		virtual LRESULT	CommonMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept;
-
-		virtual LRESULT	MessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) = 0;
+		virtual LRESULT	MessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept;
 
 		/* Protected variables */
 	protected:
@@ -31,6 +29,7 @@ namespace Win32
 
 		/* Getters and Setters */
 	public:
-		HWND GetHandle() const noexcept { return m_Handle; };
+		HWND Handle() const noexcept { return m_Handle; }
+		void Handle(HWND hWnd) noexcept { m_Handle = hWnd; }
 	};
 }
