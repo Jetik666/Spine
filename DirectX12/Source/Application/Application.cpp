@@ -55,5 +55,6 @@ namespace Windows
 		ApplicationSettings::SetGameName(IDS_PERGAMENAME);
 		ApplicationSettings::SetShortName(IDS_SHORTNAME);
 		ApplicationSettings::SetMainIcon(IDI_MAINICON);
+		ApplicationSettings::SetSplashURL(IDS_SPLASHURL);
 	}
 }

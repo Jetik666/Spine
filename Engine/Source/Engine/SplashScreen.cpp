@@ -56,7 +56,7 @@ LRESULT SplashWindow::MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LPA
 
 			hdc = BeginPaint(hwnd, &ps);
 
-			Win32::Utils::AddBitmap(L"D:\\Coding\\C++\\DirectX12\\DirectX12\\Content\\Images\\Splash.bmp", hdc);
+			Win32::Utils::AddBitmap(ApplicationSettings::SplashURL(), hdc);
 
 			SetBkMode(hdc, TRANSPARENT);
 			SetTextColor(hdc, RGB(255, 255, 255));

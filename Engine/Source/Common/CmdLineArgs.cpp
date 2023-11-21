@@ -41,7 +41,7 @@ namespace CmdLineArgs
 		}
 		else
 		{
-			Logger::PrintLog(L"Unknown argument: %s.", argument.c_str());
+			Logger::PrintLog(L"Unknown argument: %s.\n", argument.c_str());
 		}
 	}
 }
