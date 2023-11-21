@@ -8,7 +8,7 @@ namespace Win32
 	{
 		/* Constructor */
 	public:
-		Window(std::wstring className, std::wstring classTitle, HICON hIcon, int width, int height) noexcept;
+		Window(const wchar_t* className, const wchar_t* classTitle, HICON hIcon, int width, int height) noexcept;
 		~Window() noexcept;
 
 		/* Public functions */
@@ -19,12 +19,6 @@ namespace Win32
 	protected:
 		int m_Width;
 		int m_Height;
-
-		HWND m_Handle;
-
-		/* Getters and Setters */
-	public:
-		HWND GetHandle() const noexcept { return m_Handle; };
 	};
 }
 

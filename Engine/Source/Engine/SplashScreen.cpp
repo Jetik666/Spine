@@ -35,7 +35,7 @@ namespace SplashScreen
 }
 
 SplashWindow::SplashWindow() noexcept
-	: Win32::Window(ApplicationSettings::GameName(), ApplicationSettings::GameName(), ApplicationSettings::MainIcon(), 800, 500)
+	: Win32::Window(L"SplashScreen", L"SplashScreen", ApplicationSettings::MainIcon(), 800, 500)
 {
 	wcscpy_s(m_OutputMessage, L"SplashScreen Starting...");
 	Win32::Window::RegisterNewClass();

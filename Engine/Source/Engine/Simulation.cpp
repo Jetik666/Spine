@@ -4,7 +4,9 @@
 
 namespace TestEngine
 {
-	Simulation::Simulation() noexcept {}
+	Simulation::Simulation() noexcept
+		: Win32::Window(L"Test", L"Test", ApplicationSettings::MainIcon(), 800, 600)
+	{}
 
 	Simulation::~Simulation() noexcept {}
 
@@ -16,11 +18,32 @@ namespace TestEngine
 		Logger::PrintLog(L"Engine Mode: %s\n", EngineMode::EngineModeToString().c_str());
 		Logger::PrintDebugSeparator();
 
+
+		Win32::Window::RegisterNewClass();
+		Win32::Window::Initialize();
 		SplashScreen::Open();
 	}
 
-	void Simulation::SetTitle(const wchar_t* title) const noexcept
+	LRESULT Simulation::MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept
 	{
-		SplashScreen::SetTitle(title);
+		switch (message)
+		{
+			
+		}
+
+		return CommonMessageHandler(hwnd, message, wparam, lparam);
 	}
+
+	void Simulation::SetTitle(const wchar_t* title) noexcept
+	{
+		if (SetWindowText(m_Handle, title) == 0)
+		{
+			//TODO: Throw exception
+		}
+	}
+
+	//void Simulation::SetTitle(const wchar_t* title) const noexcept
+	//{
+	//	SplashScreen::SetTitle(title);
+	//}
 }

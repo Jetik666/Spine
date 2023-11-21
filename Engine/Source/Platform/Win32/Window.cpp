@@ -3,11 +3,8 @@
 
 namespace Win32 
 {
-	Window::Window(std::wstring className, std::wstring classTitle, HICON hIcon, int width, int height) noexcept
-		: Win32::SubObject(className, classTitle, hIcon)
-		, m_Width(width)
-		, m_Height(height)
-	{}
+	Window::Window(const wchar_t* className, const wchar_t* classTitle, HICON hIcon, int width, int height) noexcept
+		: Win32::SubObject(className, classTitle, hIcon), m_Width(width), m_Height(height) {}
 
 	Window::~Window() noexcept 
 	{
@@ -29,7 +26,7 @@ namespace Win32
 		WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU - Task bar is on
 		WS_POPUPWINDOW - Task bar is off
 		*/
-		m_Handle = CreateWindow(m_Class, m_Title, 
+		m_Handle = CreateWindow(m_Class, m_Title,
 			WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
 			((desktop.right / 2) - (m_Width / 2)), ((desktop.bottom / 2) - (m_Height / 2)),
 			m_Width, m_Height, 0, 0, HInstance(), (void*)this);

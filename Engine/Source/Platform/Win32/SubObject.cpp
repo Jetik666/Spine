@@ -3,12 +3,8 @@
 
 namespace Win32 
 {
-	SubObject::SubObject(std::wstring className, std::wstring classTitle, HICON hIcon) noexcept
-		: m_hIcon(hIcon)
-	{
-		std::copy(classTitle.begin(), classTitle.end(), m_Class);
-		std::copy(classTitle.begin(), classTitle.end(), m_Title);
-	}
+	SubObject::SubObject(const wchar_t* className, const wchar_t* classTitle, HICON hIcon) noexcept
+		: m_Class(className), m_Title(classTitle), m_hIcon(hIcon), m_Handle(nullptr) {}
 
 	SubObject::~SubObject() noexcept {}
 

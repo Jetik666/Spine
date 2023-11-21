@@ -4,7 +4,7 @@
 
 namespace TestEngine 
 {
-	class ENGINE_API Simulation : public Win32::IApplication 
+	class ENGINE_API Simulation : public Win32::IApplication, public Win32::Window
 	{
 		/* Constructor */
 	public:
@@ -14,7 +14,8 @@ namespace TestEngine
 		/* Public functions */
 	public:
 		virtual void PreInitialize() noexcept override;
-		void SetTitle(const wchar_t* title) const noexcept;
+		virtual LRESULT MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept override;
+		void SetTitle(const wchar_t* title) noexcept;
 	};
 }
 

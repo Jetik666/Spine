@@ -6,7 +6,7 @@ namespace Win32
 	{
 		/* Constructor */
 	public:
-		SubObject(std::wstring className, std::wstring classTitle, HICON hIcon) noexcept;
+		SubObject(const wchar_t* className, const wchar_t* classTitle, HICON hIcon) noexcept;
 		~SubObject() noexcept;
 
 		/* Public functions */
@@ -24,8 +24,13 @@ namespace Win32
 
 		/* Protected variables */
 	protected:
-		wchar_t m_Class[MAX_NAME_STRING];
-		wchar_t m_Title[MAX_NAME_STRING];
+		const wchar_t* m_Class;
+		const wchar_t* m_Title;
 		HICON m_hIcon;
+		HWND m_Handle;
+
+		/* Getters and Setters */
+	public:
+		HWND GetHandle() const noexcept { return m_Handle; };
 	};
 }
