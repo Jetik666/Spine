@@ -48,40 +48,40 @@ LRESULT SplashWindow::MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LPA
 {
 	switch (message) 
 	{
-	case WM_PAINT: 
-	{
-		HBITMAP hbitmap{};
-		HDC hdc, hmemdc{};
-		PAINTSTRUCT ps;
+		case WM_PAINT: 
+		{
+			HBITMAP hbitmap{};
+			HDC hdc, hmemdc{};
+			PAINTSTRUCT ps;
 
-		hdc = BeginPaint(hwnd, &ps);
+			hdc = BeginPaint(hwnd, &ps);
 
-		Win32::Utils::AddBitmap(L"D:\\Coding\\C++\\DirectX12\\DirectX12\\Content\\Images\\Splash.bmp", hdc);
+			Win32::Utils::AddBitmap(L"D:\\Coding\\C++\\DirectX12\\DirectX12\\Content\\Images\\Splash.bmp", hdc);
 
-		SetBkMode(hdc, TRANSPARENT);
-		SetTextColor(hdc, RGB(255, 255, 255));
+			SetBkMode(hdc, TRANSPARENT);
+			SetTextColor(hdc, RGB(255, 255, 255));
 
-		if (EngineMode::GetMode() != EngineModes::RELEASE) 
-		{ 
-			std::wstring engineModeText = EngineMode::EngineModeToString() + L" Mode";
-			SetTextAlign(hdc, TA_RIGHT);
-			TextOut(hdc, m_Width - 15, 15, engineModeText.c_str(), static_cast<int>(wcslen(engineModeText.c_str())));
-		}
+			if (EngineMode::GetMode() != Mode::RELEASE) 
+			{ 
+				std::wstring engineModeText = EngineMode::EngineModeToString() + L" Mode";
+				SetTextAlign(hdc, TA_RIGHT);
+				TextOut(hdc, m_Width - 15, 15, engineModeText.c_str(), static_cast<int>(wcslen(engineModeText.c_str())));
+			}
 
-		SetTextAlign(hdc, TA_CENTER);
+			SetTextAlign(hdc, TA_CENTER);
 
-		TextOut(hdc, m_Width / 2, m_Height - 30, m_OutputMessage, static_cast<int>(wcslen(m_OutputMessage)));
-		EndPaint(hwnd, &ps);
+			TextOut(hdc, m_Width / 2, m_Height - 30, m_OutputMessage, static_cast<int>(wcslen(m_OutputMessage)));
+			EndPaint(hwnd, &ps);
 		
-		break;
-	}
-	case WM_OUTPUTMESSAGE: 
-	{
-		wchar_t* msg = (wchar_t*)wparam;
-		wcscpy_s(m_OutputMessage, msg);
-		RedrawWindow(GetHandle(), NULL, NULL, RDW_INVALIDATE);
-		return 0;
-	}
+			break;
+		}
+		case WM_OUTPUTMESSAGE: 
+		{
+			wchar_t* msg = (wchar_t*)wparam;
+			wcscpy_s(m_OutputMessage, msg);
+			RedrawWindow(GetHandle(), NULL, NULL, RDW_INVALIDATE);
+			return 0;
+		}
 	}
 
 	return CommonMessageHandler(hwnd, message, wparam, lparam);

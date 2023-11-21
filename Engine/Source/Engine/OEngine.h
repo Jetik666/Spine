@@ -1,10 +1,11 @@
 #pragma once
+#include <map>
 
 class ENGINE_API OEngine;
 
 namespace EngineMode  
 {
-	enum EngineModes : INT 
+	enum Mode : INT 
 	{
 		NONE,
 		DEBUG,
@@ -15,8 +16,8 @@ namespace EngineMode
 
 	extern OEngine g_Engine;
 
-	void ENGINE_API SetMode(EngineModes mode) noexcept;
-	EngineModes ENGINE_API GetMode() noexcept;
+	void ENGINE_API SetMode(Mode mode) noexcept;
+	Mode ENGINE_API GetMode() noexcept;
 	std::wstring ENGINE_API EngineModeToString() noexcept;
 }
 
@@ -30,11 +31,11 @@ public:
 	
 	/* Private Variables */
 private:
-	EngineModes m_EngineMode;
+	Mode m_EngineMode;
 
 	/* Getters and Setters */
 public:
-	EngineModes GetEngineMode() const noexcept;
-	void SetEngineMode(EngineModes mode) noexcept;
+	Mode GetEngineMode() const noexcept;
+	void SetEngineMode(Mode mode) noexcept;
 };
 

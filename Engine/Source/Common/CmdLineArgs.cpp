@@ -16,32 +16,32 @@ namespace CmdLineArgs
 			{
 				key.erase(0, 1);
 				std::transform(key.begin(), key.end(), key.begin(), ::tolower);
-				ReadArgument(key.c_str());
+				ReadArgument(key);
 			}
 		}
 	}
 
-	void ReadArgument(const wchar_t* argument) noexcept
+	void ReadArgument(std::wstring argument) noexcept
 	{
-		if (wcscmp(argument, L"mtail") == 0)
+		if (argument == L"mtail")
 		{
 			Logger::StartMtail();
-			return;
 		}
-		if (wcscmp(argument, L"debug") == 0)
+		else if (argument == L"debug")
 		{
-			EngineMode::SetMode(EngineMode::EngineModes::DEBUG);
-			return;
+			EngineMode::SetMode(EngineMode::Mode::DEBUG);
 		}
-		if (wcscmp(argument, L"editor") == 0)
+		else if (argument == L"editor")
 		{
-			EngineMode::SetMode(EngineMode::EngineModes::EDITOR);
-			return;
+			EngineMode::SetMode(EngineMode::Mode::EDITOR);
 		}
-		if (wcscmp(argument, L"server") == 0)
+		else if (argument == L"server")
 		{
-			EngineMode::SetMode(EngineMode::EngineModes::SERVER);
-			return;
+			EngineMode::SetMode(EngineMode::Mode::SERVER);
+		}
+		else
+		{
+			Logger::PrintLog(L"Unknown argument: %s.", argument.c_str());
 		}
 	}
 }

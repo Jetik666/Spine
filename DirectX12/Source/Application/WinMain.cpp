@@ -11,8 +11,10 @@ int CALLBACK WinMain(
 {
 	ApplicationSettings GameSettings;
 	Windows::Application Game;
-	CmdLineArgs::ReadArguments();
 	Logger logger;
+
+	CmdLineArgs::ReadArguments();
+
 	Game.PreInitialize();
 	Game.Initialize();
 
