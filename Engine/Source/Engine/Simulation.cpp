@@ -18,19 +18,14 @@ namespace TestEngine
 		Logger::PrintLog(L"Engine Mode: %s\n", EngineMode::EngineModeToString().c_str());
 		Logger::PrintDebugSeparator();
 
+		//SplashScreen::Open();
 
 		Win32::Window::RegisterNewClass();
 		Win32::Window::Initialize();
-		SplashScreen::Open();
 	}
 
 	LRESULT Simulation::MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept
 	{
-		switch (message)
-		{
-			
-		}
-
 		return Window::MessageHandler(hwnd, message, wparam, lparam);
 	}
 
@@ -41,9 +36,4 @@ namespace TestEngine
 			//TODO: Throw exception
 		}
 	}
-
-	//void Simulation::SetTitle(const wchar_t* title) const noexcept
-	//{
-	//	SplashScreen::SetTitle(title);
-	//}
 }

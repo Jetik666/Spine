@@ -34,8 +34,8 @@ namespace Windows
 	{
 		if (m_FrameCounter.ShowFrame()) 
 		{
-			/*#ifdef _DEBUG
-			wchar_t title[1024];
+			#ifdef _DEBUG
+			/*wchar_t title[1024];
 
 			wcscpy_s(title, ApplicationSettings::GameName());
 			wcscat_s(title, L" FPS: ");
@@ -45,8 +45,13 @@ namespace Windows
 			ws = std::to_wstring(m_FrameCounter.GetFrameTime());
 			wcscat_s(title, ws.c_str());
 
-			SetTitle(title);
-			#endif*/
+			SetTitle(title);*/
+
+			std::wstring amount = std::to_wstring(m_FrameCounter.GetFramesAmount());
+			std::wstring frameTime = std::to_wstring(m_FrameCounter.GetFrameTime());
+			const wchar_t* title = L"Test FPS: %s Frame Time: %s";
+			wcscpy_s
+			#endif
 		}
 	}
 

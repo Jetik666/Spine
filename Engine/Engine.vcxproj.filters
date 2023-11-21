@@ -82,6 +82,9 @@
     <ClCompile Include="Source\Platform\Win32\IApplication.cpp">
       <Filter>Source\Platform\Win32</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Platform\Win32\w32Caption.cpp">
+      <Filter>Source\Platform\Win32</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine.h">
@@ -130,6 +133,9 @@
       <Filter>Source\Platform\Win32</Filter>
     </ClInclude>
     <ClInclude Include="Source\Platform\Win32\IApplication.h">
+      <Filter>Source\Platform\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Platform\Win32\w32Caption.h">
       <Filter>Source\Platform\Win32</Filter>
     </ClInclude>
   </ItemGroup>
