@@ -32,19 +32,29 @@ namespace Win32
 	protected:
 		SIZE m_Size;
 		WindowType m_Type;
+
 		bool m_Active;
-		const wchar_t* m_Name;
+		bool m_Running;
+
+		wchar_t* m_Name;
 		/* Getters and Setters */
 	public:
 		SIZE Size() const noexcept { return m_Size; }
 		void Size(SIZE size) noexcept { m_Size = size; }
 		void Size(int cx, int cy) noexcept { m_Size.cx = cx; m_Size.cy = cy; }
 
+		WindowType Type() const noexcept { return m_Type; }
+		void Type(WindowType type) noexcept { m_Type = type; }
+
 		bool Active() const noexcept { return m_Active; }
 		void Active(bool active) noexcept { m_Active = active; }
 
-		const wchar_t* Name() const noexcept { return m_Name; }
-		void Name(const wchar_t* name) { m_Name = name; }
+		bool Running() const noexcept { return m_Running; }
+		void Running(bool running) noexcept { m_Running = running; }
+
+		wchar_t* Name() const noexcept { return m_Name; }
+		void Name(wchar_t* name) noexcept;
+		void Name(const wchar_t* name) noexcept;
 	};
 }
 

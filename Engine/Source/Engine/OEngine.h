@@ -5,7 +5,7 @@ class ENGINE_API OEngine;
 
 namespace EngineMode  
 {
-	enum Mode : INT 
+	enum Mode : int 
 	{
 		NONE,
 		DEBUG,

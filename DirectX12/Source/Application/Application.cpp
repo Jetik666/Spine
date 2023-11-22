@@ -8,6 +8,7 @@ namespace Windows
 	Application::Application() noexcept 
 	{
 		SetupSettings();
+		//m_FrameCounter.FramesLimit(500);
 	}
 
 	Application::~Application() noexcept {}
@@ -15,7 +16,7 @@ namespace Windows
 	void Application::Initialize() noexcept 
 	{
 		MSG msg = { 0 };
-		while (msg.message != WM_QUIT) 
+		while (Running()) 
 		{
 			// If there are Window messages then process them.
 			if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE)) 
@@ -35,31 +36,27 @@ namespace Windows
 		if (m_FrameCounter.ShowFrame()) 
 		{
 			#ifdef _DEBUG
-			/*wchar_t title[1024];
-
-			wcscpy_s(title, ApplicationSettings::GameName());
-			wcscat_s(title, L" FPS: ");
-			std::wstring ws = std::to_wstring(m_FrameCounter.GetFramesAmount());
-			wcscat_s(title, ws.c_str());
-			wcscat_s(title, L" Frame Time: ");
-			ws = std::to_wstring(m_FrameCounter.GetFrameTime());
-			wcscat_s(title, ws.c_str());
-
-			SetTitle(title);*/
-
-			std::wstring amount = std::to_wstring(m_FrameCounter.GetFramesAmount());
-			std::wstring frameTime = std::to_wstring(m_FrameCounter.GetFrameTime());
-			const wchar_t* title = L"Test FPS: %s Frame Time: %s";
-			wcscpy_s
+			ShowFPS();
 			#endif
 		}
 	}
 
 	void Application::SetupSettings() noexcept
 	{
-		ApplicationSettings::SetGameName(IDS_PERGAMENAME);
-		ApplicationSettings::SetShortName(IDS_SHORTNAME);
-		ApplicationSettings::SetMainIcon(IDI_MAINICON);
-		ApplicationSettings::SetSplashURL(IDS_SPLASHURL);
+		ApplicationSettings::GameName(IDS_PERGAMENAME);
+		ApplicationSettings::ShortName(IDS_SHORTNAME);
+		ApplicationSettings::MainIcon(IDI_MAINICON);
+		ApplicationSettings::SplashURL(IDS_SPLASHURL);
+	}
+
+	void Application::ShowFPS() noexcept
+	{
+		std::wstring amount = L" FPS: " + std::to_wstring(static_cast<unsigned short>(m_FrameCounter.FramesAmount()));
+		std::wstring frameTime = L" Frame Time: " + std::to_wstring(m_FrameCounter.FrameTime());
+		std::wstring fpsInfo = ApplicationSettings::GameName() + amount + frameTime;
+
+		const wchar_t* info = fpsInfo.c_str();
+
+		Name(info);
 	}
 }

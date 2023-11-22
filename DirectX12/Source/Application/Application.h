@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine/Simulation.h"
-#include "Common/Time/FrameCounter.h"
+#include "../Time/FrameCounter.h"
 
 namespace Windows 
 {
@@ -19,9 +19,10 @@ namespace Windows
 	private:
 		void Update() noexcept;
 		void SetupSettings() noexcept;
+		void ShowFPS() noexcept;
 
 		/* Private variables */
 	private:
-		FrameCounter m_FrameCounter;
+		Test::FrameCounter m_FrameCounter;
 	};
 }

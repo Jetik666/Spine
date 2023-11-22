@@ -15,7 +15,6 @@ namespace TestEngine
 	public:
 		virtual void PreInitialize() noexcept override;
 		virtual LRESULT MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept override;
-		void SetTitle(const wchar_t* title) noexcept;
 	};
 }
 

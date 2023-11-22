@@ -112,11 +112,13 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Time\FrameCounter.cpp" />
     <ClCompile Include="Source\Application\Application.cpp" />
     <ClCompile Include="Source\BlankProject.cpp" />
     <ClCompile Include="Source\Application\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Time\FrameCounter.h" />
     <ClInclude Include="Source\Application\Application.h" />
     <ClInclude Include="Source\BlankProject.h" />
     <ClInclude Include="resource.h" />

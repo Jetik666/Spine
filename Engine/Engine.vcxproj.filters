@@ -46,9 +46,6 @@
     <ClCompile Include="Source\Common\Time\Time.cpp">
       <Filter>Source\Common\Time</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Common\Time\FrameCounter.cpp">
-      <Filter>Source\Common\Time</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Core\Core.cpp">
       <Filter>Source\Core</Filter>
     </ClCompile>
@@ -97,9 +94,6 @@
       <Filter>Source\Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\Common\Time\Time.h">
-      <Filter>Source\Common\Time</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Common\Time\FrameCounter.h">
       <Filter>Source\Common\Time</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\Core.h">

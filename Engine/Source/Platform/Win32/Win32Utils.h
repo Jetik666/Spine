@@ -47,7 +47,7 @@ namespace Win32
 
         inline bool ENGINE_API IsWindowFullscreen(HWND hWnd)
         {
-            WINDOWPLACEMENT placement;
+            WINDOWPLACEMENT placement{};
             GetWindowPlacement(hWnd, &placement);
 
             if (placement.showCmd == SW_MAXIMIZE)
@@ -57,7 +57,7 @@ namespace Win32
 
         inline void ENGINE_API MaximizeWindow(HWND hwnd)
         {
-            WINDOWPLACEMENT wPos;
+            WINDOWPLACEMENT wPos{};
             GetWindowPlacement(hwnd, &wPos);
             if (wPos.showCmd == SW_MAXIMIZE) ShowWindow(hwnd, SW_NORMAL);
             else  ShowWindow(hwnd, SW_MAXIMIZE);

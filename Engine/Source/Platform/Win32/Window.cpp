@@ -8,14 +8,23 @@ namespace Win32
 	Window::Window(const wchar_t* title, HICON hIcon, WindowType type) noexcept
 		: Win32::SubObject(title, title, hIcon)
 		, m_Type(type)
-		, m_Name(title)
 	{
 		Size(DEFAULTWIDTH, DEFAULTHEIGHT);
+
+		size_t nameLength = wcslen(title) + 1;
+		m_Name = (wchar_t*)malloc(nameLength * sizeof(wchar_t));
+		if (Name() != NULL)
+		{
+			wcscpy_s(m_Name, nameLength, title);
+		}
+
+		Running(true);
 	}
 
 	Window::~Window() noexcept 
 	{
 		UnregisterClass(m_Class, HInstance());
+		free(m_Name);
 	}
 
 	void Window::Initialize() noexcept 
@@ -156,8 +165,7 @@ namespace Win32
 
 			SetBkMode(hdc, TRANSPARENT);
 			SetTextColor(hdc, Active() ? RGB(255, 255, 255) : RGB(92, 92, 92));
-
-			DrawText(hdc, m_Name, wcslen(m_Name), &rect, DT_SINGLELINE | DT_VCENTER | DT_LEFT);
+			DrawText(hdc, Name(), wcslen(Name()), &rect, DT_SINGLELINE | DT_VCENTER | DT_LEFT);
 		}
 
 		int offset = 0;
@@ -202,11 +210,45 @@ namespace Win32
 			{
 				switch (button->Command)
 				{
-					case CB_CLOSE:		{ SendMessage(Handle(), WM_CLOSE, 0, 0);	break; }
-					case CB_MINIMIZE:	{ ShowWindow(Handle(), SW_MINIMIZE);		break; } 
-					case CB_MAXIMIZE:	{ Win32::Utils::MaximizeWindow(Handle());	break; }
+					case CB_CLOSE:		
+					{ 
+						SendMessage(Handle(), WM_CLOSE, 0, 0);	
+						Running(false);
+						break; 
+					}
+					case CB_MINIMIZE:	
+					{ 
+						ShowWindow(Handle(), SW_MINIMIZE);
+						break; 
+					} 
+					case CB_MAXIMIZE:	
+					{ 
+						Win32::Utils::MaximizeWindow(Handle());
+						break;
+					}
 				}
 			}
+		}
+	}
+
+	void Window::Name(wchar_t* name) noexcept
+	{
+		free(m_Name);
+		size_t nameLength = wcslen(name) + 1; 
+		m_Name = (wchar_t*)malloc(nameLength * sizeof(wchar_t));
+		if (m_Name != NULL)
+		{
+			wcscpy_s(m_Name, nameLength, name);
+		}
+	}
+	void Window::Name(const wchar_t* name) noexcept
+	{
+		free(m_Name);
+		size_t nameLength = wcslen(name) + 1;
+		m_Name = (wchar_t*)malloc(nameLength * sizeof(wchar_t));
+		if (m_Name != NULL)
+		{
+			wcscpy_s(m_Name, nameLength, name);
 		}
 	}
 }

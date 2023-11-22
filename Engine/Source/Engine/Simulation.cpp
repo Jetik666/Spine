@@ -28,12 +28,4 @@ namespace TestEngine
 	{
 		return Window::MessageHandler(hwnd, message, wparam, lparam);
 	}
-
-	void Simulation::SetTitle(const wchar_t* title) noexcept
-	{
-		if (SetWindowText(m_Handle, title) == 0)
-		{
-			//TODO: Throw exception
-		}
-	}
 }

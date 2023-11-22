@@ -22,6 +22,7 @@ namespace Win32
 				Text = text;
 				Command = command;
 				Width = width;
+				Rect = RECT {0, 0, 0, 0};
 			}
 		};
 
