@@ -2,19 +2,19 @@
 
 namespace Win32 
 { 
-	class ENGINE_API SubObject 
+	class ENGINE_API SubObject
 	{
 		/* Constructor */
 	public:
 		SubObject(const wchar_t* className, const wchar_t* classTitle, HICON hIcon) noexcept;
 		~SubObject() noexcept;
 
-		/* Public functions */
+		/* Public methods */
 	public:
 		virtual void RegisterNewClass() const noexcept;
 		virtual void Initialize() = 0;
 
-		/* Protected functions */
+		/* Protected methods */
 	protected:
 		static	LRESULT CALLBACK SetupMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept;
 		static	LRESULT	AssignMessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept;

@@ -11,7 +11,7 @@ namespace TestEngine
 		Simulation() noexcept;
 		~Simulation() noexcept;
 
-		/* Public functions */
+		/* Public methods */
 	public:
 		virtual void PreInitialize() noexcept override;
 		virtual LRESULT MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept override;

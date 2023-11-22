@@ -8,7 +8,7 @@ namespace Windows
 	Application::Application() noexcept 
 	{
 		SetupSettings();
-		//m_FrameCounter.FramesLimit(500);
+		m_FrameCounter.FramesLimit(300);
 	}
 
 	Application::~Application() noexcept {}
@@ -33,7 +33,7 @@ namespace Windows
 
 	void Application::Update() noexcept 
 	{
-		if (m_FrameCounter.ShowFrame()) 
+		if (m_FrameCounter.ShowFrame())
 		{
 			#ifdef _DEBUG
 			ShowFPS();

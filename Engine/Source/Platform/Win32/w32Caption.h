@@ -1,4 +1,6 @@
 #pragma once
+#pragma warning(push)
+#pragma warning(disable: 4251)
 
 constexpr int CB_CLOSE = 0;
 constexpr int CB_MINIMIZE = 1;
@@ -12,7 +14,7 @@ namespace Win32
 		struct CaptionButton
 		{
 			const wchar_t* Text = L"X";
-			
+
 			int Command = -1;
 			int Width = 50;
 			RECT Rect;
@@ -22,7 +24,7 @@ namespace Win32
 				Text = text;
 				Command = command;
 				Width = width;
-				Rect = RECT {0, 0, 0, 0};
+				Rect = RECT { 0, 0, 0, 0 };
 			}
 		};
 
@@ -35,8 +37,8 @@ namespace Win32
 	public:
 		bool ShowTitle() const noexcept { return m_ShowTitle; }
 		void ShowTitle(bool show) noexcept { m_ShowTitle = show; }
-		void AddCaptionButton(CaptionButton* button);
-		std::list<CaptionButton*> CaptionButtons() { return m_CaptionButtons; }
+		void AddCaptionButton(CaptionButton* button) noexcept;
+		std::list<CaptionButton*> CaptionButtons() const noexcept { return m_CaptionButtons; }
 	};
 }
-
+#pragma warning(pop)

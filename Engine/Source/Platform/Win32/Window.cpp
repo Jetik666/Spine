@@ -13,7 +13,7 @@ namespace Win32
 
 		size_t nameLength = wcslen(title) + 1;
 		m_Name = (wchar_t*)malloc(nameLength * sizeof(wchar_t));
-		if (Name() != NULL)
+		if (m_Name != NULL)
 		{
 			wcscpy_s(m_Name, nameLength, title);
 		}
@@ -95,8 +95,8 @@ namespace Win32
 		Utils::ModifyClassStyle(Handle(), 0, CS_DROPSHADOW);
 
 		Caption::AddCaptionButton(new CaptionButton(L"X", CB_CLOSE));
-		Win32::Caption::AddCaptionButton(new CaptionButton(L"🗖", CB_MAXIMIZE));
-		Win32::Caption::AddCaptionButton(new CaptionButton(L"🗕", CB_MINIMIZE));
+		Caption::AddCaptionButton(new CaptionButton(L"🗖", CB_MAXIMIZE));
+		Caption::AddCaptionButton(new CaptionButton(L"🗕", CB_MINIMIZE));
 	}
 
 	void Window::OnNonClientActivate(bool active) noexcept
@@ -165,7 +165,7 @@ namespace Win32
 
 			SetBkMode(hdc, TRANSPARENT);
 			SetTextColor(hdc, Active() ? RGB(255, 255, 255) : RGB(92, 92, 92));
-			DrawText(hdc, Name(), wcslen(Name()), &rect, DT_SINGLELINE | DT_VCENTER | DT_LEFT);
+			DrawText(hdc, Name(), static_cast<int>(wcslen(Name())), &rect, DT_SINGLELINE | DT_VCENTER | DT_LEFT);
 		}
 
 		int offset = 0;
@@ -188,7 +188,7 @@ namespace Win32
 				DeleteObject(brush);
 			}
 
-			DrawText(hdc, button->Text, wcslen(button->Text), &button->Rect, DT_SINGLELINE | DT_VCENTER | DT_CENTER);
+			DrawText(hdc, button->Text, static_cast<int>(wcslen(button->Text)), &button->Rect, DT_SINGLELINE | DT_VCENTER | DT_CENTER);
 		}
 	}
 

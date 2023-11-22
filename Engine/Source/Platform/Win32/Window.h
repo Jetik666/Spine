@@ -7,14 +7,14 @@
 
 namespace Win32 
 {
-	class ENGINE_API Window : public Win32::SubObject, public Win32::Caption
+	class ENGINE_API Window : public SubObject, public Caption
 	{
 		/* Constructor */
 	public:
 		Window(const wchar_t* title, HICON hIcon, WindowType type = RESIZABLE) noexcept;
 		~Window() noexcept;
 
-		/* Public functions */
+		/* Public methods */
 	public:
 		virtual void Initialize() noexcept override;
 		virtual LRESULT	MessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept override;

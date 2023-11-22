@@ -17,7 +17,7 @@ public:
 	SplashWindow() noexcept;
 	~SplashWindow() noexcept;
 
-	/* Public functions */
+	/* Public methods */
 public:
 	virtual LRESULT	MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept override;
 	void SetTitle(const wchar_t* name) noexcept;
