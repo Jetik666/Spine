@@ -141,7 +141,6 @@ namespace Win32
 		HANDLE hOld = SelectObject(hdc, hbmMem);
 
 		// Draw section
-
 		HBRUSH brush = CreateSolidBrush(RGB(46, 46, 46));
 
 		RECT newRect = RECT { 0, 0, size.cx, size.cy };
@@ -160,7 +159,6 @@ namespace Win32
 		DeleteObject(brush);
 
 		// End draw section
-
 		BitBlt(hdc, 0, 0, size.cx, size.cy, hdc, 0, 0, SRCCOPY);
 
 		SelectObject(hdc, hOld);
@@ -201,6 +199,7 @@ namespace Win32
 		pt.x -= rect.left;
 		pt.y -= rect.top;
 
+		LONG style = GetWindowLong(Handle(), GWL_STYLE);
 		for (auto& button : Caption::CaptionButtons())
 		{
 			offset += button->Width;
@@ -215,10 +214,12 @@ namespace Win32
 
 			if (wcscmp(button->Text, L"🗖") == 0 && Utils::IsWindowFullscreen(Handle()))
 			{
+				SetWindowLong(Handle(), GWL_STYLE, style & ~WS_SIZEBOX);
 				button->Text = L"🗗";
 			}
 			else if (wcscmp(button->Text, L"🗗") == 0 && !Utils::IsWindowFullscreen(Handle()))
 			{
+				SetWindowLong(Handle(), GWL_STYLE, style | WS_THICKFRAME);
 				button->Text = L"🗖";
 			}
 
