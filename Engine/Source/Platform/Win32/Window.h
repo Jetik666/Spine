@@ -21,12 +21,15 @@ namespace Win32
 
 		void OnNonClientCreate() noexcept;
 		void OnNonClientActivate(bool active) noexcept;
-		void OnNonClientPaint(HRGN region) noexcept;
+		void OnNonClientPaint(HRGN region) const noexcept;
 
 		void RedrawWindow() const noexcept;
-		void PaintCaption(HDC hdc) noexcept;
+		void PaintCaption(HDC hdc) const noexcept;
 
-		void OnNonClientLeftMouseButtonDown();
+		void OnNonClientLeftMouseButtonDown() noexcept;
+		void OnGetMinMaxInfo(MINMAXINFO* minmax) const noexcept;
+		void OnExitSizeMove() const noexcept;
+		void OnPaint() const noexcept;
 
 		/* Protected variables */
 	protected:

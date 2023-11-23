@@ -78,6 +78,29 @@ namespace Win32
 				OnNonClientLeftMouseButtonDown();
 				break;
 			}
+			case WM_NCLBUTTONDBLCLK:
+			{
+				Utils::MaximizeWindow(Handle());
+				return 0;
+			}
+
+			case WM_GETMINMAXINFO:
+			{
+				OnGetMinMaxInfo((MINMAXINFO*)lParam);
+				return 0;
+			}
+			case WM_EXITSIZEMOVE:
+			{
+				OnExitSizeMove();
+				break;
+			}
+
+			case WM_PAINT: 
+			{
+				OnPaint();
+				break;
+			}
+
 			case WM_TIMER:
 			{
 				RedrawWindow();
@@ -104,7 +127,7 @@ namespace Win32
 		Active(active);
 	}
 
-	void Window::OnNonClientPaint(HRGN region) noexcept
+	void Window::OnNonClientPaint(HRGN region) const noexcept
 	{
 		// Start section
 		HDC hdc = GetDCEx(Handle(), region, DCX_WINDOW | DCX_INTERSECTRGN | DCX_USESTYLE);
@@ -126,7 +149,7 @@ namespace Win32
 		FillRect(hdc, &newRect, brush);
 		DeleteObject(brush);
 
-		if (Active())
+		if (Active() && !Utils::IsWindowFullscreen(Handle()))
 		{
 			brush = CreateSolidBrush(RGB(100, 100, 100));
 			FrameRect(hdc, &newRect, brush);
@@ -152,7 +175,7 @@ namespace Win32
 		SendMessage(Handle(), WM_PAINT, 0, 0);
 	}
 
-	void Window::PaintCaption(HDC hdc) noexcept
+	void Window::PaintCaption(HDC hdc) const noexcept
 	{
 		RECT rect {};
 		GetWindowRect(Handle(), &rect);
@@ -165,6 +188,8 @@ namespace Win32
 
 			SetBkMode(hdc, TRANSPARENT);
 			SetTextColor(hdc, Active() ? RGB(255, 255, 255) : RGB(92, 92, 92));
+			// DT_VCENTER - Vertical Center;
+			// DT_LEFT - Horizontal Left;
 			DrawText(hdc, Name(), static_cast<int>(wcslen(Name())), &rect, DT_SINGLELINE | DT_VCENTER | DT_LEFT);
 		}
 
@@ -188,11 +213,20 @@ namespace Win32
 				DeleteObject(brush);
 			}
 
+			if (wcscmp(button->Text, L"🗖") == 0 && Utils::IsWindowFullscreen(Handle()))
+			{
+				button->Text = L"🗗";
+			}
+			else if (wcscmp(button->Text, L"🗗") == 0 && !Utils::IsWindowFullscreen(Handle()))
+			{
+				button->Text = L"🗖";
+			}
+
 			DrawText(hdc, button->Text, static_cast<int>(wcslen(button->Text)), &button->Rect, DT_SINGLELINE | DT_VCENTER | DT_CENTER);
 		}
 	}
 
-	void Window::OnNonClientLeftMouseButtonDown()
+	void Window::OnNonClientLeftMouseButtonDown() noexcept
 	{
 		int offset = 0;
 		POINT pt;
@@ -229,6 +263,45 @@ namespace Win32
 				}
 			}
 		}
+	}
+
+	void Window::OnGetMinMaxInfo(MINMAXINFO* minmax) const noexcept
+	{
+		RECT WorkArea {};
+		SystemParametersInfo(SPI_GETWORKAREA, 0, &WorkArea, 0);
+		minmax->ptMaxSize.x = WorkArea.right - WorkArea.left + 5;
+		minmax->ptMaxSize.y = WorkArea.bottom - WorkArea.top + 5;
+		minmax->ptMaxPosition.x = WorkArea.left;
+		minmax->ptMaxPosition.y = WorkArea.top;
+		minmax->ptMinTrackSize.x = 400;
+		minmax->ptMinTrackSize.y = 300;
+	}
+
+	void Window::OnExitSizeMove() const noexcept
+	{
+		RECT rect {};
+		GetWindowRect(Handle(), &rect);
+		RECT WorkArea {};
+		SystemParametersInfo(SPI_GETWORKAREA, 0, &WorkArea, 0);
+		if (rect.top < WorkArea.top + 10 && !Utils::IsWindowFullscreen(Handle()))
+		{
+			Utils::MaximizeWindow(Handle());
+		}
+	}
+
+	void Window::OnPaint() const noexcept
+	{
+		PAINTSTRUCT ps {};
+		HDC hdc = BeginPaint(Handle(), &ps);
+
+		RECT rect {};
+		GetClientRect(Handle(), &rect);
+
+		HBRUSH brush = CreateSolidBrush(RGB(36, 36, 36));
+		FillRect(hdc, &rect, brush);
+
+		DeleteObject(brush);
+		EndPaint(Handle(), &ps);
 	}
 
 	void Window::Name(wchar_t* name) noexcept

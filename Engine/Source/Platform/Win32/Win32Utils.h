@@ -51,7 +51,9 @@ namespace Win32
             GetWindowPlacement(hWnd, &placement);
 
             if (placement.showCmd == SW_MAXIMIZE)
+            {
                 return TRUE;
+            }
             return FALSE;
         }
 
@@ -59,8 +61,14 @@ namespace Win32
         {
             WINDOWPLACEMENT wPos{};
             GetWindowPlacement(hwnd, &wPos);
-            if (wPos.showCmd == SW_MAXIMIZE) ShowWindow(hwnd, SW_NORMAL);
-            else  ShowWindow(hwnd, SW_MAXIMIZE);
+            if (wPos.showCmd == SW_MAXIMIZE)
+            {
+                ShowWindow(hwnd, SW_NORMAL);
+            }
+            else
+            {
+                ShowWindow(hwnd, SW_MAXIMIZE);
+            }
         }
 	}
 }
