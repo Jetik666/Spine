@@ -8,6 +8,8 @@
 #include "Common/Time/Time.h"
 #include "Core/ApplicationSettings.h"
 
+#include "Graphics/Graphics.h"
+
 #ifdef WIN32
 	#include "Platform/Win32/Win32Utils.h"
 	#include "Platform/Win32/SubObject.h"

@@ -38,6 +38,11 @@ namespace Windows
 			#ifdef _DEBUG
 			ShowFPS();
 			#endif
+			m_Graphics.BeginFrame(1.0f, 1.0f, 1.0f);
+
+
+
+			m_Graphics.EndFrame();
 		}
 	}
 

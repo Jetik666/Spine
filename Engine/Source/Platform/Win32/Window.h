@@ -2,6 +2,8 @@
 
 #include "SubObject.h"
 
+#include <optional>
+#include <memory>
 #include <Uxtheme.h>
 #pragma comment(lib, "uxtheme.lib")
 
@@ -40,6 +42,8 @@ namespace Win32
 		bool m_Running;
 
 		wchar_t* m_Name;
+
+		Graphics m_Graphics;
 		/* Getters and Setters */
 	public:
 		SIZE Size() const noexcept { return m_Size; }
@@ -58,6 +62,9 @@ namespace Win32
 		wchar_t* Name() const noexcept { return m_Name; }
 		void Name(wchar_t* name) noexcept;
 		void Name(const wchar_t* name) noexcept;
+
+		Graphics Graphics() const noexcept { return m_Graphics; }
+		void Graphics(HWND hWnd) noexcept { m_Graphics.Initialize(hWnd); }
 	};
 }
 

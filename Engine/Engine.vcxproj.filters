@@ -32,6 +32,9 @@
     <Filter Include="Source\Platform\Win32">
       <UniqueIdentifier>{f74f9f00-aa20-4745-9346-6d8d77f35241}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Graphics">
+      <UniqueIdentifier>{f64b9d1b-f443-422a-b6f1-04e783022a06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine.cpp">
@@ -82,6 +85,9 @@
     <ClCompile Include="Source\Platform\Win32\w32Caption.cpp">
       <Filter>Source\Platform\Win32</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Graphics\Graphics.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine.h">
@@ -131,6 +137,9 @@
     </ClInclude>
     <ClInclude Include="Source\Platform\Win32\w32Caption.h">
       <Filter>Source\Platform\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Graphics.h">
+      <Filter>Source\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
