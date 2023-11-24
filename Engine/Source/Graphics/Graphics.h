@@ -28,8 +28,9 @@ public:
 
 	/* Private variables */
 private:
+	unsigned int m_VSync = 1;
+
 	DirectX::XMMATRIX pProjection;
-	bool pImguiEnabled = true;
 
 	Microsoft::WRL::ComPtr<ID3D11Device> pDevice;
 	Microsoft::WRL::ComPtr<IDXGISwapChain> pSwap;

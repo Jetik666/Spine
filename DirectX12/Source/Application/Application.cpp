@@ -16,6 +16,7 @@ namespace Windows
 	void Application::Initialize() noexcept 
 	{
 		MSG msg = { 0 };
+		
 		while (Running()) 
 		{
 			// If there are Window messages then process them.
@@ -38,11 +39,11 @@ namespace Windows
 			#ifdef _DEBUG
 			ShowFPS();
 			#endif
-			m_Graphics.BeginFrame(1.0f, 1.0f, 1.0f);
+			Graphics().BeginFrame(0.1f, 0.1f, 0.1f);
 
 
 
-			m_Graphics.EndFrame();
+			Graphics().EndFrame();
 		}
 	}
 

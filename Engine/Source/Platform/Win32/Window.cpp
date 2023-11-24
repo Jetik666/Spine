@@ -138,15 +138,15 @@ namespace Win32
 		RECT rect {};
 		GetWindowRect(Handle(), &rect);
 
-		SIZE size = SIZE { rect.right - rect.left, rect.bottom - rect.top };
+		SIZE m_Size = SIZE { rect.right - rect.left, rect.bottom - rect.top };
 
-		HBITMAP hbmMem = CreateCompatibleBitmap(hdc, size.cx, size.cy);
+		HBITMAP hbmMem = CreateCompatibleBitmap(hdc, m_Size.cx, m_Size.cy);
 		HANDLE hOld = SelectObject(hdc, hbmMem);
 
 		// Draw section
 		HBRUSH brush = CreateSolidBrush(RGB(46, 46, 46));
 
-		RECT newRect = RECT { 0, 0, size.cx, size.cy };
+		RECT newRect = RECT { 0, 0, m_Size.cx, m_Size.cy };
 
 		FillRect(hdc, &newRect, brush);
 		DeleteObject(brush);
@@ -162,7 +162,7 @@ namespace Win32
 		DeleteObject(brush);
 
 		// End draw section
-		BitBlt(hdc, 0, 0, size.cx, size.cy, hdc, 0, 0, SRCCOPY);
+		BitBlt(hdc, 0, 0, m_Size.cx, m_Size.cy, hdc, 0, 0, SRCCOPY);
 
 		SelectObject(hdc, hOld);
 		DeleteObject(hbmMem);
@@ -181,11 +181,11 @@ namespace Win32
 		RECT rect {};
 		GetWindowRect(Handle(), &rect);
 
-		SIZE size = SIZE { rect.right - rect.left, rect.bottom - rect.top };
+		SIZE m_Size = SIZE { rect.right - rect.left, rect.bottom - rect.top };
 
 		if (ShowTitle())
 		{
-			rect = RECT { 8, 0, size.cx, 30 };
+			rect = RECT { 8, 0, m_Size.cx, 30 };
 
 			SetBkMode(hdc, TRANSPARENT);
 			SetTextColor(hdc, Active() ? RGB(255, 255, 255) : RGB(92, 92, 92));
@@ -206,7 +206,7 @@ namespace Win32
 		for (auto& button : Caption::CaptionButtons())
 		{
 			offset += button->Width;
-			button->Rect = RECT { size.cx - offset, 0, size.cx - offset + button->Width, 30 };
+			button->Rect = RECT { m_Size.cx - offset, 0, m_Size.cx - offset + button->Width, 30 };
 
 			if (button->Rect.left < pt.x && button->Rect.right > pt.x && button->Rect.top < pt.y && button->Rect.bottom > pt.y)
 			{

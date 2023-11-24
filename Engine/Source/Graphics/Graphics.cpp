@@ -125,7 +125,9 @@ void Graphics::EndFrame()
 
 	// Present:
 	// First value - Vsync
-	if (FAILED(hr = pSwap->Present(0u, 0u)))
+	// 0 - off
+	// 1 - on
+	if (FAILED(hr = pSwap->Present(m_VSync, 0u)))
 	{
 		if (hr == DXGI_ERROR_DEVICE_REMOVED)
 		{
@@ -155,6 +157,5 @@ DirectX::XMMATRIX Graphics::GetProjection() const noexcept
 
 void Graphics::TurnOffVsync() noexcept
 {
-	// First value - Vsync
-	pSwap->Present(1, 1);
+	m_VSync = 0;
 }
