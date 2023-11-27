@@ -200,4 +200,18 @@ namespace Array
 			Logger::PrintLog("Index is out of range.\n");
 		}
 	}
+
+	template<typename T>
+	T DynamicArray<T>::operator[](unsigned int index) const noexcept
+	{
+		if (index <= m_Size)
+		{
+			return m_Data[index];
+		}
+		else
+		{
+			Logger::PrintLog("Index is out of range.\n");
+			return NULL;
+		}
+	}
 }

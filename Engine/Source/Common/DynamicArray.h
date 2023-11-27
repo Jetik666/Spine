@@ -37,5 +37,9 @@ namespace Array
 		void Set(T value, unsigned int index) noexcept;
 
 		unsigned int Length() const noexcept { return m_Size + 1; }
+
+		/* Operators */
+	public:
+		T operator[](unsigned int index) const noexcept;
 	};
 }
