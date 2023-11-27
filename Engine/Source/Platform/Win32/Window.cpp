@@ -251,19 +251,19 @@ namespace Win32
 			{
 				switch (button->Command)
 				{
-					case CB_CLOSE:
-					{
-						SendMessage(Handle(), WM_CLOSE, 0, 0);
+					case CB_CLOSE:		
+					{ 
+						SendMessage(Handle(), WM_CLOSE, 0, 0);	
 						Running(false);
-						break;
+						break; 
 					}
-					case CB_MINIMIZE:
-					{
+					case CB_MINIMIZE:	
+					{ 
 						ShowWindow(Handle(), SW_MINIMIZE);
-						break;
-					}
-					case CB_MAXIMIZE:
-					{
+						break; 
+					} 
+					case CB_MAXIMIZE:	
+					{ 
 						Win32::Utils::MaximizeWindow(Handle());
 						break;
 					}
