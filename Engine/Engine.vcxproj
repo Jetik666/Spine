@@ -101,7 +101,6 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Common\DynamicArray.cpp" />
     <ClCompile Include="Source\Graphics\Graphics.cpp" />
     <ClCompile Include="Source\Common\CmdLineArgs.cpp" />
     <ClCompile Include="Source\Engine\Simulation.cpp" />

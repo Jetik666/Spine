@@ -3,8 +3,8 @@
 
 namespace Win32
 {
-	void Caption::AddCaptionButton(CaptionButton* button) noexcept
+	void Caption::AddButton(Button* button) noexcept
 	{
-		m_CaptionButtons.push_back(button);
+		m_Buttons.Push(button);
 	}
 }

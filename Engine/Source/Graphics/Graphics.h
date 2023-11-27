@@ -1,4 +1,6 @@
 #pragma once
+#pragma warning(push)
+#pragma warning(disable: 4251)
 
 #include <Windows.h>
 #include <d3d11.h>
@@ -40,3 +42,5 @@ private:
 
 
 };
+
+#pragma warning(pop)
