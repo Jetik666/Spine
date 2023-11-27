@@ -31,14 +31,14 @@ namespace Win32
 		/* Private variables */
 	private:
 		bool m_ShowTitle = true;
-		std::list<CaptionButton*> m_CaptionButtons;
+		Array::DynamicArray<CaptionButton*> m_CaptionButtons;
 
 		/* Getters and setters */
 	public:
 		bool ShowTitle() const noexcept { return m_ShowTitle; }
 		void ShowTitle(bool show) noexcept { m_ShowTitle = show; }
 		void AddCaptionButton(CaptionButton* button) noexcept;
-		std::list<CaptionButton*> CaptionButtons() const noexcept { return m_CaptionButtons; }
+		Array::DynamicArray<CaptionButton*> CaptionButtons() const noexcept { return m_CaptionButtons; }
 	};
 }
 #pragma warning(pop)
