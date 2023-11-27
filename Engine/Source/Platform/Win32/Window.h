@@ -47,7 +47,7 @@ namespace Win32
 		/* Getters and Setters */
 	public:
 		SIZE Size() const noexcept { return m_Size; }
-		void Size(SIZE m_Size) noexcept { m_Size = m_Size; }
+		void Size(SIZE size) noexcept { m_Size = size; }
 		void Size(int cx, int cy) noexcept { m_Size.cx = cx; m_Size.cy = cy; }
 
 		WindowType Type() const noexcept { return m_Type; }

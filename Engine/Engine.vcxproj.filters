@@ -88,9 +88,6 @@
     <ClCompile Include="Source\Graphics\Graphics.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Common\DynamicArray.cpp">
-      <Filter>Source\Common</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine.h">
@@ -143,9 +140,6 @@
     </ClInclude>
     <ClInclude Include="Source\Graphics\Graphics.h">
       <Filter>Source\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Common\DynamicArray.h">
-      <Filter>Source\Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
