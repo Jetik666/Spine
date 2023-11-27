@@ -8,7 +8,6 @@ namespace Win32
 	Window::Window(const wchar_t* title, HICON hIcon, WindowType type) noexcept
 		: Win32::SubObject(title, title, hIcon)
 		, m_Type(type)
-		, m_TaskBar(Caption())
 	{
 		Size(DEFAULTWIDTH, DEFAULTHEIGHT);
 
@@ -121,9 +120,9 @@ namespace Win32
 		SetWindowTheme(Handle(), L"", L"");
 		Utils::ModifyClassStyle(Handle(), 0, CS_DROPSHADOW);
 
-		TaskBar().AddButton(new Caption::Button(L"X", CB_CLOSE));
-		TaskBar().AddButton(new Caption::Button(L"🗖", CB_MAXIMIZE));
-		TaskBar().AddButton(new Caption::Button(L"🗕", CB_MINIMIZE));
+		Caption::AddButton(new Caption::Button(L"X", CB_CLOSE));
+		Caption::AddButton(new Caption::Button(L"🗖", CB_MAXIMIZE));
+		Caption::AddButton(new Caption::Button(L"🗕", CB_MINIMIZE));
 	}
 
 	void Window::OnNonClientActivate(bool active) noexcept
@@ -184,7 +183,7 @@ namespace Win32
 
 		SIZE size = SIZE { rect.right - rect.left, rect.bottom - rect.top };
 
-		if (TaskBar().ShowTitle())
+		if (Caption::ShowTitle())
 		{
 			rect = RECT { 8, 0, size.cx, 30 };
 
@@ -204,32 +203,32 @@ namespace Win32
 		pt.y -= rect.top;
 
 		LONG style = GetWindowLong(Handle(), GWL_STYLE);
-		for (unsigned int i = 0; i < TaskBar().Buttons().Length(); i++)
+		for (auto& button : Caption::Buttons())
 		{
-			offset += TaskBar().Buttons().Get(i)->Width;
-			TaskBar().Buttons().Get(i)->Rect = RECT { size.cx - offset, 0, size.cx - offset + TaskBar().Buttons()[i]->Width, 30 };
+			offset += button->Width;
+			button->Rect = RECT { size.cx - offset, 0, size.cx - offset + button->Width, 30 };
 
-			if (TaskBar().Buttons()[i]->Rect.left < pt.x && TaskBar().Buttons()[i]->Rect.right > pt.x
-				&& TaskBar().Buttons()[i]->Rect.top < pt.y && TaskBar().Buttons()[i]->Rect.bottom > pt.y)
+			if (button->Rect.left < pt.x && button->Rect.right > pt.x
+				&& button->Rect.top < pt.y && button->Rect.bottom > pt.y)
 			{
 				HBRUSH brush = CreateSolidBrush(RGB(100, 100, 100));
-				FillRect(hdc, &TaskBar().Buttons()[i]->Rect, brush);
+				FillRect(hdc, &button->Rect, brush);
 				DeleteObject(brush);
 			}
 
-			if (wcscmp(TaskBar().Buttons()[i]->Text, L"🗖") == 0 && Utils::IsWindowFullscreen(Handle()))
+			if (wcscmp(button->Text, L"🗖") == 0 && Utils::IsWindowFullscreen(Handle()))
 			{
 				SetWindowLong(Handle(), GWL_STYLE, style & ~WS_SIZEBOX);
-				TaskBar().Buttons()[i]->Text = L"🗗";
+				button->Text = L"🗗";
 			}
-			else if (wcscmp(TaskBar().Buttons()[i]->Text, L"🗗") == 0 && !Utils::IsWindowFullscreen(Handle()))
+			else if (wcscmp(button->Text, L"🗗") == 0 && !Utils::IsWindowFullscreen(Handle()))
 			{
 				SetWindowLong(Handle(), GWL_STYLE, style | WS_THICKFRAME);
-				TaskBar().Buttons()[i]->Text = L"🗖";
+				button->Text = L"🗖";
 			}
 
-			DrawText(hdc, TaskBar().Buttons()[i]->Text, static_cast<int>(wcslen(TaskBar().Buttons()[i]->Text)),
-				&TaskBar().Buttons()[i]->Rect, DT_SINGLELINE | DT_VCENTER | DT_CENTER);
+			DrawText(hdc, button->Text, static_cast<int>(wcslen(button->Text)),
+				&button->Rect, DT_SINGLELINE | DT_VCENTER | DT_CENTER);
 		}
 	}
 
@@ -245,12 +244,12 @@ namespace Win32
 		pt.x -= rect.left;
 		pt.y -= rect.top;
 
-		for (int i = 0; i < TaskBar().Buttons().Length(); i++)
+		for (auto& button : Caption::Buttons())
 		{
-			if (TaskBar().Buttons()[i]->Rect.left < pt.x && TaskBar().Buttons()[i]->Rect.right > pt.x
-				&& TaskBar().Buttons()[i]->Rect.top < pt.y && TaskBar().Buttons()[i]->Rect.bottom > pt.y)
+			if (button->Rect.left < pt.x && button->Rect.right > pt.x
+				&& button->Rect.top < pt.y && button->Rect.bottom > pt.y)
 			{
-				switch (TaskBar().Buttons()[i]->Command)
+				switch (button->Command)
 				{
 					case CB_CLOSE:
 					{

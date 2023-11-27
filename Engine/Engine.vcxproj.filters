@@ -141,8 +141,5 @@
     <ClInclude Include="Source\Graphics\Graphics.h">
       <Filter>Source\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Common\DynamicArray.h">
-      <Filter>Source\Common</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
