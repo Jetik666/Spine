@@ -9,7 +9,7 @@
 
 namespace Win32 
 {
-	class ENGINE_API Window : public SubObject, public Caption
+	class ENGINE_API Window : public SubObject
 	{
 		/* Constructor */
 	public:
@@ -33,10 +33,11 @@ namespace Win32
 		void OnExitSizeMove() const noexcept;
 		void OnPaint() const noexcept;
 
-		/* Protected variables */
-	protected:
+		/* Private variables */
+	private:
 		SIZE m_Size;
 		WindowType m_Type;
+		const Caption m_TaskBar;
 
 		bool m_Active;
 		bool m_Running;
@@ -44,6 +45,7 @@ namespace Win32
 		wchar_t* m_Name;
 
 		Graphics m_Graphics;
+
 		/* Getters and Setters */
 	public:
 		SIZE Size() const noexcept { return m_Size; }
@@ -52,6 +54,8 @@ namespace Win32
 
 		WindowType Type() const noexcept { return m_Type; }
 		void Type(WindowType type) noexcept { m_Type = type; }
+
+		Caption TaskBar() const noexcept { return m_TaskBar; }
 
 		bool Active() const noexcept { return m_Active; }
 		void Active(bool active) noexcept { m_Active = active; }
