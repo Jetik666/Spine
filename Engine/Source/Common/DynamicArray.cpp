@@ -111,15 +111,32 @@ namespace Array
 	template<typename T>
 	void DynamicArray<T>::Insert(T value, unsigned int index) noexcept
 	{
+		if (index > m_Size)
+		{
+			Logger::PrintLog("Index is out of range.\n");
+			return;
+		}
+
 		IncreaseCap();
 
-		T* temp = m_Data[index];
-		m_Data[index] = value;
-		m_Size++;
-		for (unsigned int i = index + 1; i <= m_Size; i++)
+		if (index == m_Size)
 		{
-			m_Data[i] = temp;
-			temp = m_Data[i + 1];
+			T* temp = m_Data[index];
+			m_Data[index] = value;
+			m_Size++;
+			m_Data[m_Size] = temp;
+		}
+		else
+		{
+			T* temp = m_Data[index];
+			m_Data[index] = value;
+			m_Size++;
+
+			for (unsigned int i = index + 1; i < m_Size; i++)
+			{
+				m_Data[i] = temp;
+				temp = m_Data[i + 1];
+			}
 		}
 	}
 
