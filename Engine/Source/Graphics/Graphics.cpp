@@ -9,14 +9,7 @@
 #pragma comment(lib,"D3DCompiler.lib")
 
 
-Graphics::Graphics() {}
-
-Graphics::~Graphics()
-{
-	
-}
-
-void Graphics::Initialize(HWND hWnd) noexcept
+Graphics::Graphics(HWND hWnd) noexcept
 {
 	DXGI_SWAP_CHAIN_DESC sd = {};
 	sd.BufferDesc.Width = 0;
@@ -60,8 +53,8 @@ void Graphics::Initialize(HWND hWnd) noexcept
 	);
 
 	// Gain access to texture subresource in swap chain (back buffer)
-	Microsoft::WRL::ComPtr<ID3D11Resource> pBackBuffer;
-	pSwap->GetBuffer(0, __uuidof(ID3D11Resource), &pBackBuffer);
+	ComPointer<ID3D11Resource> pBackBuffer;
+	pSwap->GetBuffer(0, __uuidof(ID3D11Resource));
 	pDevice->CreateRenderTargetView(pBackBuffer.Get(), nullptr, &pTarget);
 
 	// Create depth stensil state
@@ -69,14 +62,14 @@ void Graphics::Initialize(HWND hWnd) noexcept
 	dsDesc.DepthEnable = TRUE;
 	dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
 	dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
-	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> pDSState;
+	ComPointer<ID3D11DepthStencilState> pDSState;
 	pDevice->CreateDepthStencilState(&dsDesc, &pDSState);
 
 	// Bind depth state
 	pContext->OMSetDepthStencilState(pDSState.Get(), 1u);
 
 	// Create depth stensil texture
-	Microsoft::WRL::ComPtr<ID3D11Texture2D> pDepthStencil;
+	ComPointer<ID3D11Texture2D> pDepthStencil;
 	D3D11_TEXTURE2D_DESC descDepth = {};
 	descDepth.Width = 800u;
 	descDepth.Height = 600u;
@@ -97,7 +90,7 @@ void Graphics::Initialize(HWND hWnd) noexcept
 	pDevice->CreateDepthStencilView(pDepthStencil.Get(), &descDSV, &pDSV);
 
 	// Bind depth stensil view to OM
-	pContext->OMSetRenderTargets(1u, pTarget.GetAddressOf(), pDSV.Get());
+	pContext->OMSetRenderTargets(1u, &pTarget, pDSV.Get());
 
 	// Configure viewport
 	D3D11_VIEWPORT vp = {};
@@ -109,7 +102,12 @@ void Graphics::Initialize(HWND hWnd) noexcept
 	vp.TopLeftY = 0.0f;
 	pContext->RSSetViewports(1u, &vp);
 
-	//pProjection = DirectX::XMMatrixPerspectiveLH(0.0f, 0.0f, 0.0f, 0.0f);
+	pProjection = DirectX::XMMatrixPerspectiveLH(0.0f, 0.0f, 0.0f, 0.0f);
+}
+
+Graphics::~Graphics() noexcept
+{
+	
 }
 
 void Graphics::BeginFrame(float red, float green, float blue) noexcept

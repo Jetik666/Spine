@@ -65,7 +65,6 @@ namespace Win32
 		void Name(const wchar_t* name) noexcept;
 
 		Graphics Graphics() const noexcept { return m_Graphics; }
-		void Graphics(HWND hWnd) noexcept { m_Graphics.Initialize(hWnd); }
 	};
 }
 
