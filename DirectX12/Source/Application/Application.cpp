@@ -39,11 +39,11 @@ namespace Windows
 			#ifdef _DEBUG
 			ShowFPS();
 			#endif
-			DirectX_11().BeginFrame(0.1f, 0.1f, 0.1f);
+			Graphics().BeginFrame(0.1f, 0.1f, 0.1f);
 
 
 
-			DirectX_11().EndFrame();
+			Graphics().EndFrame();
 		}
 	}
 

@@ -8,17 +8,7 @@
 #pragma comment(lib,"d3d11.lib")
 #pragma comment(lib,"D3DCompiler.lib")
 
-DirectX_11::DirectX_11() noexcept
-{
-	
-}
-
-DirectX_11::~DirectX_11() noexcept
-{
-	
-}
-
-void DirectX_11::Initialize(HWND hWnd) noexcept
+DirectX_11::DirectX_11(HWND hWnd) noexcept
 {
 	DXGI_SWAP_CHAIN_DESC sd = {};
 	sd.BufferDesc.Width = 0;
@@ -111,7 +101,12 @@ void DirectX_11::Initialize(HWND hWnd) noexcept
 	vp.TopLeftY = 0.0f;
 	m_Context->RSSetViewports(1u, &vp);
 
-	//pProjection = DirectX::XMMatrixPerspectiveLH(0.0f, 0.0f, 0.0f, 0.0f);
+	m_Projection = DirectX::XMMatrixPerspectiveLH(1.0f, 3.0f / 4.0f, 0.5f, 40.0f);
+}
+
+DirectX_11::~DirectX_11() noexcept
+{
+	
 }
 
 void DirectX_11::BeginFrame(float red, float green, float blue) noexcept
@@ -149,12 +144,12 @@ void DirectX_11::DrawIndexed(uint32_t count) noexcept(!DEBUG)
 
 void DirectX_11::SetProjection(DirectX::FXMMATRIX proj) noexcept
 {
-	pProjection = proj;
+	m_Projection = proj;
 }
 
 DirectX::XMMATRIX DirectX_11::GetProjection() const noexcept
 {
-	return pProjection;
+	return m_Projection;
 }
 
 void DirectX_11::TurnOffVsync() noexcept

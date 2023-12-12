@@ -43,7 +43,7 @@ namespace Win32
 
 		wchar_t* m_Name;
 
-		DirectX_11 m_Graphics;
+		std::unique_ptr<DirectX_11> m_Graphics;
 
 		/* Getters and Setters */
 	public:
@@ -64,7 +64,7 @@ namespace Win32
 		void Name(wchar_t* name) noexcept;
 		void Name(const wchar_t* name) noexcept;
 
-		DirectX_11 DirectX_11() const noexcept { return m_Graphics; }
+		DirectX_11& Graphics() const noexcept { return *m_Graphics; }
 	};
 }
 

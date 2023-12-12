@@ -53,8 +53,7 @@ namespace Win32
 		ShowWindow(m_Handle, SW_SHOW);
 		UpdateWindow(m_Handle);
 
-		m_Graphics.Initialize(Handle());
-		DirectX_11().SetProjection(DirectX::XMMatrixPerspectiveLH(1.0f, 3.0f / 4.0f, 0.5f, 40.0f));
+		m_Graphics = std::make_unique<DirectX_11>(m_Handle);
 	}
 
 	LRESULT Window::MessageHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) noexcept

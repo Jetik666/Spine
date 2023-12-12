@@ -15,12 +15,13 @@ class DirectX_11
 {
 	/* Constructor */
 public:
-	DirectX_11() noexcept;
+	DirectX_11(HWND hWnd) noexcept;
+	DirectX_11(const DirectX_11&) = delete;
+	DirectX_11& operator=(const DirectX_11&) = delete;
 	~DirectX_11() noexcept;
 
 	/* Public methods */
 public:
-	void Initialize(HWND hWnd) noexcept;
 	void BeginFrame(float red, float green, float blue) noexcept;
 	void EndFrame();
 	void DrawIndexed(uint32_t count) noexcept(!DEBUG);
@@ -30,9 +31,9 @@ public:
 
 	/* Private variables */
 private:
-	unsigned int m_VSync = 1;
+	uint8_t m_VSync = 1;
 
-	DirectX::XMMATRIX pProjection;
+	DirectX::XMMATRIX m_Projection;
 
 	Microsoft::WRL::ComPtr<ID3D11Device> m_Device;
 	Microsoft::WRL::ComPtr<IDXGISwapChain> m_Swap;
