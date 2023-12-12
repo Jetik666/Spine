@@ -2,7 +2,7 @@
 #include <string>
 
 // Singleton logger class
-class ENGINE_API Logger 
+class Logger 
 {
 	/* Constructor */
 public:

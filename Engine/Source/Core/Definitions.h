@@ -1,5 +1,6 @@
 #pragma once
 
+// Use it for dll extension
 #ifdef BUILD_DLL
 	#define ENGINE_API __declspec(dllexport)
 #else

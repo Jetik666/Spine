@@ -53,8 +53,8 @@ namespace Win32
 		ShowWindow(m_Handle, SW_SHOW);
 		UpdateWindow(m_Handle);
 
-		m_Graphics = Graphics(Handle());
-		Graphics().SetProjection(DirectX::XMMatrixPerspectiveLH(1.0f, 3.0f / 4.0f, 0.5f, 40.0f));
+		m_Graphics.Initialize(Handle());
+		DirectX_11().SetProjection(DirectX::XMMatrixPerspectiveLH(1.0f, 3.0f / 4.0f, 0.5f, 40.0f));
 	}
 
 	LRESULT Window::MessageHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) noexcept

@@ -16,13 +16,13 @@ namespace EngineMode
 
 	extern OEngine g_Engine;
 
-	void ENGINE_API SetMode(Mode mode) noexcept;
-	Mode ENGINE_API GetMode() noexcept;
-	std::wstring ENGINE_API EngineModeToString() noexcept;
+	void SetMode(Mode mode) noexcept;
+	Mode GetMode() noexcept;
+	std::wstring EngineModeToString() noexcept;
 }
 
 using namespace EngineMode;
-class ENGINE_API OEngine 
+class OEngine 
 {
 	/* Constructor */
 public:

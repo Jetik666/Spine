@@ -1,7 +1,7 @@
 #pragma once
 
 // Singleton game settings
-class ENGINE_API ApplicationSettings 
+class ApplicationSettings 
 {
 	/* Constructor */
 public:

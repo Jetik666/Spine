@@ -4,17 +4,17 @@ namespace EngineMode
 {
 	OEngine g_Engine;
 
-	void ENGINE_API SetMode(Mode mode) noexcept 
+	void SetMode(Mode mode) noexcept 
 	{
 		g_Engine.SetEngineMode(mode);
 	}
 
-	Mode ENGINE_API GetMode() noexcept 
+	Mode GetMode() noexcept 
 	{
 		return g_Engine.GetEngineMode();
 	}
 
-	std::wstring ENGINE_API EngineModeToString() noexcept 
+	std::wstring EngineModeToString() noexcept 
 	{
 		switch (EngineMode::GetMode()) 
 		{

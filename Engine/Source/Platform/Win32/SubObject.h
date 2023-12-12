@@ -2,7 +2,7 @@
 
 namespace Win32 
 { 
-	class ENGINE_API SubObject
+	class SubObject
 	{
 		/* Constructor */
 	public:

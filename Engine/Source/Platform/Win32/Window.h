@@ -9,7 +9,7 @@
 
 namespace Win32 
 {
-	class ENGINE_API Window : public SubObject, public Caption
+	class Window : public SubObject, public Caption
 	{
 		/* Constructor */
 	public:
@@ -43,7 +43,7 @@ namespace Win32
 
 		wchar_t* m_Name;
 
-		Graphics m_Graphics;
+		DirectX_11 m_Graphics;
 
 		/* Getters and Setters */
 	public:
@@ -64,7 +64,7 @@ namespace Win32
 		void Name(wchar_t* name) noexcept;
 		void Name(const wchar_t* name) noexcept;
 
-		Graphics Graphics() const noexcept { return m_Graphics; }
+		DirectX_11 DirectX_11() const noexcept { return m_Graphics; }
 	};
 }
 

@@ -4,13 +4,13 @@
 
 namespace SplashScreen 
 {
-	void ENGINE_API Open() noexcept;
-	void ENGINE_API Close() noexcept;
-	void ENGINE_API AddMessage(const wchar_t* message) noexcept;
+	void Open() noexcept;
+	void Close() noexcept;
+	void AddMessage(const wchar_t* message) noexcept;
 	void SetTitle(const wchar_t* title) noexcept;
 };
 
-class ENGINE_API SplashWindow : public Win32::Window 
+class SplashWindow : public Win32::Window 
 {
 	/* Constructor */
 public:

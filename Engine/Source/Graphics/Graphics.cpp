@@ -8,8 +8,17 @@
 #pragma comment(lib,"d3d11.lib")
 #pragma comment(lib,"D3DCompiler.lib")
 
+DirectX_11::DirectX_11() noexcept
+{
+	
+}
 
-Graphics::Graphics(HWND hWnd) noexcept
+DirectX_11::~DirectX_11() noexcept
+{
+	
+}
+
+void DirectX_11::Initialize(HWND hWnd) noexcept
 {
 	DXGI_SWAP_CHAIN_DESC sd = {};
 	sd.BufferDesc.Width = 0;
@@ -46,30 +55,30 @@ Graphics::Graphics(HWND hWnd) noexcept
 		0,
 		D3D11_SDK_VERSION,
 		&sd,
-		&pSwap,
-		&pDevice,
+		&m_Swap,
+		&m_Device,
 		nullptr,
-		&pContext
+		&m_Context
 	);
 
 	// Gain access to texture subresource in swap chain (back buffer)
-	ComPointer<ID3D11Resource> pBackBuffer;
-	pSwap->GetBuffer(0, __uuidof(ID3D11Resource));
-	pDevice->CreateRenderTargetView(pBackBuffer.Get(), nullptr, &pTarget);
+	Microsoft::WRL::ComPtr<ID3D11Resource> pBackBuffer;
+	m_Swap->GetBuffer(0, __uuidof(ID3D11Resource), &pBackBuffer);
+	m_Device->CreateRenderTargetView(pBackBuffer.Get(), nullptr, &m_Target);
 
 	// Create depth stensil state
 	D3D11_DEPTH_STENCIL_DESC dsDesc = {};
 	dsDesc.DepthEnable = TRUE;
 	dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
 	dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
-	ComPointer<ID3D11DepthStencilState> pDSState;
-	pDevice->CreateDepthStencilState(&dsDesc, &pDSState);
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> pDSState;
+	m_Device->CreateDepthStencilState(&dsDesc, &pDSState);
 
 	// Bind depth state
-	pContext->OMSetDepthStencilState(pDSState.Get(), 1u);
+	m_Context->OMSetDepthStencilState(pDSState.Get(), 1u);
 
 	// Create depth stensil texture
-	ComPointer<ID3D11Texture2D> pDepthStencil;
+	Microsoft::WRL::ComPtr<ID3D11Texture2D> pDepthStencil;
 	D3D11_TEXTURE2D_DESC descDepth = {};
 	descDepth.Width = 800u;
 	descDepth.Height = 600u;
@@ -80,17 +89,17 @@ Graphics::Graphics(HWND hWnd) noexcept
 	descDepth.SampleDesc.Quality = 0u;
 	descDepth.Usage = D3D11_USAGE_DEFAULT;
 	descDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL;
-	pDevice->CreateTexture2D(&descDepth, nullptr, &pDepthStencil);
+	m_Device->CreateTexture2D(&descDepth, nullptr, &pDepthStencil);
 
 	// Create view of depth stensil texture
 	D3D11_DEPTH_STENCIL_VIEW_DESC descDSV = {};
 	descDSV.Format = DXGI_FORMAT_D32_FLOAT;
 	descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
 	descDSV.Texture2D.MipSlice = 0u;
-	pDevice->CreateDepthStencilView(pDepthStencil.Get(), &descDSV, &pDSV);
+	m_Device->CreateDepthStencilView(pDepthStencil.Get(), &descDSV, &m_DSV);
 
 	// Bind depth stensil view to OM
-	pContext->OMSetRenderTargets(1u, &pTarget, pDSV.Get());
+	m_Context->OMSetRenderTargets(1u, m_Target.GetAddressOf(), m_DSV.Get());
 
 	// Configure viewport
 	D3D11_VIEWPORT vp = {};
@@ -100,24 +109,19 @@ Graphics::Graphics(HWND hWnd) noexcept
 	vp.MaxDepth = 1.0f;
 	vp.TopLeftX = 0.0f;
 	vp.TopLeftY = 0.0f;
-	pContext->RSSetViewports(1u, &vp);
+	m_Context->RSSetViewports(1u, &vp);
 
-	pProjection = DirectX::XMMatrixPerspectiveLH(0.0f, 0.0f, 0.0f, 0.0f);
+	//pProjection = DirectX::XMMatrixPerspectiveLH(0.0f, 0.0f, 0.0f, 0.0f);
 }
 
-Graphics::~Graphics() noexcept
-{
-	
-}
-
-void Graphics::BeginFrame(float red, float green, float blue) noexcept
+void DirectX_11::BeginFrame(float red, float green, float blue) noexcept
 {
 	const float color[] = { red, green, blue, 1.0f };
-	pContext->ClearRenderTargetView(pTarget.Get(), color);
-	pContext->ClearDepthStencilView(pDSV.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0u);
+	m_Context->ClearRenderTargetView(m_Target.Get(), color);
+	m_Context->ClearDepthStencilView(m_DSV.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0u);
 }
 
-void Graphics::EndFrame()
+void DirectX_11::EndFrame()
 {
 	HRESULT hr;
 
@@ -125,11 +129,11 @@ void Graphics::EndFrame()
 	// First value - Vsync
 	// 0 - off
 	// 1 - on
-	if (FAILED(hr = pSwap->Present(m_VSync, 0u)))
+	if (FAILED(hr = m_Swap->Present(m_VSync, 0u)))
 	{
 		if (hr == DXGI_ERROR_DEVICE_REMOVED)
 		{
-			throw pDevice->GetDeviceRemovedReason();
+			throw m_Device->GetDeviceRemovedReason();
 		}
 		else
 		{
@@ -138,22 +142,22 @@ void Graphics::EndFrame()
 	}
 }
 
-void Graphics::DrawIndexed(UINT count) noexcept(!DEBUG)
+void DirectX_11::DrawIndexed(uint32_t count) noexcept(!DEBUG)
 {
-	pContext->DrawIndexed(count, 0u, 0u);
+	m_Context->DrawIndexed(count, 0u, 0u);
 }
 
-void Graphics::SetProjection(DirectX::FXMMATRIX proj) noexcept
+void DirectX_11::SetProjection(DirectX::FXMMATRIX proj) noexcept
 {
 	pProjection = proj;
 }
 
-DirectX::XMMATRIX Graphics::GetProjection() const noexcept
+DirectX::XMMATRIX DirectX_11::GetProjection() const noexcept
 {
 	return pProjection;
 }
 
-void Graphics::TurnOffVsync() noexcept
+void DirectX_11::TurnOffVsync() noexcept
 {
 	m_VSync = 0;
 }

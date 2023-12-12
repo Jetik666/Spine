@@ -1,6 +1,4 @@
 #pragma once
-#pragma warning(push)
-#pragma warning(disable: 4251)
 
 constexpr int CB_CLOSE = 0;
 constexpr int CB_MINIMIZE = 1;
@@ -8,7 +6,7 @@ constexpr int CB_MAXIMIZE = 2;
 
 namespace Win32
 {
-	class ENGINE_API Caption
+	class Caption
 	{
 	public:
 		struct Button
@@ -41,5 +39,3 @@ namespace Win32
 		void AddButton(Button* button) noexcept { m_Buttons.push_back(button); }
 	};
 }
-
-#pragma warning(pop)

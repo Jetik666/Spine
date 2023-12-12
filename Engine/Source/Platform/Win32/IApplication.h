@@ -2,7 +2,7 @@
 
 namespace Win32 
 {
-	class ENGINE_API IApplication 
+	class IApplication 
 	{
 	public:
 		/* Application Constuctor */

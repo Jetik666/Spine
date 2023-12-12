@@ -15,23 +15,23 @@ namespace Win32
 
 	namespace Utils 
 	{
-		bool ENGINE_API AddBitmap(const wchar_t* szFileName, HDC hWinDC, int x = 0, int y = 0) noexcept;
+		bool AddBitmap(const wchar_t* szFileName, HDC hWinDC, int x = 0, int y = 0) noexcept;
 
         /// Sets and clears style flags for a particular window.
-        inline void ENGINE_API ModifyWindowStyle(HWND hWnd, DWORD flagsToDisable, DWORD flagsToEnable)
+        inline void ModifyWindowStyle(HWND hWnd, DWORD flagsToDisable, DWORD flagsToEnable)
         {
             DWORD style = GetWindowLong(hWnd, GWL_STYLE);
             SetWindowLong(hWnd, GWL_STYLE, (style & ~flagsToDisable) | flagsToEnable);
         }
 
         /// Sets and clears extended style flags for a particular window.
-        inline void ENGINE_API ModifyWindowExStyle(HWND hWnd, DWORD flagsToDisable, DWORD flagsToEnable)
+        inline void ModifyWindowExStyle(HWND hWnd, DWORD flagsToDisable, DWORD flagsToEnable)
         {
             DWORD exStyle = GetWindowLong(hWnd, GWL_EXSTYLE);
             SetWindowLong(hWnd, GWL_EXSTYLE, (exStyle & ~flagsToDisable) | flagsToEnable);
         }
 
-        inline bool ENGINE_API HasStyle(HWND hwnd, DWORD style)
+        inline bool HasStyle(HWND hwnd, DWORD style)
         {
             DWORD dwStyle = (DWORD)GetWindowLong(hwnd, GWL_STYLE);
             if ((dwStyle & style) != 0) return TRUE;
@@ -39,13 +39,13 @@ namespace Win32
         }
 
         /// Sets and clears style flags for a particular window.
-        inline void ENGINE_API ModifyClassStyle(HWND hWnd, DWORD flagsToDisable, DWORD flagsToEnable)
+        inline void ModifyClassStyle(HWND hWnd, DWORD flagsToDisable, DWORD flagsToEnable)
         {
             DWORD style = GetWindowLong(hWnd, GCL_STYLE);
             SetClassLong(hWnd, GCL_STYLE, (style & ~flagsToDisable) | flagsToEnable);
         }
 
-        inline bool ENGINE_API IsWindowFullscreen(HWND hWnd)
+        inline bool IsWindowFullscreen(HWND hWnd)
         {
             WINDOWPLACEMENT placement{};
             GetWindowPlacement(hWnd, &placement);
@@ -57,7 +57,7 @@ namespace Win32
             return FALSE;
         }
 
-        inline void ENGINE_API MaximizeWindow(HWND hwnd)
+        inline void MaximizeWindow(HWND hwnd)
         {
             WINDOWPLACEMENT wPos{};
             GetWindowPlacement(hwnd, &wPos);

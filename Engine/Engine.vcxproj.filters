@@ -35,9 +35,6 @@
     <Filter Include="Source\Graphics">
       <UniqueIdentifier>{f64b9d1b-f443-422a-b6f1-04e783022a06}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Core\Support">
-      <UniqueIdentifier>{ac17907b-f1e1-4108-b302-758793783623}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine.cpp">
@@ -143,9 +140,6 @@
     </ClInclude>
     <ClInclude Include="Source\Graphics\Graphics.h">
       <Filter>Source\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Core\Support\ComPointer.h">
-      <Filter>Source\Core\Support</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

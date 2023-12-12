@@ -2,7 +2,7 @@
 
 namespace CmdLineArgs 
 {
-	void ENGINE_API ReadArguments() noexcept;
-	void ENGINE_API ReadArgument(std::wstring argument) noexcept;
+	void ReadArguments() noexcept;
+	void ReadArgument(std::wstring argument) noexcept;
 };
 

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Definitions.h"
-#include "Support/ComPointer.h"
 
 #include "Engine/OEngine.h"
 

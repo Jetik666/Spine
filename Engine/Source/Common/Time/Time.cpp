@@ -5,7 +5,7 @@
 
 namespace Time
 {
-	std::wstring ENGINE_API GetTime(bool stripped) noexcept
+	std::wstring GetTime(bool stripped) noexcept
 	{
 		time_t now = time(0);
 		tm ltm;
@@ -27,7 +27,7 @@ namespace Time
 		return timeString;
 	}
 
-	std::wstring ENGINE_API GetDate(bool stripped) noexcept
+	std::wstring GetDate(bool stripped) noexcept
 	{
 		time_t now = time(0);
 		tm ltm;
@@ -48,7 +48,7 @@ namespace Time
 		return timeString;
 	}
 
-	std::wstring ENGINE_API GetDateTime(bool stripped) noexcept
+	std::wstring GetDateTime(bool stripped) noexcept
 	{
 		std::wstring timeString = GetDate(stripped) + L" " + GetTime(stripped);
 
