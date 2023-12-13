@@ -24,7 +24,7 @@ namespace Windows
 		while (Running()) 
 		{
 			// If there are Window messages then process them.
-			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) 
+			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 			{
 				TranslateMessage(&msg);
 				DispatchMessage(&msg);

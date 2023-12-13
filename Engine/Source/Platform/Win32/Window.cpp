@@ -63,6 +63,12 @@ namespace Win32
 	{
 		switch (message)
 		{
+			case WM_SIZE:
+			case WM_MOVE:
+			{
+				return {};
+			}
+
 			case WM_NCCREATE:
 			{
 				OnNonClientCreate();
