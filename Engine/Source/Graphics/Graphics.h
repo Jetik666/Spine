@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine.h"
+#include "Common/Time/FrameRateController.h"
 
 #include <d3d11.h>
 #include <d3dcompiler.h>
@@ -11,14 +12,14 @@
 #include <vector>
 #include <wrl.h>
 
-class DirectX_11
+class DirectX11
 {
 	/* Constructor */
 public:
-	DirectX_11(HWND hWnd) noexcept;
-	DirectX_11(const DirectX_11&) = delete;
-	DirectX_11& operator=(const DirectX_11&) = delete;
-	~DirectX_11() noexcept;
+	DirectX11(HWND hWnd) noexcept;
+	DirectX11(const DirectX11&) = delete;
+	DirectX11& operator=(const DirectX11&) = delete;
+	~DirectX11() noexcept;
 
 	/* Public methods */
 public:
@@ -27,10 +28,11 @@ public:
 	void DrawIndexed(uint32_t count) noexcept(!DEBUG);
 	void SetProjection(DirectX::FXMMATRIX proj) noexcept;
 	DirectX::XMMATRIX GetProjection() const noexcept;
-	void TurnOffVsync() noexcept;
+	void ToggleVSync(bool turnOn) noexcept;
 
 	/* Private variables */
 private:
+	Time::FrameRateController m_FrameRate;
 	uint8_t m_VSync = 1;
 
 	DirectX::XMMATRIX m_Projection;
@@ -40,4 +42,8 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_Context;
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_Target;
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_DSV;
+
+	/* Getters and Setters */
+public:
+	Time::FrameRateController FrameRate() const noexcept { return m_FrameRate; }
 };

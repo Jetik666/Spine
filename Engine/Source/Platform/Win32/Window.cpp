@@ -53,7 +53,7 @@ namespace Win32
 		ShowWindow(m_Handle, SW_SHOW);
 		UpdateWindow(m_Handle);
 
-		m_Graphics = std::make_unique<DirectX_11>(m_Handle);
+		m_Graphics = std::make_unique<DirectX11>(m_Handle);
 	}
 
 	LRESULT Window::MessageHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) noexcept

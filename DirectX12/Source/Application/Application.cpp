@@ -7,14 +7,14 @@ namespace Windows
 {
 	Application::Application() noexcept 
 	{
-		SetupSettings();
-		m_FrameCounter.FramesLimit(300);
-	}
+		SetupSettings();	}
 
 	Application::~Application() noexcept {}
 
 	void Application::Initialize() noexcept 
 	{
+		Graphics().ToggleVSync(false);
+
 		MSG msg = { 0 };
 		
 		while (Running()) 
@@ -34,17 +34,15 @@ namespace Windows
 
 	void Application::Update() noexcept 
 	{
-		if (m_FrameCounter.ShowFrame())
-		{
-			#ifdef _DEBUG
-			ShowFPS();
-			#endif
-			Graphics().BeginFrame(0.1f, 0.1f, 0.1f);
+		Graphics().BeginFrame(0.1f, 0.1f, 0.1f);
 
 
 
-			Graphics().EndFrame();
-		}
+		Graphics().EndFrame();
+
+		#ifdef _DEBUG
+		ShowFPS();
+		#endif
 	}
 
 	void Application::SetupSettings() noexcept
@@ -57,8 +55,8 @@ namespace Windows
 
 	void Application::ShowFPS() noexcept
 	{
-		std::wstring amount = L" FPS: " + std::to_wstring(static_cast<unsigned short>(m_FrameCounter.FramesAmount()));
-		std::wstring frameTime = L" Frame Time: " + std::to_wstring(m_FrameCounter.FrameTime());
+		std::wstring amount = L" FPS: " + std::to_wstring(static_cast<unsigned short>(Graphics().FrameRate().Amount()));
+		std::wstring frameTime = L" Frame Time: " + std::to_wstring(Graphics().FrameRate().Time());
 		std::wstring fpsInfo = ApplicationSettings::GameName() + amount + frameTime;
 
 		const wchar_t* info = fpsInfo.c_str();

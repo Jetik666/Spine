@@ -8,7 +8,7 @@
 #pragma comment(lib,"d3d11.lib")
 #pragma comment(lib,"D3DCompiler.lib")
 
-DirectX_11::DirectX_11(HWND hWnd) noexcept
+DirectX11::DirectX11(HWND hWnd) noexcept
 {
 	DXGI_SWAP_CHAIN_DESC sd = {};
 	sd.BufferDesc.Width = 0;
@@ -104,21 +104,27 @@ DirectX_11::DirectX_11(HWND hWnd) noexcept
 	m_Projection = DirectX::XMMatrixPerspectiveLH(1.0f, 3.0f / 4.0f, 0.5f, 40.0f);
 }
 
-DirectX_11::~DirectX_11() noexcept
+DirectX11::~DirectX11() noexcept
 {
 	
 }
 
-void DirectX_11::BeginFrame(float red, float green, float blue) noexcept
+void DirectX11::BeginFrame(float red, float green, float blue) noexcept
 {
 	const float color[] = { red, green, blue, 1.0f };
 	m_Context->ClearRenderTargetView(m_Target.Get(), color);
 	m_Context->ClearDepthStencilView(m_DSV.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0u);
 }
 
-void DirectX_11::EndFrame()
+void DirectX11::EndFrame()
 {
 	HRESULT hr;
+
+	//TODO: Implement FPS limit here instead of Application class.
+	if (!FrameRate().ShowFrame())
+	{
+		return;
+	}
 
 	// Present:
 	// First value - Vsync
@@ -137,22 +143,29 @@ void DirectX_11::EndFrame()
 	}
 }
 
-void DirectX_11::DrawIndexed(uint32_t count) noexcept(!DEBUG)
+void DirectX11::DrawIndexed(uint32_t count) noexcept(!DEBUG)
 {
 	m_Context->DrawIndexed(count, 0u, 0u);
 }
 
-void DirectX_11::SetProjection(DirectX::FXMMATRIX proj) noexcept
+void DirectX11::SetProjection(DirectX::FXMMATRIX proj) noexcept
 {
 	m_Projection = proj;
 }
 
-DirectX::XMMATRIX DirectX_11::GetProjection() const noexcept
+DirectX::XMMATRIX DirectX11::GetProjection() const noexcept
 {
 	return m_Projection;
 }
 
-void DirectX_11::TurnOffVsync() noexcept
+void DirectX11::ToggleVSync(bool turnOn) noexcept
 {
-	m_VSync = 0;
+	if (turnOn)
+	{
+		m_VSync = 1;
+	}
+	else
+	{
+		m_VSync = 0;
+	}
 }

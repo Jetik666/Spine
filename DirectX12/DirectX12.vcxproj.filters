@@ -14,9 +14,6 @@
     <Filter Include="Source\Application">
       <UniqueIdentifier>{d200e4c7-36d8-4ab5-a3c0-e8b6b6611298}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Time">
-      <UniqueIdentifier>{e59d883f-c338-4552-b221-ed5f297bbfba}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\BlankProject.cpp">
@@ -28,9 +25,6 @@
     <ClCompile Include="Source\Application\WinMain.cpp">
       <Filter>Source\Application</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Time\FrameCounter.cpp">
-      <Filter>Source\Time</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -41,9 +35,6 @@
     </ClInclude>
     <ClInclude Include="Source\Application\Application.h">
       <Filter>Source\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Time\FrameCounter.h">
-      <Filter>Source\Time</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

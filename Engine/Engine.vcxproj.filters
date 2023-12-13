@@ -88,6 +88,9 @@
     <ClCompile Include="Source\Graphics\Graphics.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Common\Time\FrameRateController.cpp">
+      <Filter>Source\Common\Time</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine.h">
@@ -140,6 +143,9 @@
     </ClInclude>
     <ClInclude Include="Source\Graphics\Graphics.h">
       <Filter>Source\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\Time\FrameRateController.h">
+      <Filter>Source\Common\Time</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
