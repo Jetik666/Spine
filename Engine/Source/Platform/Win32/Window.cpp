@@ -18,6 +18,9 @@ namespace Win32
 			wcscpy_s(m_Name, nameLength, title);
 		}
 
+		m_FrameRate = std::make_unique<Time::FrameRateController>();
+		FrameRate().Limit(300);
+
 		Running(true);
 	}
 

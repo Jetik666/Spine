@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine/Simulation.h"
+#include <mutex>
 
 namespace Windows 
 {
@@ -19,5 +20,8 @@ namespace Windows
 		void Update() noexcept;
 		void SetupSettings() noexcept;
 		void ShowFPS() noexcept;
+
+	private:
+		std::mutex m_RenderThread;
 	};
 }

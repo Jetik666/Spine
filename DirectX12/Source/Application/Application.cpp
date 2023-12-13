@@ -7,42 +7,50 @@ namespace Windows
 {
 	Application::Application() noexcept 
 	{
-		SetupSettings();	}
+		SetupSettings();
+	}
 
 	Application::~Application() noexcept {}
 
 	void Application::Initialize() noexcept 
 	{
-		Graphics().ToggleVSync(false);
+		Graphics().ToggleVSync(true);
+		FrameRate().Limit(300);
+
+		std::thread render(&Application::Update, this);
 
 		MSG msg = { 0 };
 		
 		while (Running()) 
 		{
 			// If there are Window messages then process them.
-			if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE)) 
+			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) 
 			{
 				TranslateMessage(&msg);
 				DispatchMessage(&msg);
 			}
-			else 
-			{
-				Update();
-			}
 		}
+
+		render.join();
 	}
 
 	void Application::Update() noexcept 
 	{
-		Graphics().BeginFrame(0.1f, 0.1f, 0.1f);
+		while (Running())
+		{
+			if (FrameRate().ShowFrame())
+			{
+			#ifdef _DEBUG
+				ShowFPS();
+			#endif
+
+				Graphics().BeginFrame(0.1f, 0.1f, 0.1f);
 
 
 
-		Graphics().EndFrame();
-
-		#ifdef _DEBUG
-		ShowFPS();
-		#endif
+				Graphics().EndFrame();
+			}
+		}
 	}
 
 	void Application::SetupSettings() noexcept
@@ -55,8 +63,8 @@ namespace Windows
 
 	void Application::ShowFPS() noexcept
 	{
-		std::wstring amount = L" FPS: " + std::to_wstring(static_cast<unsigned short>(Graphics().FrameRate().Amount()));
-		std::wstring frameTime = L" Frame Time: " + std::to_wstring(Graphics().FrameRate().Time());
+		std::wstring amount = L" FPS: " + std::to_wstring(static_cast<unsigned short>(FrameRate().Amount()));
+		std::wstring frameTime = L" Frame Time: " + std::to_wstring(FrameRate().Time());
 		std::wstring fpsInfo = ApplicationSettings::GameName() + amount + frameTime;
 
 		const wchar_t* info = fpsInfo.c_str();

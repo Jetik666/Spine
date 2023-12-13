@@ -120,12 +120,6 @@ void DirectX11::EndFrame()
 {
 	HRESULT hr;
 
-	//TODO: Implement FPS limit here instead of Application class.
-	if (!FrameRate().ShowFrame())
-	{
-		return;
-	}
-
 	// Present:
 	// First value - Vsync
 	// 0 - off

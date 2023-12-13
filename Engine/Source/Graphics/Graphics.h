@@ -32,7 +32,6 @@ public:
 
 	/* Private variables */
 private:
-	Time::FrameRateController m_FrameRate;
 	uint8_t m_VSync = 1;
 
 	DirectX::XMMATRIX m_Projection;
@@ -43,7 +42,7 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_Target;
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_DSV;
 
-	/* Getters and Setters */
 public:
-	Time::FrameRateController FrameRate() const noexcept { return m_FrameRate; }
+	uint8_t VSync() const noexcept { return m_VSync; }
+	bool VSyncIsOn() const noexcept { return m_VSync == 1 ? true : false; }
 };

@@ -44,6 +44,7 @@ namespace Win32
 		wchar_t* m_Name;
 
 		std::unique_ptr<DirectX11> m_Graphics;
+		std::unique_ptr<Time::FrameRateController> m_FrameRate;
 
 		/* Getters and Setters */
 	public:
@@ -65,6 +66,7 @@ namespace Win32
 		void Name(const wchar_t* name) noexcept;
 
 		DirectX11& Graphics() const noexcept { return *m_Graphics; }
+		Time::FrameRateController& FrameRate() const noexcept { return *m_FrameRate; }
 	};
 }
 
