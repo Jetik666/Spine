@@ -5,7 +5,7 @@ namespace Time
 {
 	FrameRateController::FrameRateController() noexcept
 		: m_Limit(300)
-		, m_LimitTime(static_cast<float>(1.0f / (float)m_Limit))
+		, m_LimitTime(1.0f / static_cast<float>(m_Limit))
 		, m_Amount(0)
 		, m_Time(0)
 		, m_Peek(std::chrono::steady_clock::now())
@@ -30,6 +30,6 @@ namespace Time
 	void FrameRateController::Limit(uint16_t value) noexcept
 	{
 		m_Limit = value;
-		m_LimitTime = static_cast<float>(1.0f / (float)m_Limit);
+		m_LimitTime = 1.0f / static_cast<float>(m_Limit);
 	}
 }

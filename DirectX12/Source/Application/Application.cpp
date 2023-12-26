@@ -34,7 +34,7 @@ namespace Windows
 			if (FrameRate().ShowFrame())
 			{
 			#ifdef _DEBUG
-				//ShowFPS();
+				ShowFPS();
 			#endif
 
 				GraphicsRef().Update(1.0f, 1.0f, 1.0f);
@@ -56,7 +56,7 @@ namespace Windows
 
 	void Application::ShowFPS() noexcept
 	{
-		std::wstring amount = L" FPS: " + std::to_wstring(static_cast<unsigned short>(FrameRate().Amount()));
+		std::wstring amount = L" FPS: " + std::to_wstring(FrameRate().Amount());
 		std::wstring frameTime = L" Frame Time: " + std::to_wstring(FrameRate().Time());
 		std::wstring fpsInfo = ApplicationSettings::GameName() + amount + frameTime;
 
