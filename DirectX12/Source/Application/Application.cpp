@@ -14,21 +14,14 @@ namespace Windows
 
 	void Application::Initialize() noexcept 
 	{
-		Graphics().ToggleVSync(true);
+		GraphicsRef().ToggleVSync(true);
 		FrameRate().Limit(300);
 
 		std::thread render(&Application::Update, this);
 
-		MSG msg = { 0 };
-		
 		while (Running()) 
 		{
-			// If there are Window messages then process them.
-			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-			{
-				TranslateMessage(&msg);
-				DispatchMessage(&msg);
-			}
+			ProccessMessage();
 		}
 
 		render.join();
@@ -41,14 +34,21 @@ namespace Windows
 			if (FrameRate().ShowFrame())
 			{
 			#ifdef _DEBUG
-				ShowFPS();
+				//ShowFPS();
 			#endif
+				//TODO: Fix memory leak
+				Sleep(1500);
+				Graphics(Graphic::GraphicalFactory::SetInput(Graphic::D3D12_t, Handle()));
+				Sleep(1500);
+				Graphics(Graphic::GraphicalFactory::SetInput(Graphic::OpenGL_t, Handle()));
+				Sleep(1500);
+				Graphics(Graphic::GraphicalFactory::SetInput(Graphic::D3D11_t, Handle()));
 
-				Graphics().BeginFrame(0.1f, 0.1f, 0.1f);
+				/*GraphicsRef().Update(1.0f, 1.0f, 1.0f);
 
 
 
-				Graphics().EndFrame();
+				GraphicsRef().Render();*/
 			}
 		}
 	}

@@ -8,7 +8,13 @@
 #include "Common/Time/Time.h"
 #include "Core/ApplicationSettings.h"
 
-#include "Graphics/Graphics.h"
+#include "Common/Time/FrameRateController.h"
+
+#include "Graphics/GraphicalInput.h"
+#include "Graphics/D3D11.h"
+#include "Graphics/D3D12.h"
+#include "Graphics/OpenGL.h"
+#include "Graphics/GraphicalFactory.h"
 
 #ifdef WIN32
 	#include "Platform/Win32/Win32Utils.h"

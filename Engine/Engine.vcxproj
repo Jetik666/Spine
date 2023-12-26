@@ -101,8 +101,12 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Graphics\GraphicalFactory.cpp" />
+    <ClCompile Include="Source\Graphics\D3D11.cpp" />
+    <ClCompile Include="Source\Graphics\OpenGL.cpp" />
+    <ClCompile Include="Source\Graphics\GraphicalInput.cpp" />
+    <ClCompile Include="Source\Graphics\D3D12.cpp" />
     <ClCompile Include="Source\Common\Time\FrameRateController.cpp" />
-    <ClCompile Include="Source\Graphics\Graphics.cpp" />
     <ClCompile Include="Source\Common\CmdLineArgs.cpp" />
     <ClCompile Include="Source\Engine\Simulation.cpp" />
     <ClCompile Include="Source\Engine\OEngine.cpp" />
@@ -121,8 +125,12 @@
     <ClCompile Include="Source\Platform\Win32\w32Caption.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Graphics\GraphicalFactory.h" />
+    <ClInclude Include="Source\Graphics\OpenGL.h" />
+    <ClInclude Include="Source\Graphics\GraphicalInput.h" />
+    <ClInclude Include="Source\Graphics\D3D12.h" />
     <ClInclude Include="Source\Common\Time\FrameRateController.h" />
-    <ClInclude Include="Source\Graphics\Graphics.h" />
+    <ClInclude Include="Source\Graphics\D3D11.h" />
     <ClInclude Include="Source\Common\CmdLineArgs.h" />
     <ClInclude Include="Source\Engine\Simulation.h" />
     <ClInclude Include="Source\Engine\OEngine.h" />

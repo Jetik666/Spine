@@ -5,13 +5,15 @@
 namespace TestEngine
 {
 	Simulation::Simulation() noexcept
-		: Win32::Window(L"Test", ApplicationSettings::MainIcon())
+		: Win32::Window(ApplicationSettings::GameName(), ApplicationSettings::MainIcon())
 	{}
 
 	Simulation::~Simulation() noexcept {}
 
 	void Simulation::PreInitialize() noexcept
 	{
+		Win32::Window::Name(ApplicationSettings::GameName());
+
 		Logger::PrintDebugSeparator();
 		Logger::PrintLog(L"Application has loaded up: %s\n", ApplicationSettings::GameName());
 		Logger::PrintLog(L"Boot time: %s\n", ApplicationSettings::BootTime());
@@ -22,6 +24,7 @@ namespace TestEngine
 
 		Win32::Window::RegisterNewClass();
 		Win32::Window::Initialize();
+		Win32::Window::Graphics(Graphic::GraphicalFactory::SetInput(Graphic::D3D11_t, Win32::Window::Handle()));
 	}
 
 	LRESULT Simulation::MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept

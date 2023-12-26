@@ -32,8 +32,8 @@
     <Filter Include="Source\Platform\Win32">
       <UniqueIdentifier>{f74f9f00-aa20-4745-9346-6d8d77f35241}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Graphics">
-      <UniqueIdentifier>{f64b9d1b-f443-422a-b6f1-04e783022a06}</UniqueIdentifier>
+    <Filter Include="Source\Graphical Input">
+      <UniqueIdentifier>{fad85b14-8837-4f0a-96e5-941af222f473}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -85,11 +85,23 @@
     <ClCompile Include="Source\Platform\Win32\w32Caption.cpp">
       <Filter>Source\Platform\Win32</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\Graphics.cpp">
-      <Filter>Source\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Common\Time\FrameRateController.cpp">
       <Filter>Source\Common\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\GraphicalInput.cpp">
+      <Filter>Source\Graphical Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\OpenGL.cpp">
+      <Filter>Source\Graphical Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\D3D12.cpp">
+      <Filter>Source\Graphical Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\D3D11.cpp">
+      <Filter>Source\Graphical Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\GraphicalFactory.cpp">
+      <Filter>Source\Graphical Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -141,11 +153,23 @@
     <ClInclude Include="Source\Platform\Win32\w32Caption.h">
       <Filter>Source\Platform\Win32</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Graphics\Graphics.h">
-      <Filter>Source\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Common\Time\FrameRateController.h">
       <Filter>Source\Common\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\GraphicalInput.h">
+      <Filter>Source\Graphical Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\OpenGL.h">
+      <Filter>Source\Graphical Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\D3D11.h">
+      <Filter>Source\Graphical Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\D3D12.h">
+      <Filter>Source\Graphical Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\GraphicalFactory.h">
+      <Filter>Source\Graphical Input</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Engine.h"
-#include "Common/Time/FrameRateController.h"
 
 #include <d3d11.h>
 #include <d3dcompiler.h>
@@ -9,17 +8,18 @@
 #include <dxgi1_6.h>
 #include <memory>
 #include <random>
-#include <vector>
 #include <wrl.h>
 
-class DirectX11
+class D3D11 : public GraphicalInput
 {
 	/* Constructor */
 public:
-	DirectX11(HWND hWnd) noexcept;
-	DirectX11(const DirectX11&) = delete;
-	DirectX11& operator=(const DirectX11&) = delete;
-	~DirectX11() noexcept;
+	D3D11(HWND hWnd) noexcept;
+	~D3D11() noexcept;
+
+	/* Operators */
+public:
+	void* operator new(std::size_t size);
 
 	/* Public methods */
 public:
@@ -28,12 +28,15 @@ public:
 	void DrawIndexed(uint32_t count) noexcept(!DEBUG);
 	void SetProjection(DirectX::FXMMATRIX proj) noexcept;
 	DirectX::XMMATRIX GetProjection() const noexcept;
-	void ToggleVSync(bool turnOn) noexcept;
+
+	void Initialize(HWND hWnd) noexcept override;
+	void Update(float red, float green, float blue) noexcept override;
+	void Render() override;
+
+	void ToggleVSync(bool turnOn) noexcept override;
 
 	/* Private variables */
 private:
-	uint8_t m_VSync = 1;
-
 	DirectX::XMMATRIX m_Projection;
 
 	Microsoft::WRL::ComPtr<ID3D11Device> m_Device;
@@ -41,8 +44,4 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_Context;
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_Target;
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_DSV;
-
-public:
-	uint8_t VSync() const noexcept { return m_VSync; }
-	bool VSyncIsOn() const noexcept { return m_VSync == 1 ? true : false; }
 };

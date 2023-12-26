@@ -55,8 +55,6 @@ namespace Win32
 
 		ShowWindow(m_Handle, SW_SHOW);
 		UpdateWindow(m_Handle);
-
-		m_Graphics = std::make_unique<DirectX11>(m_Handle);
 	}
 
 	LRESULT Window::MessageHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) noexcept
@@ -117,9 +115,61 @@ namespace Win32
 				RedrawWindow();
 				break;
 			}
+
+			default:
+			{
+				break;
+			}
 		}
 
 		return SubObject::MessageHandler(hWnd, message, wParam, lParam);
+	}
+
+	void Window::ProccessMessage() noexcept
+	{
+		MSG msg = {};
+
+		if (PeekMessage(&msg, Handle(), 0, 0, PM_REMOVE))
+		{
+			if (msg.message == WM_QUIT)
+			{
+				Running(false);
+				return;
+			}
+
+			if (msg.message == WM_MOVE || msg.message == WM_SIZE)
+			{
+				return;
+			}
+
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+
+		return;
+	}
+
+	std::optional<int> Window::ProcessMessage() const noexcept
+	{
+		MSG msg = {};
+
+		if (PeekMessage(&msg, Handle(), 0, 0, PM_REMOVE))
+		{
+			if (msg.message == WM_QUIT)
+			{
+				return (int)msg.wParam;
+			}
+
+			if (msg.message == WM_MOVE || msg.message == WM_SIZE)
+			{
+				return {};
+			}
+
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+
+		return {};
 	}
 
 	void Window::OnNonClientCreate() noexcept

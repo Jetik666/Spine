@@ -1,5 +1,5 @@
 #include "Engine.h"
-#include "Graphics.h"
+#include "D3D11.h"
 
 #include <cmath>
 #include <sstream>
@@ -8,8 +8,10 @@
 #pragma comment(lib,"d3d11.lib")
 #pragma comment(lib,"D3DCompiler.lib")
 
-DirectX11::DirectX11(HWND hWnd) noexcept
+D3D11::D3D11(HWND hWnd) noexcept
 {
+	Logger::PrintLog(L"D3D11 - Create\n");
+
 	DXGI_SWAP_CHAIN_DESC sd = {};
 	sd.BufferDesc.Width = 0;
 	sd.BufferDesc.Height = 0;
@@ -104,19 +106,68 @@ DirectX11::DirectX11(HWND hWnd) noexcept
 	m_Projection = DirectX::XMMatrixPerspectiveLH(1.0f, 3.0f / 4.0f, 0.5f, 40.0f);
 }
 
-DirectX11::~DirectX11() noexcept
+D3D11::~D3D11() noexcept
+{
+
+}
+
+void* D3D11::operator new(std::size_t size)
+{
+	void* ptr = ::operator new(size);
+
+	return ptr;
+}
+
+void D3D11::BeginFrame(float red, float green, float blue) noexcept
 {
 	
 }
 
-void DirectX11::BeginFrame(float red, float green, float blue) noexcept
+void D3D11::EndFrame()
+{
+	
+}
+
+void D3D11::DrawIndexed(uint32_t count) noexcept(!DEBUG)
+{
+	m_Context->DrawIndexed(count, 0u, 0u);
+}
+
+void D3D11::SetProjection(DirectX::FXMMATRIX proj) noexcept
+{
+	m_Projection = proj;
+}
+
+DirectX::XMMATRIX D3D11::GetProjection() const noexcept
+{
+	return m_Projection;
+}
+
+void D3D11::ToggleVSync(bool turnOn) noexcept
+{
+	if (turnOn)
+	{
+		GraphicalInput::VSync(1);
+	}
+	else
+	{
+		GraphicalInput::VSync(0);
+	}
+}
+
+void D3D11::Initialize(HWND hWnd) noexcept
+{
+	Logger::PrintLog(L"D3D11\n");
+}
+
+void D3D11::Update(float red, float green, float blue) noexcept
 {
 	const float color[] = { red, green, blue, 1.0f };
 	m_Context->ClearRenderTargetView(m_Target.Get(), color);
 	m_Context->ClearDepthStencilView(m_DSV.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0u);
 }
 
-void DirectX11::EndFrame()
+void D3D11::Render()
 {
 	HRESULT hr;
 
@@ -124,7 +175,7 @@ void DirectX11::EndFrame()
 	// First value - Vsync
 	// 0 - off
 	// 1 - on
-	if (FAILED(hr = m_Swap->Present(m_VSync, 0u)))
+	if (FAILED(hr = m_Swap->Present(GraphicalInput::VSync(), 0u)))
 	{
 		if (hr == DXGI_ERROR_DEVICE_REMOVED)
 		{
@@ -134,32 +185,5 @@ void DirectX11::EndFrame()
 		{
 			throw hr;
 		}
-	}
-}
-
-void DirectX11::DrawIndexed(uint32_t count) noexcept(!DEBUG)
-{
-	m_Context->DrawIndexed(count, 0u, 0u);
-}
-
-void DirectX11::SetProjection(DirectX::FXMMATRIX proj) noexcept
-{
-	m_Projection = proj;
-}
-
-DirectX::XMMATRIX DirectX11::GetProjection() const noexcept
-{
-	return m_Projection;
-}
-
-void DirectX11::ToggleVSync(bool turnOn) noexcept
-{
-	if (turnOn)
-	{
-		m_VSync = 1;
-	}
-	else
-	{
-		m_VSync = 0;
 	}
 }

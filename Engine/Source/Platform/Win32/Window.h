@@ -21,6 +21,9 @@ namespace Win32
 		virtual void Initialize() noexcept override;
 		virtual LRESULT	MessageHandler(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept override;
 
+		void ProccessMessage() noexcept;
+		std::optional<int> ProcessMessage() const noexcept;
+
 		void OnNonClientCreate() noexcept;
 		void OnNonClientActivate(bool active) noexcept;
 		void OnNonClientPaint(HRGN region) const noexcept;
@@ -43,7 +46,7 @@ namespace Win32
 
 		wchar_t* m_Name;
 
-		std::unique_ptr<DirectX11> m_Graphics;
+		std::unique_ptr<GraphicalInput> m_Graphics;
 		std::unique_ptr<Time::FrameRateController> m_FrameRate;
 
 		/* Getters and Setters */
@@ -65,7 +68,10 @@ namespace Win32
 		void Name(wchar_t* name) noexcept;
 		void Name(const wchar_t* name) noexcept;
 
-		DirectX11& Graphics() const noexcept { return *m_Graphics; }
+		GraphicalInput* GraphicsPtr() const noexcept { return m_Graphics.get(); }
+		GraphicalInput& GraphicsRef() const noexcept { return *m_Graphics; }
+		void Graphics(GraphicalInput* NewInput) noexcept { m_Graphics.reset(NewInput); }
+
 		Time::FrameRateController& FrameRate() const noexcept { return *m_FrameRate; }
 	};
 }
