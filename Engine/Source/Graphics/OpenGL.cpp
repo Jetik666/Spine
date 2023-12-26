@@ -17,9 +17,18 @@ void* OpenGL::operator new(std::size_t size)
 	return ptr;
 }
 
+void OpenGL::operator delete(void* ptr)
+{
+	::operator delete(ptr);
+}
+
 void OpenGL::Initialize(HWND hWnd) noexcept
 {
 	Logger::PrintLog(L"OpenGL\n");
+}
+
+void OpenGL::Reset() noexcept
+{
 }
 
 void OpenGL::Update(float red, float green, float blue) noexcept
@@ -41,3 +50,4 @@ void OpenGL::ToggleVSync(bool turnOn) noexcept
 		GraphicalInput::VSync(0);
 	}
 }
+

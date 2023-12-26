@@ -5,10 +5,17 @@ class GraphicalInput
 	/* Public methods */
 public:
 	virtual void Initialize(HWND hWnd) noexcept = 0;
+	virtual void Reset() noexcept = 0;
+
 	virtual void Update(float red, float green, float blue) noexcept = 0;
 	virtual void Render() = 0;
 
 	virtual void ToggleVSync(bool turnOn) noexcept = 0;
+
+	/* Operators */
+public:
+	static void* operator new(std::size_t size);
+	static void operator delete(void* ptr);
 
 	/* Private variables */
 private:

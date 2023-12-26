@@ -8,7 +8,7 @@ namespace Time
 		/* Constructor */
 	public:
 		FrameRateController() noexcept;
-		~FrameRateController() noexcept;
+		~FrameRateController() noexcept = default;
 
 		/* Public methods */
 	public:

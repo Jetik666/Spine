@@ -10,10 +10,13 @@ public:
 	/* Operators */
 public:
 	void* operator new(std::size_t size);
+	void operator delete(void* ptr);
 
 	/* Public methods */
 public:
 	void Initialize(HWND hWnd) noexcept override;
+	void Reset() noexcept override;
+
 	void Update(float red, float green, float blue) noexcept override;
 	void Render() override;
 

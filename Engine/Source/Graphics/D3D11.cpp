@@ -108,7 +108,11 @@ D3D11::D3D11(HWND hWnd) noexcept
 
 D3D11::~D3D11() noexcept
 {
-
+	m_Target.Reset();
+	m_DSV.Reset();
+	m_Context.Reset();
+	m_Swap.Reset();
+	m_Device.Reset();
 }
 
 void* D3D11::operator new(std::size_t size)
@@ -118,14 +122,9 @@ void* D3D11::operator new(std::size_t size)
 	return ptr;
 }
 
-void D3D11::BeginFrame(float red, float green, float blue) noexcept
+void D3D11::operator delete(void* ptr)
 {
-	
-}
-
-void D3D11::EndFrame()
-{
-	
+	::operator delete(ptr);
 }
 
 void D3D11::DrawIndexed(uint32_t count) noexcept(!DEBUG)
@@ -158,6 +157,15 @@ void D3D11::ToggleVSync(bool turnOn) noexcept
 void D3D11::Initialize(HWND hWnd) noexcept
 {
 	Logger::PrintLog(L"D3D11\n");
+}
+
+void D3D11::Reset() noexcept
+{
+	m_Target.Reset();
+	m_DSV.Reset();
+	m_Context.Reset();
+	m_Swap.Reset();
+	m_Device.Reset();
 }
 
 void D3D11::Update(float red, float green, float blue) noexcept

@@ -11,8 +11,6 @@ namespace Time
 		, m_Peek(std::chrono::steady_clock::now())
 	{}
 
-	FrameRateController::~FrameRateController() noexcept {}
-
 	bool FrameRateController::ShowFrame() noexcept
 	{
 		std::chrono::steady_clock::time_point currentTime = std::chrono::steady_clock::now();

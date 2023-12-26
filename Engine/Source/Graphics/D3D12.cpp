@@ -17,9 +17,18 @@ void* D3D12::operator new(std::size_t size)
 	return ptr;
 }
 
+void D3D12::operator delete(void* ptr)
+{
+	::operator delete(ptr);
+}
+
 void D3D12::Initialize(HWND hWnd) noexcept
 {
 	Logger::PrintLog(L"D3D12\n");
+}
+
+void D3D12::Reset() noexcept
+{
 }
 
 void D3D12::Update(float red, float green, float blue) noexcept
@@ -43,3 +52,4 @@ void D3D12::ToggleVSync(bool turnOn) noexcept
 		GraphicalInput::VSync(0);
 	}
 }
+

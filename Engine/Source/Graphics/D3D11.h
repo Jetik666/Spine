@@ -20,18 +20,16 @@ public:
 	/* Operators */
 public:
 	void* operator new(std::size_t size);
+	void operator delete(void* ptr);
 
 	/* Public methods */
 public:
-	void BeginFrame(float red, float green, float blue) noexcept;
-	void EndFrame();
-	void DrawIndexed(uint32_t count) noexcept(!DEBUG);
-	void SetProjection(DirectX::FXMMATRIX proj) noexcept;
-	DirectX::XMMATRIX GetProjection() const noexcept;
-
 	void Initialize(HWND hWnd) noexcept override;
+	void Reset() noexcept override;
+
 	void Update(float red, float green, float blue) noexcept override;
 	void Render() override;
+	void DrawIndexed(uint32_t count) noexcept(!DEBUG);
 
 	void ToggleVSync(bool turnOn) noexcept override;
 
@@ -44,4 +42,9 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_Context;
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_Target;
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_DSV;
+
+	/* Getters and Setters */
+public:
+	void SetProjection(DirectX::FXMMATRIX proj) noexcept;
+	DirectX::XMMATRIX GetProjection() const noexcept;
 };

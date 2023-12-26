@@ -12,7 +12,7 @@ namespace Graphic
 	class GraphicalFactory
 	{
 	public:
-		static GraphicalInput* SetInput(InputType type, HWND hWnd) noexcept;
+		static std::unique_ptr<GraphicalInput> SetInput(InputType type, HWND hWnd) noexcept;
 	};
 }
 

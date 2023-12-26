@@ -70,7 +70,22 @@ namespace Win32
 
 		GraphicalInput* GraphicsPtr() const noexcept { return m_Graphics.get(); }
 		GraphicalInput& GraphicsRef() const noexcept { return *m_Graphics; }
-		void Graphics(GraphicalInput* NewInput) noexcept { m_Graphics.reset(NewInput); }
+		void Graphics(std::unique_ptr<GraphicalInput> NewInput) noexcept 
+		{ 
+			if (m_Graphics != nullptr)
+			{
+				m_Graphics.get()->Reset();
+			}
+			m_Graphics.swap(NewInput); 
+		}
+		void Graphics(GraphicalInput* NewInput) noexcept
+		{
+			if (m_Graphics != nullptr)
+			{
+				m_Graphics.get()->Reset();
+			}
+			m_Graphics.reset(NewInput);
+		}
 
 		Time::FrameRateController& FrameRate() const noexcept { return *m_FrameRate; }
 	};

@@ -36,19 +36,12 @@ namespace Windows
 			#ifdef _DEBUG
 				//ShowFPS();
 			#endif
-				//TODO: Fix memory leak
-				Sleep(1500);
-				Graphics(Graphic::GraphicalFactory::SetInput(Graphic::D3D12_t, Handle()));
-				Sleep(1500);
-				Graphics(Graphic::GraphicalFactory::SetInput(Graphic::OpenGL_t, Handle()));
-				Sleep(1500);
-				Graphics(Graphic::GraphicalFactory::SetInput(Graphic::D3D11_t, Handle()));
 
-				/*GraphicsRef().Update(1.0f, 1.0f, 1.0f);
+				GraphicsRef().Update(1.0f, 1.0f, 1.0f);
 
 
 
-				GraphicsRef().Render();*/
+				GraphicsRef().Render();
 			}
 		}
 	}
