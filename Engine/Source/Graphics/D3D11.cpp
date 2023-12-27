@@ -127,33 +127,6 @@ void D3D11::operator delete(void* ptr)
 	::operator delete(ptr);
 }
 
-void D3D11::DrawIndexed(uint32_t count) noexcept(!DEBUG)
-{
-	m_Context->DrawIndexed(count, 0u, 0u);
-}
-
-void D3D11::SetProjection(DirectX::FXMMATRIX proj) noexcept
-{
-	m_Projection = proj;
-}
-
-DirectX::XMMATRIX D3D11::GetProjection() const noexcept
-{
-	return m_Projection;
-}
-
-void D3D11::ToggleVSync(bool turnOn) noexcept
-{
-	if (turnOn)
-	{
-		GraphicalInput::VSync(1);
-	}
-	else
-	{
-		GraphicalInput::VSync(0);
-	}
-}
-
 void D3D11::Initialize(HWND hWnd) noexcept
 {
 	Logger::PrintLog(L"D3D11\n");
@@ -194,4 +167,21 @@ void D3D11::Render()
 			throw hr;
 		}
 	}
+}
+
+void D3D11::ToggleVSync(bool turnOn) noexcept
+{
+	if (turnOn)
+	{
+		GraphicalInput::VSync(1);
+	}
+	else
+	{
+		GraphicalInput::VSync(0);
+	}
+}
+
+void D3D11::DrawIndexed(uint32_t count) noexcept(!DEBUG)
+{
+	m_Context->DrawIndexed(count, 0u, 0u);
 }

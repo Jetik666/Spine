@@ -171,5 +171,7 @@
     <ClInclude Include="Source\Graphics\GraphicalFactory.h">
       <Filter>Source\Graphical Input</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Graphics\GLFW\glfw3.h" />
+    <ClInclude Include="Source\Graphics\GLFW\glfw3native.h" />
   </ItemGroup>
 </Project>

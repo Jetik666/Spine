@@ -24,7 +24,7 @@ namespace TestEngine
 
 		Win32::Window::RegisterNewClass();
 		Win32::Window::Initialize();
-		Win32::Window::Graphics(Graphic::GraphicalFactory::SetInput(Graphic::D3D11_t, Win32::Window::Handle()));
+		Win32::Window::Graphics(Graphic::GraphicalFactory::SetInput(Graphic::OpenGL_t, Win32::Window::Handle()));
 	}
 
 	LRESULT Simulation::MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam) noexcept

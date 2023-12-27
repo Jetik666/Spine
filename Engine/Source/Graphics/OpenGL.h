@@ -1,4 +1,5 @@
 #pragma once
+#include "Graphics/GLFW/glfw3.h"
 
 class OpenGL : public GraphicalInput
 {
@@ -21,5 +22,10 @@ public:
 	void Render() override;
 
 	void ToggleVSync(bool turnOn) noexcept override;
+
+	/* Private variable */
+private:
+	HDC m_HDC;
+	HGLRC m_hOGLRenderContext;
 };
 

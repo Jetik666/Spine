@@ -29,9 +29,10 @@ public:
 
 	void Update(float red, float green, float blue) noexcept override;
 	void Render() override;
-	void DrawIndexed(uint32_t count) noexcept(!DEBUG);
 
 	void ToggleVSync(bool turnOn) noexcept override;
+
+	void DrawIndexed(uint32_t count) noexcept(!DEBUG);
 
 	/* Private variables */
 private:
@@ -45,6 +46,6 @@ private:
 
 	/* Getters and Setters */
 public:
-	void SetProjection(DirectX::FXMMATRIX proj) noexcept;
-	DirectX::XMMATRIX GetProjection() const noexcept;
+	void Projection(DirectX::FXMMATRIX projection) noexcept { m_Projection = projection; }
+	DirectX::XMMATRIX Projection() const noexcept { return m_Projection; }
 };
