@@ -1,5 +1,5 @@
 #pragma once
-#include "Graphics/GLFW/glfw3.h"
+#include <GLFW/glfw3.h>
 
 class OpenGL : public GraphicalInput
 {
@@ -25,6 +25,7 @@ public:
 
 	/* Private variable */
 private:
+	HWND& m_HWND;
 	HDC m_HDC;
 	HGLRC m_hOGLRenderContext;
 };
