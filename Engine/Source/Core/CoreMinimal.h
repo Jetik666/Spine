@@ -8,8 +8,6 @@
 #include "Common/Time/Time.h"
 #include "Core/ApplicationSettings.h"
 
-#include "Common/Time/FrameRateController.h"
-
 #include "Graphics/GraphicalInput.h"
 #include "Graphics/D3D/D3D11.h"
 #include "Graphics/D3D/D3D12.h"

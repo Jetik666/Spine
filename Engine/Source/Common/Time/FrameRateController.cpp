@@ -1,29 +1,50 @@
 #include "Engine.h"
 #include "FrameRateController.h"
 
+#include <thread>
+
 namespace Time
 {
 	FrameRateController::FrameRateController() noexcept
 		: m_Limit(300)
 		, m_LimitTime(1.0f / static_cast<float>(m_Limit))
-		, m_Amount(0)
-		, m_Time(0)
-		, m_Peek(std::chrono::steady_clock::now())
+		, m_BeginFrame(std::chrono::steady_clock::now())
+		, m_EndFrame(m_BeginFrame)
+		, m_Point(m_BeginFrame)
+		, m_FrameRate(0)
+		, m_FrameTime(0)
 	{}
 
-	bool FrameRateController::ShowFrame() noexcept
+	void FrameRateController::StartFrame() noexcept
 	{
-		std::chrono::steady_clock::time_point currentTime = std::chrono::steady_clock::now();
-		float time = std::chrono::duration<float>(currentTime - m_Peek).count();
+		m_BeginFrame = std::chrono::steady_clock::now();
+	}
 
-		if (m_LimitTime <= time)
+	void FrameRateController::EndFrame() noexcept
+	{
+		m_EndFrame = std::chrono::steady_clock::now();
+		m_FrameTime = std::chrono::duration<float>(m_EndFrame - m_BeginFrame).count();
+		m_FrameRate = static_cast<int>(1 / m_FrameTime);
+	}
+
+	void FrameRateController::Sleep(std::mutex renderMutex) const noexcept
+	{
+		std::unique_lock<std::mutex> lock(renderMutex);
+
+		if (m_FrameTime < m_LimitTime)
 		{
-			m_Time = time;
-			m_Amount = static_cast<uint16_t>(1.0 / m_Time);
-			m_Peek = currentTime;
+			float remainingTimeMilliseconds = m_LimitTime - m_FrameTime;
+			std::this_thread::sleep_for(std::chrono::milliseconds((int)remainingTimeMilliseconds));
+		}
+	}
+
+	bool FrameRateController::UpdateInforamtion() noexcept
+	{
+		if (std::chrono::duration<float>(m_BeginFrame - m_Point).count() >= 1.5f)
+		{
+			m_Point = std::chrono::steady_clock::now();
 			return true;
 		}
-
 		return false;
 	}
 

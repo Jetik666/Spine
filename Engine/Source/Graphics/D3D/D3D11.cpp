@@ -33,10 +33,7 @@ D3D11::D3D11(HWND hWnd) noexcept
 #ifndef NDEBUG
 	swapCreateFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
-
-	// For checking results of d3d functions
-	HRESULT hr {};
-
+	
 	// Create device and front/back buffers, and swap chain and rendering context
 	D3D11CreateDeviceAndSwapChain(
 		nullptr,

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SubObject.h"
+#include "Common/Time/FrameRateController.h"
 
 #include <optional>
 #include <memory>

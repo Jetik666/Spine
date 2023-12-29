@@ -29,20 +29,27 @@ namespace Windows
 
 	void Application::Update() noexcept 
 	{
+		std::mutex renderMutex;
+		std::condition_variable frameCondition;
+
 		while (Running())
 		{
-			if (FrameRate().ShowFrame())
-			{
-			#ifdef _DEBUG
-				ShowFPS();
-			#endif
+			std::unique_lock<std::mutex> lock(renderMutex);
 
-				GraphicsRef().Update(1.0f, 1.0f, 1.0f);
+			FrameRate().StartFrame();
 
+			const float c = sin(FrameRate().Time()) / 2.0f + 0.5f;
+			GraphicsRef().Update(c, c, 1.0f);
+			GraphicsRef().Render();
 
+			FrameRate().EndFrame();
+			FrameRate().Sleep(renderMutex);
 
-				GraphicsRef().Render();
-			}
+		#ifdef _DEBUG
+			ShowFPS();
+		#endif
+
+			frameCondition.notify_one();
 		}
 	}
 
@@ -56,12 +63,13 @@ namespace Windows
 
 	void Application::ShowFPS() noexcept
 	{
-		std::wstring amount = L" FPS: " + std::to_wstring(FrameRate().Amount());
-		std::wstring frameTime = L" Frame Time: " + std::to_wstring(FrameRate().Time());
-		std::wstring fpsInfo = ApplicationSettings::GameName() + amount + frameTime;
+		if (FrameRate().UpdateInforamtion())
+		{
+			std::wstring amount = L" FPS: " + std::to_wstring(FrameRate().FrameRate());
+			std::wstring frameTime = L" Frame Time: " + std::to_wstring(FrameRate().Time());
+			std::wstring fpsInfo = ApplicationSettings::GameName() + amount + frameTime;
 
-		const wchar_t* info = fpsInfo.c_str();
-
-		Name(info);
+			Name(fpsInfo.c_str());
+		}
 	}
 }
