@@ -106,9 +106,6 @@
     <ClCompile Include="Source\Graphics\D3D\D3D12.cpp">
       <Filter>Source\Graphical Input\D3D</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\OpenGL\OpenGL.cpp">
-      <Filter>Source\Graphical Input\OpenGL</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Engine.h">
@@ -173,9 +170,6 @@
     </ClInclude>
     <ClInclude Include="Source\Graphics\D3D\D3D11.h">
       <Filter>Source\Graphical Input\D3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Graphics\OpenGL\OpenGL.h">
-      <Filter>Source\Graphical Input\OpenGL</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -13,7 +13,6 @@
 #include "Graphics/GraphicalInput.h"
 #include "Graphics/D3D/D3D11.h"
 #include "Graphics/D3D/D3D12.h"
-#include "Graphics/OpenGL/OpenGL.h"
 #include "Graphics/GraphicalFactory.h"
 
 #ifdef WIN32

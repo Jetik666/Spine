@@ -64,7 +64,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Engine\Source;$(SolutionDir)\Engine\Dependencies\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Engine\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -87,7 +87,7 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Engine\Source;$(SolutionDir)\Engine\Dependencies\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Engine\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>NotSet</SubSystem>
@@ -103,7 +103,6 @@
   <ItemGroup>
     <ClCompile Include="Source\Graphics\GraphicalFactory.cpp" />
     <ClCompile Include="Source\Graphics\D3D\D3D11.cpp" />
-    <ClCompile Include="Source\Graphics\OpenGL\OpenGL.cpp" />
     <ClCompile Include="Source\Graphics\GraphicalInput.cpp" />
     <ClCompile Include="Source\Graphics\D3D\D3D12.cpp" />
     <ClCompile Include="Source\Common\Time\FrameRateController.cpp" />
@@ -126,7 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Graphics\GraphicalFactory.h" />
-    <ClInclude Include="Source\Graphics\OpenGL\OpenGL.h" />
     <ClInclude Include="Source\Graphics\GraphicalInput.h" />
     <ClInclude Include="Source\Graphics\D3D\D3D12.h" />
     <ClInclude Include="Source\Common\Time\FrameRateController.h" />

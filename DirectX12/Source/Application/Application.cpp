@@ -14,7 +14,7 @@ namespace Windows
 
 	void Application::Initialize() noexcept 
 	{
-		GraphicsRef().ToggleVSync(true);
+		GraphicsRef().ToggleVSync(false);
 		FrameRate().Limit(300);
 
 		std::thread render(&Application::Update, this);

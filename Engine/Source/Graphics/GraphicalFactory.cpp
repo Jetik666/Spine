@@ -21,12 +21,6 @@ namespace Graphic
 				break;
 			}
 
-			case InputType::OpenGL_t:
-			{
-				input = std::make_unique<OpenGL>(hWnd);
-				break;
-			}
-
 			default:
 			{
 				Logger::PrintLog(L"Can`t switch graphical input.");
