@@ -27,12 +27,11 @@ namespace Time
 		m_FrameRate = static_cast<int>(1 / m_FrameTime);
 	}
 
-	void FrameRateController::Sleep(std::mutex renderMutex) const noexcept
+	void FrameRateController::Sleep(std::mutex& renderMutex) const noexcept
 	{
-		std::unique_lock<std::mutex> lock(renderMutex);
-
 		if (m_FrameTime < m_LimitTime)
 		{
+			std::unique_lock<std::mutex> lock(renderMutex);
 			float remainingTimeMilliseconds = m_LimitTime - m_FrameTime;
 			std::this_thread::sleep_for(std::chrono::milliseconds((int)remainingTimeMilliseconds));
 		}

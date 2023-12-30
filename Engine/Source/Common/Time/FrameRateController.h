@@ -15,7 +15,7 @@ namespace Time
 	public:
 		void StartFrame() noexcept;
 		void EndFrame() noexcept;
-		void Sleep(std::mutex renderMutex) const noexcept;
+		void Sleep(std::mutex& renderMutex) const noexcept;
 		bool UpdateInforamtion() noexcept;
 
 		/* Private variables */

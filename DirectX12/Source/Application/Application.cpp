@@ -34,7 +34,6 @@ namespace Windows
 
 		while (Running())
 		{
-			std::unique_lock<std::mutex> lock(renderMutex);
 
 			FrameRate().StartFrame();
 
@@ -50,6 +49,7 @@ namespace Windows
 		#endif
 
 			frameCondition.notify_one();
+			std::unique_lock<std::mutex> unlock(renderMutex);
 		}
 	}
 
